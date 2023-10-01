@@ -10,7 +10,7 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): libft/libft.a $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -Llibft -lft
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -Llibft -lft 
 
 libft/libft.a:
 	make -C libft all bonus

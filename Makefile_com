@@ -1,0 +1,44 @@
+## Variables del makefile
+NAME = libftprintf ## Nombre del ejecutable a crear.
+AR = ar rcs
+CC = gcc
+CFLASG = -Wall -Wextra -Werror
+
+## Recursos, los arhivos fuente seran los .c
+SRCS = 
+
+## Objetos, seran creados a partir de los .c
+OBJS = $(SRCS:.c=.o)
+
+## All es el objetivo predeterminado al hacer make, esta norma especifica que all depende del ejecutable (libftprintf.a).
+all: $(NAME)
+
+## Esta norma indica que para construir el ejecutable se necesita primero el archivo libft.a y los objetos creados.
+$(NAME): libft/libft.a $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -Llibft -lft 
+	## Esta es la regla de compilacion y enlace para construir el ejecutable.
+	## -L indica el directorio en el que buscar y -l el nombre del archivo siendo ft una abreviatura ya que es comund en c que una libreria empiece por lib.
+
+## Esta norma indica que la construccion de libft.a se hara ejecutando la regla make all bonus en el directorio libft.
+libft/libft.a:
+	make -C libft all bonus
+
+## Esta es una regla que indica como se van a generar los objetos. $< indica el archivo fuente .c y $@ el archivo objeto. 
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+## Esta norma es para limpiar los objetos generados y luego los generados en libft.
+clean:
+	rm -f $(OBJS)
+	make -C libft clean
+
+## Esta regla es para limpiar los archivos .a tanto en este directorio como en libft.
+fclean: clean
+	rm -f $(NAME)
+	make -C libft fclean
+
+## Esta regla limpia los archivos generados y ls vuelve a crear.
+re: fclean all
+
+## Indica que los siguientes son tareas a realizar y no archivos reales.
+.PHONY: all clean fclean re
