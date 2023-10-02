@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: analba-sa <analba-s@student.42malaga.com>  +#+  +:+       +#+        */
+/*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/02 13:17:40 by analba-sa         #+#    #+#             */
-/*   Updated: 2023/10/02 13:17:42 by analba-sa        ###   ########.fr       */
+/*   Created: 2023/09/15 04:30:14 by analba-s          #+#    #+#             */
+/*   Updated: 2023/09/15 04:41:49 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
-# include "libft/libft.h"
-# include <stdarg.h>
+#include "libft.h"
 
-int 	ft_printf(const char *f, ...);
-void	ft_putnbr_base(int nbr, char *base);
-void    ft_isint(va_list args, int ctrl);
-
-#endif
+int	ft_isalnum(int c)
+{
+	if ((c >= 97 && c <= 122) || (c >= 65 && c <= 90) \
+		|| (c >= '0' && c <= '9'))
+		return (1);
+	return (0);
+}

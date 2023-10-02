@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: analba-sa <analba-s@student.42malaga.com>  +#+  +:+       +#+        */
+/*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/02 13:17:40 by analba-sa         #+#    #+#             */
-/*   Updated: 2023/10/02 13:17:42 by analba-sa        ###   ########.fr       */
+/*   Created: 2023/09/29 13:16:33 by analba-sa         #+#    #+#             */
+/*   Updated: 2023/09/29 13:43:53 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
-# include "libft/libft.h"
-# include <stdarg.h>
+#include "libft.h"
 
-int 	ft_printf(const char *f, ...);
-void	ft_putnbr_base(int nbr, char *base);
-void    ft_isint(va_list args, int ctrl);
+t_list	*ft_lstlast(t_list *lst)
+{
+	t_list	*aux;
 
-#endif
+	if (!lst)
+		return (0);
+	aux = lst;
+	while (aux->next != 0)
+		aux = aux -> next;
+	return (aux);
+}

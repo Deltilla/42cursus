@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: analba-sa <analba-s@student.42malaga.com>  +#+  +:+       +#+        */
+/*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/02 13:17:40 by analba-sa         #+#    #+#             */
-/*   Updated: 2023/10/02 13:17:42 by analba-sa        ###   ########.fr       */
+/*   Created: 2023/09/15 04:30:03 by analba-s          #+#    #+#             */
+/*   Updated: 2023/09/15 04:30:04 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
-# include "libft/libft.h"
-# include <stdarg.h>
+#include "libft.h"
 
-int 	ft_printf(const char *f, ...);
-void	ft_putnbr_base(int nbr, char *base);
-void    ft_isint(va_list args, int ctrl);
-
-#endif
+void	ft_bzero(void *s, size_t n)
+{
+	ft_memset(s, 0, n);
+}

@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: analba-sa <analba-s@student.42malaga.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/02 13:17:40 by analba-sa         #+#    #+#             */
-/*   Updated: 2023/10/02 13:17:42 by analba-sa        ###   ########.fr       */
+/*   Created: 2023/09/27 22:10:17 by analba-sa         #+#    #+#             */
+/*   Updated: 2023/09/27 22:10:19 by analba-sa        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
-# include "libft/libft.h"
-# include <stdarg.h>
+#include "libft.h"
 
-int 	ft_printf(const char *f, ...);
-void	ft_putnbr_base(int nbr, char *base);
-void    ft_isint(va_list args, int ctrl);
-
-#endif
+void	ft_putchar_fd(char c, int fd)
+{
+	write (fd, &c, 1);
+}

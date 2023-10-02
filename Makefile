@@ -3,7 +3,7 @@ AR = ar rcs
 CC = gcc
 CFLASG = -Wall -Wextra -Werror
 
-SRCS = 
+SRCS = ft_printf.c ft_putnbr_base_mod.c ft_isint.c
 
 OBJS = $(SRCS:.c=.o)
 
