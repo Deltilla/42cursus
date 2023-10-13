@@ -6,58 +6,51 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 12:27:35 by analba-sa         #+#    #+#             */
-/*   Updated: 2023/10/02 17:30:35 by analba-s         ###   ########.fr       */
+/*   Updated: 2023/10/13 19:09:49 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
-#include <stdio.h>
+#include "ft_printf.h"
 
-void	ft_check_format(const char *f, va_list args, int *i)
+static void	ft_check_format(const char *f, void *args, int *i)
 {
-	if (*f == 'c')
+	if (*(f + 1) == 'c')
 		ft_ischar(args, 1, i);
-	if (*f == 's')
+	if (*(f + 1) == 's')
 		ft_ischar(args, 2, i);
-	if (*f == 'p')
+	if (*(f + 1) == 'p')
 		ft_isint(args, 1, i);
-	if (*f == 'i' || *f == 'd')
+	if (*(f + 1) == 'i' || *(f + 1) == 'd')
 		ft_isint(args, 2, i);
-	if (*f == 'u')
+	if (*(f + 1) == 'u')
 		ft_isint(args, 3, i);
-	if (*f == 'x')
+	if (*(f + 1) == 'x')
 		ft_isint(args, 4, i);
-	if (*f == 'X')
+	if (*(f + 1) == 'X')
 		ft_isint(args, 5, i);
 }
 
-int ft_printf(const char *f, ...)
+int	ft_printf(const char *f, ...)
 {
-	int		r;
-	int		*i;
-	int		*p;
-	char	*s;
-	const char	*f1;
-	va_list	args;
+	int			i;
+	va_list		args;
 
 	i = 0;
 	va_start(args, f);
-	while (*f != '\0' && f1 != '\0')
+	while (*f)
 	{
-		f1 = f + 1;
-		if (*f == '%' && ft_strchr("cpsdiuxX", *f1) != 0)
+		if (*f == '%' && ft_strchr("cpsdiuxX", *(f + 1)) != 0)
 		{
-			ft_check_format(f1, args, i);
+			ft_check_format(f, va_arg(args, void *), &i);
 			f += 2;
 		}
 		else
 		{
-			ft_putchar_fd(1, *f);
+			ft_putchar_fd(*f, 1);
 			f++;
 			i++;
 		}
 	}
 	va_end(args);
-	return (f);
+	return (i);
 }
-

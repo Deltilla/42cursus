@@ -6,11 +6,12 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 22:22:15 by analba-sa         #+#    #+#             */
-/*   Updated: 2023/10/02 17:28:58 by analba-s         ###   ########.fr       */
+/*   Updated: 2023/10/13 19:06:32 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "ft_printf.h"
+#include <stdio.h>
 
 int	get_length(char *base)
 {
@@ -63,23 +64,26 @@ int	checker(char *base)
 	return (1);
 }
 
-void	nbr_esp(long nbr, char *base)
+void	nbr_esp(long nbr, char *base, int *ci)
 {
 	if (nbr < 0)
 	{
 		write (1, "-", 1);
-		nbr_esp(-nbr, base);
+		nbr_esp(-nbr, base, ci);
 	}
 	else if (nbr < (get_length(base) + 1))
+	{
+		*ci += 1;
 		write (1, &base[nbr], 1);
+	}
 	else
 	{
-		nbr_esp(nbr / get_length(base), base);
-		nbr_esp(nbr % get_length(base), base);
+		nbr_esp(nbr / get_length(base), base, ci);
+		nbr_esp(nbr % get_length(base), base, ci);
 	}
 }
 
-void	ft_putnbr_base(int nbr, char *base, int *i)
+void	ft_putnbr_base(int nbr, char *base, int *ci)
 {
 	int	i;
 
@@ -87,18 +91,18 @@ void	ft_putnbr_base(int nbr, char *base, int *i)
 	if (checker(base))
 	{
 		if (nbr == -2147483648)
-			nbr_esp((long)nbr, base);
+			nbr_esp((long)nbr, base, ci);
 		if (nbr < 0)
-			nbr_esp(nbr, base);
+			nbr_esp(nbr, base, ci);
 		else if (nbr < (get_length(base) + 1))
 		{
 			write (1, &base[nbr], 1);
-			i++;
+			*ci += 1;
 		}
 		else
 		{
-			ft_putnbr_base(nbr / get_length(base), base);
-			ft_putnbr_base(nbr % get_length(base), base);
+			ft_putnbr_base(nbr / get_length(base), base, ci);
+			ft_putnbr_base(nbr % get_length(base), base, ci);
 		}
 	}
 }
