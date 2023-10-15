@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 12:27:35 by analba-sa         #+#    #+#             */
-/*   Updated: 2023/10/13 19:09:49 by analba-s         ###   ########.fr       */
+/*   Updated: 2023/10/15 18:08:04 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ft_printf(const char *f, ...)
 	va_start(args, f);
 	while (*f)
 	{
-		if (*f == '%' && ft_strchr("cpsdiuxX", *(f + 1)) != 0)
+		if (*f == '%' && ft_strchr("cpsdiuxX", *(f + 1)))
 		{
 			ft_check_format(f, va_arg(args, void *), &i);
 			f += 2;
@@ -54,3 +54,10 @@ int	ft_printf(const char *f, ...)
 	va_end(args);
 	return (i);
 }
+// int main(void)
+// {
+// 	int n;
+	
+// 	n = ft_printf("%x\n", 255);
+// 	ft_printf("%d\n", n);
+// }

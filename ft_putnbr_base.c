@@ -6,12 +6,11 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 22:22:15 by analba-sa         #+#    #+#             */
-/*   Updated: 2023/10/13 19:06:32 by analba-s         ###   ########.fr       */
+/*   Updated: 2023/10/13 21:25:59 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 int	get_length(char *base)
 {
