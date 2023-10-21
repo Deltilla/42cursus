@@ -12,26 +12,42 @@
 
 #include "get_next_line.h"
 
-char	*ft_create_array(int fd, char *s)
+char	*ft_find_line(int fd, char *stcs)
 {
-	char		buff[BUFFER_SIZE];
-	size_t		len;
-	size_t		pos;
-	
-	read(fd, buff, BUFFER_SIZE);
-	s = malloc(BUFFER_SIZE * sizeof(char));
-	if (!s)
-		return ((char *)0);
-	if (ft_strchr_gnl(buff, &pos, '\n'))
-		ft_strlcpy(buff, s, pos);
-	return (s);
+	int		rd_bt;
+	char	*buffer;
+
+	rd_bt = 1;
+	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!buffer)
+		return (0);
+	while (!ft_strchr(buffer, '\n') && rd_bt != 0)
+	{
+		rd_bt = read(fd, buffer, BUFFER_SIZE);
+		if (rd_bt == -1)
+		{
+			free(buffer);
+			return (0);
+		}
+		buffer[rd_bt] = '\0';
+		stcs = ft_strjoin_gnl(stcs, buffer);
+	}
+	free(buffer);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	s[];
-	
-	s = ft_create_array(fd, s);
-	if (!s)
-		return ((void *)0);
+	static char	*stcs;
+	char		*line;
+	size_t		i;
+
+	i = 0;
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (0);
+	stcs = ft_find_line(fd, stcs);
+	if (!stcs)
+		return (0);
+	line = ft_get_line(stcs, &i);
+	stcs = ft_new_stcs(stcs, i);
+	return (line);
 }

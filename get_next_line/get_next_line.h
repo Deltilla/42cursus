@@ -12,15 +12,18 @@
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-# include "unistd.h"
 # include "stdlib.h"
 
-#ifndef BUFFER_SIZE
-	#define BUFFER_SIZE 10
-
-#endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1000
+# endif
 
 char	*get_next_line(int fd);
-int		*ft_strchr_gnl(char *s, int *pos, int c);
+char	*ft_find_line(int fd, char *stcs);
+size_t	ft_strlen(char *s);
+int		ft_strchr_gnl(char *s, int c);
+char	*ft_strjoin_gnl(char *stcs, char *buffer);
+char	*ft_get_line(char *stcs, size_t *i);
+char	*ft_new_stcs(char *stcs, size_t i);
 
 #endif
