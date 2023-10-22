@@ -6,23 +6,11 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:02:02 by analba-sa         #+#    #+#             */
-/*   Updated: 2023/10/19 15:29:08 by analba-s         ###   ########.fr       */
+/*   Updated: 2023/10/22 22:02:15 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-int	ft_strchr_gnl(char *s, int c)
-{
-	int	i;
-
-	i = 0;
-	while (s[i] != c && s[i])
-		i++;
-	if (s[i] == c)
-		return (i);
-	return (0);
-}
 
 size_t	ft_strlen(char *s)
 {
@@ -34,6 +22,18 @@ size_t	ft_strlen(char *s)
 	return (len);
 }
 
+int	ft_strchr_gnl(char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] != (char)c && s[i])
+		i++;
+	if (s[i] == (char)c)
+		return (i);
+	return (0);
+}
+
 char	*ft_strjoin_gnl(char *stcs, char *buffer)
 {
 	char	*str;
@@ -42,7 +42,7 @@ char	*ft_strjoin_gnl(char *stcs, char *buffer)
 	size_t	j;
 
 	i = -1;
-	j = -1;
+	j = 0;
 	if (!stcs)
 	{
 		stcs = malloc(1 * sizeof(char));
@@ -56,20 +56,20 @@ char	*ft_strjoin_gnl(char *stcs, char *buffer)
 		return (0);
 	while (stcs[++i])
 		str[i] = stcs[i];
-	while (buffer[++j])
-		str[i] = buffer[j];
-	str[len] = '\0';
-	free (stcs);
+	while (buffer[j])
+		str[i++] = buffer[j++];
+	str[len - 1] = '\0';
+	ft_free(&stcs);
 	return (str);
 }
 
-char	*ft_get_line(char *stcs, size_t *i)
+char	*ft_get_line(char *stcs, int *i)
 {
 	char	*s;
 
-	if (!s[*i])
+	if (!stcs[*i])
 		return (0);
-	s = malloc((ft_strchr_gnl(stcs, '\n') + 2) * sizeof(char));
+	s = malloc((ft_strchr_gnl(stcs, '\n') + 3) * sizeof(char));
 	if (!s)
 		return (0);
 	while (stcs[*i] && stcs[*i] != '\n')
@@ -77,27 +77,29 @@ char	*ft_get_line(char *stcs, size_t *i)
 		s[*i] = stcs[*i];
 		*i += 1;
 	}
+	if (stcs[*i] == '\n')
+	{	
+		s[*i] = '\n';
+		*i += 1;
+	}
 	s[*i] = '\0';
 	return (s);
 }
 
-char	*ft_new_stcs(char *stcs, size_t i)
+char	*ft_new_stcs(char *stcs, int i)
 {
 	int		j;
 	char	*s;
 
 	j = 0;
 	if (!stcs[i])
-	{
-		free(stcs);
-		return (0);
-	}
+		return (ft_free(&stcs));
 	s = malloc((ft_strlen(stcs + i) + 1) * sizeof(char));
 	if (!s)
 		return (0);
 	while (stcs[i])
 		s[j++] = stcs[i++];
 	s[j] = '\0';
-	free (stcs);
+	ft_free(&stcs);
 	return (s);
 }

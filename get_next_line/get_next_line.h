@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:40:36 by analba-sa         #+#    #+#             */
-/*   Updated: 2023/10/19 15:06:30 by analba-s         ###   ########.fr       */
+/*   Updated: 2023/10/22 20:26:24 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@
 
 char	*get_next_line(int fd);
 char	*ft_find_line(int fd, char *stcs);
-size_t	ft_strlen(char *s);
 int		ft_strchr_gnl(char *s, int c);
+size_t	ft_strlen(char *s);
 char	*ft_strjoin_gnl(char *stcs, char *buffer);
-char	*ft_get_line(char *stcs, size_t *i);
-char	*ft_new_stcs(char *stcs, size_t i);
+char	*ft_get_line(char *stcs, int *i);
+char	*ft_new_stcs(char *stcs, int i);
+char	*ft_strdup(char *s1);
+char	*ft_free(char **str);
 
 #endif
