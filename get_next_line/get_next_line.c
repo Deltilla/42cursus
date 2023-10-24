@@ -53,10 +53,10 @@ char	*ft_find_line(int fd, char *stcs)
 	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
 		return (0);
-	while (!ft_strchr_gnl(buffer, '\n') && rd_bt > 0)
+	while (!ft_strchr_gnl(stcs, '\n') && rd_bt > 0)
 	{
 		rd_bt = read(fd, buffer, BUFFER_SIZE);
-		if (rd_bt < 0)
+		if (rd_bt == -1)
 		{
 			ft_free(&buffer);
 			return (ft_free(&stcs));
@@ -104,3 +104,4 @@ char	*get_next_line(int fd)
 //	printf("%s", get_next_line(fd));
 //	close(fd);
 //}
+

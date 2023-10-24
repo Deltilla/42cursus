@@ -17,6 +17,8 @@ size_t	ft_strlen(char *s)
 	size_t	len;
 
 	len = 0;
+    if (!s)
+        return (0);
 	while (s[len])
 		len++;
 	return (len);
@@ -27,11 +29,15 @@ int	ft_strchr_gnl(char *s, int c)
 	int	i;
 
 	i = 0;
+    if (!s)
+        return (0);
+    if (c == '\0')
+        return (ft_strlen(s));
 	while (s[i] != (char)c && s[i])
 		i++;
 	if (s[i] == (char)c)
 		return (i);
-	return (0);
+	return (-1);
 }
 
 char	*ft_strjoin_gnl(char *stcs, char *buffer)
@@ -44,10 +50,7 @@ char	*ft_strjoin_gnl(char *stcs, char *buffer)
 	i = -1;
 	j = 0;
 	if (!stcs)
-	{
-		stcs = malloc(1 * sizeof(char));
-		stcs[0] = '\0';
-	}
+        stcs = ft_strdup("");
 	if (!stcs || !buffer)
 		return (0);
 	len = ft_strlen(stcs) + ft_strlen(buffer) + 1;
@@ -69,7 +72,7 @@ char	*ft_get_line(char *stcs, int *i)
 
 	if (!stcs[*i])
 		return (0);
-	s = malloc((ft_strchr_gnl(stcs, '\n') + 3) * sizeof(char));
+	s = malloc(((ft_strchr_gnl(stcs, '\n') + 3) * sizeof(char)));
 	if (!s)
 		return (0);
 	while (stcs[*i] && stcs[*i] != '\n')
