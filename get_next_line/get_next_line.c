@@ -90,17 +90,17 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-// int main(void)
-// {
-// 	int		fd;
-
-// 	fd = open("prueba.txt", O_RDONLY);
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	close(fd);
-// }
+//int main(void)
+//{
+//	int		fd;
+//
+//	fd = open("prueba.txt", O_RDONLY);
+//	printf("%s", get_next_line(fd));
+//	printf("%s", get_next_line(fd));
+//	printf("%s", get_next_line(fd));
+//	printf("%s", get_next_line(fd));
+//	printf("%s", get_next_line(fd));
+//	printf("%s", get_next_line(fd));
+//	printf("%s", get_next_line(fd));
+//	close(fd);
+//}
