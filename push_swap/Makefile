@@ -5,7 +5,7 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 AR = ar rcs
 
-SOURCES = prueba.c
+SOURCES = prueba.c create_list.c
 
 OBJ = $(SOURCES:.c=.o)
 
