@@ -6,13 +6,13 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:02:02 by analba-sa         #+#    #+#             */
-/*   Updated: 2023/10/26 15:42:21 by analba-s         ###   ########.fr       */
+/*   Updated: 2023/10/26 17:28:43 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strlen(char *s)
+static int	ft_strlen(char *s)
 {
 	int	len;
 

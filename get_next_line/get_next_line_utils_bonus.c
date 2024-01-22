@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 13:02:02 by analba-sa         #+#    #+#             */
-/*   Updated: 2023/10/22 22:02:15 by analba-s         ###   ########.fr       */
+/*   Created: 2023/10/26 16:16:29 by analba-sa         #+#    #+#             */
+/*   Updated: 2023/10/26 17:20:57 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-size_t	ft_strlen(char *s)
+static int	ft_strlen(char *s)
 {
-	size_t	i;
+	int	len;
 
-	i = 0;
+	len = 0;
 	if (!s)
 		return (0);
-	while (s[i] != '\0')
-		i++;
-	return (i);
+	while (s[len])
+		len++;
+	return (len);
 }
 
-char	*ft_strchr(char *s, int c)
+int	ft_strchr_gnl(char *s, int c)
 {
 	int	i;
 
@@ -32,94 +32,77 @@ char	*ft_strchr(char *s, int c)
 	if (!s)
 		return (0);
 	if (c == '\0')
-		return ((char *)&s[ft_strlen(s)]);
-	while (s[i] != '\0')
-	{
-		if (s[i] == (char) c)
-			return ((char *)&s[i]);
+		return (ft_strlen(s));
+	while (s[i] != (char)c && s[i])
 		i++;
-	}
+	if (s[i] == (char)c)
+		return (1);
 	return (0);
 }
 
-char	*ft_strjoin(char *left_str, char *buff)
+char	*ft_strjoin_gnl(char *stcs, char *buffer)
 {
+	char	*str;
+	size_t	len;
 	size_t	i;
 	size_t	j;
-	char	*str;
 
-	if (!left_str)
-	{
-		left_str = (char *)malloc(1 * sizeof(char));
-		left_str[0] = '\0';
-	}
-	if (!left_str || !buff)
-		return (NULL);
-	str = malloc(sizeof(char) * ((ft_strlen(left_str) + ft_strlen(buff)) + 1));
-	if (str == NULL)
-		return (NULL);
 	i = -1;
 	j = 0;
-	if (left_str)
-		while (left_str[++i] != '\0')
-			str[i] = left_str[i];
-	while (buff[j] != '\0')
-		str[i++] = buff[j++];
-	str[ft_strlen(left_str) + ft_strlen(buff)] = '\0';
-	free(left_str);
-	return (str);
-}
-
-char	*ft_get_line(char *left_str)
-{
-	int		i;
-	char	*str;
-
-	i = 0;
-	if (!left_str[i])
-		return (NULL);
-	while (left_str[i] && left_str[i] != '\n')
-		i++;
-	str = (char *)malloc(sizeof(char) * (i + 2));
+	if (!stcs)
+		stcs = ft_calloc_gnl(1);
+	if (!stcs || !buffer)
+		return (ft_free(&stcs));
+	len = ft_strlen(stcs) + ft_strlen(buffer) + 1;
+	str = (char *)ft_calloc_gnl(len);
 	if (!str)
-		return (NULL);
-	i = 0;
-	while (left_str[i] && left_str[i] != '\n')
-	{
-		str[i] = left_str[i];
-		i++;
-	}
-	if (left_str[i] == '\n')
-	{
-		str[i] = left_str[i];
-		i++;
-	}
-	str[i] = '\0';
+		return (ft_free(&stcs));
+	while (stcs[++i])
+		str[i] = stcs[i];
+	while (buffer[j])
+		str[i++] = buffer[j++];
+	ft_free(&stcs);
 	return (str);
 }
 
-char	*ft_new_left_str(char *left_str)
+char	*ft_get_line(char *stcs, int *i)
 {
-	int		i;
+	char	*s;
+
+	if (!stcs[*i])
+		return (NULL);
+	while (stcs[*i] && stcs[*i] != '\n')
+		*i += 1;
+	s = ft_calloc_gnl(*i + ft_strchr_gnl(stcs, '\n') + 1);
+	if (!s)
+		return (NULL);
+	*i = 0;
+	while (stcs[*i] && stcs[*i] != '\n')
+	{
+		s[*i] = stcs[*i];
+		*i += 1;
+	}
+	if (stcs[*i] == '\n')
+	{
+		s[*i] = stcs[*i];
+		*i += 1;
+	}
+	return (s);
+}
+
+char	*ft_new_stcs(char *stcs, int i)
+{
 	int		j;
-	char	*str;
+	char	*s;
 
-	i = 0;
-	while (left_str[i] && left_str[i] != '\n')
-		i++;
-	if (!left_str[i])
-	{
-		free(left_str);
-		return (NULL);
-	}
-	str = (char *)malloc(sizeof(char) * (ft_strlen(left_str) - i + 1));
-	if (!str)
-		return (NULL);
-	i++;
 	j = 0;
-	while (left_str[i])
-		str[j++] = left_str[i++];
-	str[j] = '\0';
-	free(left_str);
-	return (str);
+	if (!stcs[i])
+		return (ft_free(&stcs));
+	s = ft_calloc_gnl(ft_strlen(stcs + i) + 1);
+	if (!s)
+		return (ft_free(&stcs));
+	while (stcs[i])
+		s[j++] = stcs[i++];
+	ft_free(&stcs);
+	return (s);
 }

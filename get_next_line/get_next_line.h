@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:40:36 by analba-sa         #+#    #+#             */
-/*   Updated: 2023/10/26 15:35:27 by analba-s         ###   ########.fr       */
+/*   Updated: 2023/10/26 17:30:45 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,11 @@
 # endif
 
 char	*get_next_line(int fd);
-char	*ft_find_line(int fd, char *stcs);
+char	*ft_free(char **str);
+char	*ft_calloc_gnl(int size);
 int		ft_strchr_gnl(char *s, int c);
-int		ft_strlen(char *s);
 char	*ft_strjoin_gnl(char *stcs, char *buffer);
 char	*ft_get_line(char *stcs, int *i);
 char	*ft_new_stcs(char *stcs, int i);
-char	*ft_free(char **str);
-char	*ft_calloc_gnl(int size);
-// void	ft_leaks(void);
 
 #endif
