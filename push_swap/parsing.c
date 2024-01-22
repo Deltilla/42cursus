@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prueba.c                                           :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/22 21:18:42 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/01/22 22:39:00 by analba-s         ###   ########.fr       */
+/*   Created: 2024/01/22 21:18:18 by analba-sa         #+#    #+#             */
+/*   Updated: 2024/01/22 22:44:43 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
-int main(int argc, char **argv)
+int is_correct(char **list)
 {
-	ti_list	*list;
-	int		i;
+	struct digit	i;	
+	struct digit	n;
 
-	if (argc == 1 || !is_correct(argv))
-		ft_putstr_fd("Error\n", 2);
-	else
-		list = create_list(argc, argv);
-	i = 1;
-	while (i < argc)
+	i.a = 1;
+	i.b = 0;
+	while (list[i.a])
 	{
-		printf("%d\n", list->content);
-		list = list->next;
-		i++;
+		if (!(n.a = ft_atoi(list[i.a])))
+			return (0);
+		while (list[i.b])
+		{	
+			if (!(n.b = ft_atoi(list[i.b])))
+				return (0);
+			if (n.a == n.b)
+				return (0);
+			i.b++;
+		}
+		i.a++;
 	}
+	return (1);
 }

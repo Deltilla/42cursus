@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/01/22 21:19:06 by analba-sa         #+#    #+#              #
+#    Updated: 2024/01/22 21:48:45 by analba-s         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = pushswap.a
 LIBFT_PATH = libft
 LIBFT = $(LIBFT_PATH)/libft.a
@@ -5,7 +17,7 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 AR = ar rcs
 
-SOURCES = prueba.c create_list.c
+SOURCES = prueba.c create_list.c parsing.c
 
 OBJ = $(SOURCES:.c=.o)
 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_list.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: analba-sa <analba-s@student.42malaga.com>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/22 21:18:29 by analba-sa         #+#    #+#             */
+/*   Updated: 2024/01/22 21:18:31 by analba-sa        ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static ti_list *new_node(char *list)
@@ -22,10 +34,10 @@ ti_list *create_list(int c, char **list)
     aux = new;
     tmp = new;
     i = 2;
-    while (i >= c)
+    while (i < c)
     {
+        aux->next = new_node(list[i]);
         aux = aux->next;
-        aux = new_node(list[i]);
         aux->prev = tmp;
         tmp = tmp->next;
         i++;
