@@ -1,31 +1,29 @@
 NAME = libftprintf.a
 AR = ar rcs
 CC = gcc
-CFLASG = -Wall -Wextra -Werror
+CFLAS = -g -Wall -Wextra -Werror
 
-SRCS = ft_printf.c ft_putnbr_base.c ft_isint.c ft_ischar.c
+SRCS = ft_printf.c ft_putnbr_base.c ft_utils.c
 
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@make -C libft all bonus
-	@mv libft/libft.a $(NAME)
 	@$(AR) $(NAME) $(OBJS)
-	@echo "Printf objects"
+	@echo "Library cretated"
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@rm -f $(OBJS)
-	@make -C libft clean
+	@echo "Objects removed"
 
 fclean:
 	@rm -f $(OBJS)
 	@rm -f $(NAME)
-	@make -C libft fclean
+	@echo "Library removed"
 
 re: fclean all
 
