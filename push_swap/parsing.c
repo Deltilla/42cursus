@@ -6,12 +6,11 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:18:18 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/01/22 22:44:43 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/01/23 17:37:24 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 //prueba si este atoi pasa paco porque seria bastante divertido
 
 int ft_atoilong(char *str)
@@ -46,7 +45,7 @@ int is_correct(char **list)
 	struct digit	i;	
 	struct digit	n;
 
-	i.a = 1;
+	i.a = 0;
 	while (list[i.a])
 	{
 		i.b = i.a + 1;

@@ -6,11 +6,11 @@
 #    By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 21:19:06 by analba-sa         #+#    #+#              #
-#    Updated: 2024/01/22 21:48:45 by analba-s         ###   ########.fr        #
+#    Updated: 2024/01/23 18:36:42 by analba-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = pushswap.a
+NAME = push_swap
 LIBFT_PATH = libft
 LIBFT = $(LIBFT_PATH)/libft.a
 CC = gcc
@@ -24,8 +24,8 @@ OBJ = $(SOURCES:.c=.o)
 all : $(NAME)
 
 $(NAME) : $(LIBFT) $(OBJ)
-	@$(AR) $(NAME) $(LIBFT_PATH)/*.o $(OBJ)
-	@echo "Archivos creados"
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -L$(LIBFT_PATH) -lft
+	@echo "Archivo creado"
 
 $(LIBFT) :
 	@$(MAKE) -C $(LIBFT_PATH)

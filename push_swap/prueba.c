@@ -6,31 +6,40 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:18:42 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/01/22 22:39:00 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/01/23 17:52:04 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
-//recuerda implementar split para los posibles argumentos con mas de un numero
+void command_test(ti_list *lista, ti_list *listb)
+{
+	sort_params(lista, listb, "sa");
+}
 
 int main(int argc, char **argv)
 {
-	ti_list	*list;
-	int		i;
+	ti_list	*lista;
+	ti_list	*listb;
+	char	**n;
 
-	if (argc == 1 || !is_correct(argv))
-		ft_putstr_fd("Error\n", 2);
+	if (argc == 1)
+		return(ft_putstr_fd("Error\n", 2), 0);
+	else if (argc == 2)
+		n = ft_split(argv[1], ' ');
 	else
+		n = argv + 1;
+	if (is_correct(n))
 	{
-		list = fill_list(argc, argv);
-		i = 1;
-		while (i < argc)
+		lista = fill_list(n);
+		listb = create_list(n);
+		command_test(lista,listb);
+		while (lista)
 		{
-			printf("%d\n", list->content);
-			list = list->next;
-			i++;
+			printf("%d\n", lista->content);
+			lista = lista->next;
 		}
 	}
+	else
+		ft_putstr_fd("Error\n", 2);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: analba-sa <analba-s@student.42malaga.com>  +#+  +:+       +#+        */
+/*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:18:29 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/01/22 21:18:31 by analba-sa        ###   ########.fr       */
+/*   Updated: 2024/01/23 21:16:34 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ static ti_list *new_node(void)
     return (new);
 }
 
-ti_list *create_list(int c)
+//la lista no tiene el primer elemento enlazado al ultimo, ahora mismo no es circular.
+
+ti_list *create_list(char **list)
 {
     ti_list  *tmp;
     ti_list  *aux;
@@ -33,8 +35,8 @@ ti_list *create_list(int c)
     new = new_node();
     aux = new;
     tmp = new;
-    i = 2;
-    while (i < c)
+    i = 1;
+    while (list[i])
     {
         aux->next = new_node();
         aux = aux->next;
@@ -42,18 +44,20 @@ ti_list *create_list(int c)
         tmp = tmp->next;
         i++;
     }
+    aux->next = new;
+    new->prev = aux;
     return (new);
 }
 
-ti_list *fill_list(int c, char **list)
+ti_list *fill_list(char **list)
 {
 	ti_list *new;
 	ti_list *aux;
     int	i;
 
-	new = create_list(c);
+	new = create_list(list);
 	aux = new;
-    i = 1; 
+    i = 0; 
     while (list[i])
     {
 		aux->content = ft_atoilong(list[i]);
