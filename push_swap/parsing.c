@@ -11,28 +11,34 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+#include <stdio.h>
 //prueba si este atoi pasa paco porque seria bastante divertido
 
 int ft_atoilong(char *str)
 {
 	long	r;
-	int		max;
-	int		min;
+	int		sign;
 
 	r = 0;
-	max = 2147483647;
-	min = -2147483648;
+	sign = 1;
 	if (!*str)
 		return (0);
 	while (*str)
 	{
+		if (*str == '-')
+		{
+			sign *= -1;
+			str++;
+		}
+		if (*str < '0' || *str > '9')
+			return (0);
 		r = (r * 10) + (*str - '0');
 		str++;
 	}
-	if (r < min || r > max)
-		return (ft_putstr_fd("eeeeh, ok", 1), 0);
-	return ((int)r);
+	r *= sign;
+	if (r < -2147483648 || r > 2147483647)
+		return (0);
+	return (r);
 }
 
 int is_correct(char **list)

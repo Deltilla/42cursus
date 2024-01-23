@@ -13,6 +13,8 @@
 #include "push_swap.h"
 #include <stdio.h>
 
+//recuerda implementar split para los posibles argumentos con mas de un numero
+
 int main(int argc, char **argv)
 {
 	ti_list	*list;
@@ -22,7 +24,7 @@ int main(int argc, char **argv)
 		ft_putstr_fd("Error\n", 2);
 	else
 	{
-		list = create_list(argc, argv);
+		list = fill_list(argc, argv);
 		i = 1;
 		while (i < argc)
 		{

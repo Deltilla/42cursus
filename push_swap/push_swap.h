@@ -27,7 +27,11 @@ struct	digit
 	int	b;
 };
 
-ti_list		*create_list(int c, char **list);
+ti_list		*create_list(int c);
+ti_list     *fill_list(int c, char **list);
+int         ft_atoilong(char *str);
 int			is_correct(char **list);
+void		sort_params(ti_list *lista, ti_list *listb, char *param);
+void		smoves(ti_list *lista, ti_list *listb, char *param, int ctrl);
 
 #endif

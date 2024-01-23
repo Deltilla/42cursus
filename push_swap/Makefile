@@ -17,7 +17,7 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 AR = ar rcs
 
-SOURCES = prueba.c create_list.c parsing.c
+SOURCES = prueba.c create_list.c parsing.c sorting.c
 
 OBJ = $(SOURCES:.c=.o)
 
