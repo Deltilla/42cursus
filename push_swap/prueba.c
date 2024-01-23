@@ -21,12 +21,14 @@ int main(int argc, char **argv)
 	if (argc == 1 || !is_correct(argv))
 		ft_putstr_fd("Error\n", 2);
 	else
-		list = create_list(argc, argv);
-	i = 1;
-	while (i < argc)
 	{
-		printf("%d\n", list->content);
-		list = list->next;
-		i++;
+		list = create_list(argc, argv);
+		i = 1;
+		while (i < argc)
+		{
+			printf("%d\n", list->content);
+			list = list->next;
+			i++;
+		}
 	}
 }
