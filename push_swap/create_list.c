@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:18:29 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/01/23 21:16:34 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/01/25 20:29:31 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ static ti_list *new_node(void)
     new->next = NULL;
     return (new);
 }
-
-//la lista no tiene el primer elemento enlazado al ultimo, ahora mismo no es circular.
 
 ti_list *create_list(char **list)
 {
@@ -61,6 +59,7 @@ ti_list *fill_list(char **list)
     while (list[i])
     {
 		aux->content = ft_atoilong(list[i]);
+        aux->index = i + 1;
 		aux = aux->next;
 		i++;
 	}

@@ -6,7 +6,7 @@
 #    By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 21:19:06 by analba-sa         #+#    #+#              #
-#    Updated: 2024/01/23 18:36:42 by analba-s         ###   ########.fr        #
+#    Updated: 2024/01/25 20:25:12 by analba-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 AR = ar rcs
 
-SOURCES = prueba.c create_list.c parsing.c sorting.c
+SOURCES = prueba.c create_list.c parsing.c sorting.c utils.c
 
 OBJ = $(SOURCES:.c=.o)
 

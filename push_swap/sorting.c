@@ -6,60 +6,60 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 17:50:48 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/01/23 20:29:02 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/01/25 20:04:44 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void smoves(ti_list *lista, ti_list *listb, int p, int ctrl)
+void smoves(ti_list *lista, ti_list *listb, int p)
 {
 	int	aux;
 
-	if (p == 1)
+	if (p == 1 || p == 3)
 	{
 		aux = lista->content;
 		lista->content = lista->next->content;
 		lista->next->content = aux;
-		if (ctrl)
-			printf("sa\n");
 	}
-	if (p == 2)
+	if (p == 2 || p == 3)
 	{
 		aux = listb->content;
 		listb->content = listb->next->content;
 		listb->next->content = aux;
-		if (ctrl)
-			printf("sb\n");
-	}
-	if (p == 3)
-	{
-		smoves (lista, listb, 1, 0);
-		smoves (lista, listb, 2, 0);
-		printf ("ss\n");
 	}
 }
 
-// void rmoves(ti_list *lista, ti_list *listb, int p)
-// {
-// 	int	aux;
+void rmoves(ti_list *lista, ti_list *listb, int p)
+{
+	if (p == 1 || p == 3)
+		ft_shit_up(lista);
+	if (p == 2 || p == 3)
+		ft_shit_up(listb);
+	if (p == 4 || p == 6)
+		ft_shit_down(lista);
+	if (p == 5 || p == 6)
+		ft_shit_down(listb);
+}
 
-// 	if (p == 1)
-// 	{
-// 		aux = lista->content;
-		
-// 	}
-// 	if (p == 2)
-// }
+void pmoves(ti_list *lista, ti_list *listb, int p)
+{
+	int	aux;
+	
+	if (p == 1)
+	{
+		aux = lista->content;
+	}
+}
 
 void sort_params(ti_list *lista, ti_list *listb, char *param)
 {
     if (ft_strncmp("sa", param, 2) == 0)
-		smoves (lista, listb, 1, 1);
+		smoves (lista, listb, 1);
     if (ft_strncmp("sb", param, 2) == 0)
-		smoves (lista, listb, 2, 1);
+		smoves (lista, listb, 2);
     if (ft_strncmp("ss", param, 2) == 0)
-		smoves (lista, listb, 3, 0);
+		smoves (lista, listb, 3);
     /*if (param == "pa");
     if (param == "pb");
     if (param == "ra");
@@ -67,5 +67,6 @@ void sort_params(ti_list *lista, ti_list *listb, char *param)
     if (param == "rr");
     if (param == "rra");
     if (param == "rrb");
-    if (param == "rrr");*/
+    if (param == "rrr");
+	printf("%s\n", param)*/
 }
