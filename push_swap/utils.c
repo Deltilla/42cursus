@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 19:43:50 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/01/29 10:32:37 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/01/29 15:26:10 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,10 @@ ti_list *ft_shit_down(ti_list *list)
 
 void ft_update_index(ti_list *lista, ti_list *listb)
 {
+	int	i;
+
+	i = 1;
 	while (lista)
-	{
-		if (lista->index)
-		{}
-	}
 }
 
 // ti_list *ft_free_node(ti_list *list)

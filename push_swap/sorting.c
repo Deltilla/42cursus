@@ -6,28 +6,33 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 17:50:48 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/01/29 10:28:35 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/01/29 15:25:23 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void smoves(ti_list *lista, ti_list *listb, int p)
+ti_list *ft_swap_nodes(ti_list *list)
 {
-	int	aux;
+	ti_list	*aux;
+	
+	aux = list->next;
+	list->prev->next = list->next;
+	list->next = list->next->next;
+	aux->next = list;
+	aux->prev = list->prev;
+	list->prev = aux;
+	list->next->prev = list;
+	list = aux;
+	return (list);
+}
 
+void *smoves(ti_list *lista, ti_list *listb, int p)
+{
 	if (p == 1 || p == 3)
-	{
-		aux = lista->index;
-		lista->index = lista->next->index;
-		lista->next->index = aux;	
-	}
+		lista = ft_swap_nodes(lista);
 	if (p == 2 || p == 3)
-	{
-		aux = listb->index;
-		listb->index = listb->next->index;
-		listb->next->index = aux;
-	}
+		listb = ft_swap_nodes(listb);
 	ft_update_index(lista, listb);
 }
 
