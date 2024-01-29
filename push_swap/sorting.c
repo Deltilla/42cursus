@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 17:50:48 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/01/25 20:04:44 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/01/29 10:28:35 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,39 +18,54 @@ void smoves(ti_list *lista, ti_list *listb, int p)
 
 	if (p == 1 || p == 3)
 	{
-		aux = lista->content;
-		lista->content = lista->next->content;
-		lista->next->content = aux;
+		aux = lista->index;
+		lista->index = lista->next->index;
+		lista->next->index = aux;	
 	}
 	if (p == 2 || p == 3)
 	{
-		aux = listb->content;
-		listb->content = listb->next->content;
-		listb->next->content = aux;
+		aux = listb->index;
+		listb->index = listb->next->index;
+		listb->next->index = aux;
 	}
+	ft_update_index(lista, listb);
 }
 
-void rmoves(ti_list *lista, ti_list *listb, int p)
-{
-	if (p == 1 || p == 3)
-		ft_shit_up(lista);
-	if (p == 2 || p == 3)
-		ft_shit_up(listb);
-	if (p == 4 || p == 6)
-		ft_shit_down(lista);
-	if (p == 5 || p == 6)
-		ft_shit_down(listb);
-}
+// void rmoves(ti_list *lista, ti_list *listb, int p)
+// {
+// 	if (p == 1 || p == 3)
+// 		ft_shit_up(lista);
+// 	if (p == 2 || p == 3)
+// 		ft_shit_up(listb);
+// 	if (p == 4 || p == 6)
+// 		ft_shit_down(lista);
+// 	if (p == 5 || p == 6)
+// 		ft_shit_down(listb);
+// }
 
-void pmoves(ti_list *lista, ti_list *listb, int p)
-{
-	int	aux;
-	
-	if (p == 1)
-	{
-		aux = lista->content;
-	}
-}
+// void pmoves(ti_list *lista, ti_list *listb, int p)
+// {
+// 	if (p == 1)
+// 	{
+// 		if (listb == NULL)
+// 		{
+// 			listb = new_node(lista->content);
+// 			lista = ft_free_node(lista);
+// 		}
+// 		else
+// 			listb = update_list(lista, listb);
+// 	}
+// 	if (p == 2)
+// 	{
+// 		if (lista == NULL)
+// 		{
+// 			lista = new_node(lista->content);
+// 			listb = ft_free_node(listb);
+// 		}
+// 		else
+// 			lista = update_list(listb, lista);
+// 	}
+// }
 
 void sort_params(ti_list *lista, ti_list *listb, char *param)
 {

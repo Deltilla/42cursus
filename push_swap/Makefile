@@ -6,7 +6,7 @@
 #    By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 21:19:06 by analba-sa         #+#    #+#              #
-#    Updated: 2024/01/25 20:25:12 by analba-s         ###   ########.fr        #
+#    Updated: 2024/01/29 10:11:09 by analba-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = push_swap
 LIBFT_PATH = libft
 LIBFT = $(LIBFT_PATH)/libft.a
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -g -Wall -Werror -Wextra
 AR = ar rcs
 
 SOURCES = prueba.c create_list.c parsing.c sorting.c utils.c

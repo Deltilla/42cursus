@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 19:43:50 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/01/25 20:36:57 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/01/29 10:32:37 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ ti_list *ft_shit_up(ti_list *list)
 	int		aux;
 
 	cur = list;
-	aux = cur->content;
+	aux = cur->index;
 	cur = cur->next;
-	while (cur->index != 0)
+	while (cur->index != 1)
 	{
-		cur->content = cur->next->content;
+		cur->index = cur->next->index;
 		cur = cur->next;
 	}
-	cur->content = aux;
+	cur->index = aux;
 	return (list);
 }
 ti_list *ft_shit_down(ti_list *list)
@@ -34,30 +34,48 @@ ti_list *ft_shit_down(ti_list *list)
 	int		aux;
 
 	cur = list;
-	aux = cur->content;
+	aux = cur->index;
 	cur = cur->prev;
-	while (cur->index != 0)
+	while (cur->index != 1)
 	{
-		cur->content = cur->prev->content;
+		cur->index = cur->prev->index;
 		cur = cur->prev;
 	}
-	cur->content = aux;
+	cur->index = aux;
 	return (list);
 }
 
-ti_list *update_list(ti_list *lista, ti_list *listb)
+void ft_update_index(ti_list *lista, ti_list *listb)
 {
-	ti_list	*cur;
-	ti_list *aux;
-	int		i;
-	
 	while (lista)
 	{
-		if (cur->index + 1 == lista->next->index)
-		{
-			aux = cur->next;
-			cur->next = lista->next;
-			lista = lista->next;
-		}
+		if (lista->index)
+		{}
 	}
 }
+
+// ti_list *ft_free_node(ti_list *list)
+// {
+// 	ti_list *aux;
+	
+// 	aux = list;
+// 	list->prev->next = list->next;
+// 	list->next->prev = list->prev;
+// 	list = list->prev;
+// 	free (aux);
+// }
+
+// ti_list *update_list(ti_list *lista, ti_list *listb)
+// {
+// 	ti_list	*cur;
+// 	ti_list *aux;
+// 	int		i;
+	
+// 	cur = lista;
+// 	if (lista->next != NULL)
+// 		cur = lista->next;
+// 	while (cur->index != 1 && cur->next != NULL)
+// 		cur = cur->next;
+// 	cur->next = new_node(listb->content);
+// 	cur->next->prev = cur;
+// }
