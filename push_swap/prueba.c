@@ -6,25 +6,26 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:18:42 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/01/29 10:27:37 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/01/31 22:07:00 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void command_test(ti_list *lista, ti_list *listb)
+void command_test(ti_list **lista, ti_list **listb)
 {
-	sort_params(lista, listb, "sa");
+	sort_params(lista, listb, "rra");
 }
 
 int main(int argc, char **argv)
 {
 	ti_list	*lista;
 	ti_list	*listb;
+	ti_list *cur;
 	int		i;
 	char	**n;
 
-	i = 0;
+	i = -1;
 	listb = NULL;
 	if (argc == 1)
 		return(ft_putstr_fd("Error\n", 2), 0);
@@ -35,13 +36,12 @@ int main(int argc, char **argv)
 	if (is_correct(n))
 	{
 		lista = create_list(n);
-		printf("Content: %d\nIndex: %d\nNodes: %d\n", lista->content, lista->index, lista->nodes);
-		command_test(lista,listb);
-		lista = lista->next;
-		while (lista->index != 1)
+		command_test(&lista, &listb);
+		cur = lista;
+		while (++i < lista->nodes)
 		{
-			printf("Content: %d\nIndex: %d\nNodes: %d\n", lista->content, lista->index, lista->nodes);
-			lista = lista->next;
+			printf("Content: %d\nIndex: %d\nNodes: %d\n", cur->content, cur->index, cur->nodes);
+			cur = cur->next;
 		}
 	}
 	else

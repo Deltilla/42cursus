@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:18:29 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/01/29 10:24:45 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/01/29 18:42:35 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ ti_list *create_list(char **list)
     while (list[i])
     {
         aux->index = i;
-        new->nodes = i;
         aux->next = new_node(ft_atoilong(list[i]));
         aux = aux->next;
         aux->prev = tmp;
