@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 17:50:48 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/01/31 22:24:31 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/02/05 14:54:45 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,23 +65,25 @@ void pmoves(ti_list **lista, ti_list **listb, int p)
 {
 	if (p == 1)
 	{
-		if (*listb == NULL)
-		{
-			*listb = *lista;
-			lista = ft_isol_node(lista);
-		}
-		else
-			*listb = update_list(listb, lista);
-	}
-	if (p == 2)
-	{
 		if (lista == NULL)
 		{
 			*lista = *listb;
-			*listb = ft_isol_node(listb);
+			*listb = ft_isol_node(*listb);
+			(*lista)->nodes = 1;
 		}
 		else
-			*lista = update_list(lista, listb);
+			*lista = update_list(*lista, *listb);
+	}
+	if (p == 2)
+	{
+		if (*listb == NULL)
+		{
+			*listb = *lista;
+			*lista = ft_isol_node(*lista);
+			(*listb)->nodes = 1;
+		}
+		else
+			*listb = update_list(*listb, *lista);
 	}
 }
 
@@ -105,7 +107,9 @@ void sort_params(ti_list **lista, ti_list **listb, char *param)
 		rmoves (lista, listb, 5);
     if (ft_strncmp("rrr", param, 3) == 0)
 		rmoves (lista, listb, 6);
-    //if (param == "pa");
-    //if (param == "pb");
+    if (ft_strncmp("pa", param, 2) == 0)
+		pmoves (lista, listb, 1);
+    if (ft_strncmp("pb", param, 2) == 0)
+		pmoves (lista, listb, 2);
 	printf("%s\n", param);
 }

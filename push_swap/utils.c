@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 19:43:50 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/01/31 22:31:21 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/02/05 15:13:24 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,12 @@ ti_list *ft_isol_node(ti_list *list)
 	if (list->next)
 	{
 		head = list->next;
+		head->nodes = list->nodes - 1;
 		list->prev->next = list->next;
 		list->next->prev = list->prev;
 		list->prev = NULL;
 		list->next = NULL;
+		list->nodes = 1;
 	}
 	return (head);
 }
@@ -87,15 +89,19 @@ ti_list *ft_isol_node(ti_list *list)
 ti_list *update_list(ti_list *list1, ti_list *list2)
 {
 	ti_list	*cur;
-	ti_list *aux;
+	//ti_list *aux;
 	int		i;
 	
 	i = 0;
 	cur = list1;
+	if (!list2)
+		exit(0);
 	list1 = list2;
 	list2 = ft_isol_node(list2);
-	while (cur && ++i < list1->nodes)
+	list1->nodes = cur->nodes + 1;
+	while (cur->next && ++i < list1->nodes)
 		cur = cur->next;
 	cur->next = list1;
 	list1->prev = cur;
+	return (list1);
 }

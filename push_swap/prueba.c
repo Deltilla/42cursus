@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:18:42 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/01/31 22:07:00 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/02/05 15:23:29 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void command_test(ti_list **lista, ti_list **listb)
 {
-	sort_params(lista, listb, "rra");
+	sort_params(lista, listb, "pb");
+	sort_params(lista, listb, "pa");
 }
 
 int main(int argc, char **argv)
@@ -37,10 +38,11 @@ int main(int argc, char **argv)
 	{
 		lista = create_list(n);
 		command_test(&lista, &listb);
+		//printf("Content b: %d\nIndex b: %d\nNodes b: %d\n", listb->content, listb->index, listb->nodes);
 		cur = lista;
-		while (++i < lista->nodes)
+		while (++i < lista->nodes && lista)
 		{
-			printf("Content: %d\nIndex: %d\nNodes: %d\n", cur->content, cur->index, cur->nodes);
+			printf("Content a: %d\nIndex a: %d\nNodes a: %d\n", cur->content, cur->index, cur->nodes);
 			cur = cur->next;
 		}
 	}
