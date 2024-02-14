@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:18:54 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/01/31 22:11:49 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/02/14 04:14:41 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,11 @@ struct	digit
 };
 
 ti_list		*create_list(char **list);
-ti_list     *new_node(int n);
-int         ft_atoilong(char *str);
-int			is_correct(char **list);
 void		sort_params(ti_list **lista, ti_list **listb, char *param);
-void		smoves(ti_list **lista, ti_list **listb, int p);
-ti_list		*update_list(ti_list *lista, ti_list *listb);
+ti_list		*update_list(ti_list *lista, ti_list **listb);
 ti_list		*ft_isol_node(ti_list *list);
-void		ft_update_index(ti_list *lista, ti_list *listb);
+int         check_if_sorted(ti_list *list);
+void        sort_three(ti_list **list);
+//void		ft_update_index(ti_list *lista, ti_list *listb);
 
 #endif

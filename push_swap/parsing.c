@@ -6,14 +6,13 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:18:18 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/01/23 17:37:24 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/02/14 04:14:26 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-//prueba si este atoi pasa paco porque seria bastante divertido
 
-int ft_atoilong(char *str)
+static int ft_atoilong(char *str)
 {
 	long	r;
 	int		sign;
@@ -40,7 +39,7 @@ int ft_atoilong(char *str)
 	return (r);
 }
 
-int is_correct(char **list)
+static int is_correct(char **list)
 {
 	struct digit	i;	
 	struct digit	n;
@@ -49,11 +48,11 @@ int is_correct(char **list)
 	while (list[i.a])
 	{
 		i.b = i.a + 1;
-		if(list[i.a][0] != '0' && !(n.a = ft_atoilong(list[i.a])))
+		if(!(n.a = ft_atoilong(list[i.a])) && list[i.a][0] != '0')
 			return (0);
 		while (list[i.b])
 		{	
-			if (!(n.b = ft_atoilong(list[i.b])))
+			if (!(n.b = ft_atoilong(list[i.b])) && list[i.b][0] != '0')
 				return (0);
 			if (n.a == n.b)
 				return (0);
@@ -62,4 +61,44 @@ int is_correct(char **list)
 		i.a++;
 	}
 	return (1);
+}
+
+static ti_list *new_node(int n)
+{
+    ti_list  *new;
+
+    new = malloc(sizeof(ti_list));
+    new->content = n;
+    new->prev = NULL;
+    new->next = NULL;
+    return (new);
+}
+
+ti_list *create_list(char **list)
+{
+    ti_list  *tmp;
+    ti_list  *aux;
+    ti_list  *new;
+    int     i;
+
+	if (!is_correct(list))
+		return (NULL);
+    new = new_node(ft_atoilong(list[0]));
+    aux = new;
+    tmp = new;
+    i = 1;
+    while (list[i])
+    {
+        aux->index = i;
+        aux->next = new_node(ft_atoilong(list[i]));
+        aux = aux->next;
+        aux->prev = tmp;
+        tmp = tmp->next;
+        i++;
+    }
+    aux->index = i;
+    new->nodes = i;
+    aux->next = new;
+    new->prev = aux;
+    return (new);
 }

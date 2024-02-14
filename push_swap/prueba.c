@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:18:42 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/02/05 15:23:29 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/02/14 04:16:22 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,16 @@
 
 void command_test(ti_list **lista, ti_list **listb)
 {
-	sort_params(lista, listb, "pb");
-	sort_params(lista, listb, "pa");
+	if (*lista && !check_if_sorted(*lista))
+	{
+		printf("not sorted\n");
+		if ((*lista)->nodes == 2)
+			sort_params(lista, listb, "sa");
+		if ((*lista)->nodes == 3)
+			sort_three(lista);
+		// if ((*lista)->nodes > 3)
+		// 	big_sort(lista, listb);
+	}
 }
 
 int main(int argc, char **argv)
@@ -34,18 +42,21 @@ int main(int argc, char **argv)
 		n = ft_split(argv[1], ' ');
 	else
 		n = argv + 1;
-	if (is_correct(n))
+	if (!(lista = create_list(n)))
+		return (ft_putstr_fd("Error\n", 2), 0);
+	command_test(&lista, &listb);
+	cur = lista;
+	while (lista && ++i < lista->nodes)
 	{
-		lista = create_list(n);
-		command_test(&lista, &listb);
-		//printf("Content b: %d\nIndex b: %d\nNodes b: %d\n", listb->content, listb->index, listb->nodes);
-		cur = lista;
-		while (++i < lista->nodes && lista)
-		{
-			printf("Content a: %d\nIndex a: %d\nNodes a: %d\n", cur->content, cur->index, cur->nodes);
-			cur = cur->next;
-		}
+		printf("Content a: %d\nIndex a: %d\nNodes a: %d\n", cur->content, cur->index, cur->nodes);
+		cur = cur->next;
 	}
-	else
-		ft_putstr_fd("Error\n", 2);
+	cur = listb;
+	i = -1;
+	while (listb && ++i < listb->nodes)
+	{
+		printf("Content b: %d\nIndex b: %d\nNodes b: %d\n", cur->content, cur->index, cur->nodes);
+		cur = cur->next;
+	}
+	return (1);
 }
