@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:18:42 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/02/14 04:16:22 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/02/21 14:25:09 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void command_test(ti_list **lista, ti_list **listb)
 			sort_params(lista, listb, "sa");
 		if ((*lista)->nodes == 3)
 			sort_three(lista);
-		// if ((*lista)->nodes > 3)
-		// 	big_sort(lista, listb);
+		if ((*lista)->nodes > 3)
+			big_sort(lista, listb);
 	}
 }
 
