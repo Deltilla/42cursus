@@ -14,6 +14,7 @@
 
 void command_test(ti_list **lista, ti_list **listb)
 {
+	find_three_last(lista);
 	if (*lista && !check_if_sorted(*lista))
 	{
 		printf("not sorted\n");

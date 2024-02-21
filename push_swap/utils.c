@@ -12,16 +12,29 @@
 
 #include "push_swap.h"
 
-ti_list *lst_last_circ(ti_list *list)
+void find_three_last(ti_list *list, int ctrl)
 {
-	int		i;
-	ti_list	*last;
+	struct digit	n;
+	int				last;
+	static ti_list	*flast;
+	static ti_list	*slast;
+	static ti_list	*llast;
 
-	i = 0;
-	last = list;
-	while (++i <= list->nodes)
-		last = last->next;
-	return (last);
+	n.a = INT_MIN;
+	n.b = INT_MIN;
+	last = INT_MIN;
+	if (flast)
+		n.a = flast->content;
+	if (slast)
+		n.b = slast->content;
+	if (llast)
+		last = llast->content;
+	if (last < list->content)
+		llast = list;
+	else if (n.b < list->content)
+		slast = list;
+	else if (n.a < list->content)
+		flast = list;
 }
 
 void update_index(ti_list *lista, ti_list *listb)

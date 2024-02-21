@@ -22,6 +22,7 @@ typedef struct  i_list
     struct i_list   *next;
     struct i_list	*prev;
     struct i_list   *target;
+    int             three_last;
 	int				nodes;
     int             index;
 }               ti_list;
@@ -42,7 +43,6 @@ void		update_index(ti_list *lista, ti_list *listb);
 void        update_targets_a(ti_list *lista, ti_list *listb);
 void        big_sort(ti_list **lista, ti_list **listb);
 void        init_list(ti_list *lista, ti_list *listb);
-ti_list     *lst_last_circ(ti_list *list);
 ti_list     *max_near(ti_list *lista, ti_list *listb);
 
 #endif

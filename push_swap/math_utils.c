@@ -21,7 +21,7 @@ ti_list *max_near(ti_list *lista, ti_list *listb)
 
 	i = 0;
 	max_near = LONG_MAX;
-	btarget = lst_last_circ(listb);
+	btarget = listb->prev;
 	cur = listb;
 	while (++i <= listb->nodes)
 	{
