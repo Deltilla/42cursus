@@ -6,15 +6,14 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:18:42 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/02/21 14:25:09 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/02/22 10:04:28 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void command_test(ti_list **lista, ti_list **listb)
+void command_test(t_listi **lista, t_listi **listb)
 {
-	find_three_last(lista);
 	if (*lista && !check_if_sorted(*lista))
 	{
 		printf("not sorted\n");
@@ -29,9 +28,9 @@ void command_test(ti_list **lista, ti_list **listb)
 
 int main(int argc, char **argv)
 {
-	ti_list	*lista;
-	ti_list	*listb;
-	ti_list *cur;
+	t_listi	*lista;
+	t_listi	*listb;
+	t_listi *cur;
 	int		i;
 	char	**n;
 
@@ -49,14 +48,14 @@ int main(int argc, char **argv)
 	cur = lista;
 	while (lista && ++i < lista->nodes)
 	{
-		printf("Content a: %d\nIndex a: %d\nNodes a: %d\n", cur->content, cur->index, cur->nodes);
+		printf("Content a: %d\nIndex a: %d\nNodes a: %d\nTarget: %d\nLast?: %d\n", cur->content, cur->index, cur->nodes, cur->target->content, cur->three_last);
 		cur = cur->next;
 	}
 	cur = listb;
 	i = -1;
 	while (listb && ++i < listb->nodes)
 	{
-		printf("Content b: %d\nIndex b: %d\nNodes b: %d\n", cur->content, cur->index, cur->nodes);
+		printf("Content b: %d\nIndex b: %d\nNodes b: %d\nLast?: %d\n", cur->content, cur->index, cur->nodes, cur->three_last);
 		cur = cur->next;
 	}
 	return (1);

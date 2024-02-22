@@ -6,15 +6,15 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 04:03:48 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/02/15 19:53:39 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/02/22 10:06:11 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-ti_list *ft_isol_node(ti_list *list)
+t_listi *ft_isol_node(t_listi *list)
 {
-	ti_list *head;
+	t_listi *head;
 
 	head = NULL;
 	if (list->next)
@@ -30,9 +30,9 @@ ti_list *ft_isol_node(ti_list *list)
 	return (head);
 }
 
-ti_list *update_list(ti_list *list1, ti_list **list2)
+t_listi *update_list(t_listi *list1, t_listi **list2)
 {
-	ti_list	*cur;
+	t_listi	*cur;
 	int		i;
 	
 	i = 1;

@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:18:54 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/02/21 15:26:30 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/02/22 13:38:33 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,24 +25,30 @@ typedef struct  i_list
     int             three_last;
 	int				nodes;
     int             index;
-}               ti_list;
+	int				half_up;
+	int				cost;
+}               t_listi;
 
 struct	digit
 {
 	int	a;
 	int	b;
+	int c;
 };
 
-ti_list		*create_list(char **list);
-void		sort_params(ti_list **lista, ti_list **listb, char *param);
-ti_list		*update_list(ti_list *lista, ti_list **listb);
-ti_list		*ft_isol_node(ti_list *list);
-int         check_if_sorted(ti_list *list);
-void        sort_three(ti_list **list);
-void		update_index(ti_list *lista, ti_list *listb);
-void        update_targets_a(ti_list *lista, ti_list *listb);
-void        big_sort(ti_list **lista, ti_list **listb);
-void        init_list(ti_list *lista, ti_list *listb);
-ti_list     *max_near(ti_list *lista, ti_list *listb);
+t_listi		*create_list(char **list);
+void		sort_params(t_listi **lista, t_listi **listb, char *param);
+t_listi		*update_list(t_listi *lista, t_listi **listb);
+t_listi		*ft_isol_node(t_listi *list);
+int         check_if_sorted(t_listi *list);
+void        sort_three(t_listi **list);
+void        big_sort(t_listi **lista, t_listi **listb);
+void        init_list(t_listi *lista, t_listi *listb);
+t_listi     *max_near(t_listi *lista, t_listi *listb);
+void		find_three_last(t_listi *list, int ctrl);
+t_listi		*find_index(t_listi *list, int index);
+void		loop_moves(t_listi **lista, t_listi **listb, char *param, int c);
+int			calc_cost(t_listi *lista, t_listi *listb, t_listi *cur, t_listi *target);
+int			find_cheapest(t_listi *lista, t_listi *listb);
 
 #endif

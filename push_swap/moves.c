@@ -6,15 +6,15 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 17:50:48 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/02/14 04:07:26 by analba-sa        ###   ########.fr       */
+/*   Updated: 2024/02/22 10:06:52 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static ti_list *ft_swap_nodes(ti_list *list)
+static t_listi *ft_swap_nodes(t_listi *list)
 {
-	ti_list	*aux;
+	t_listi	*aux;
 
 	aux = list->next;
 	list->prev->next = list->next;
@@ -29,7 +29,7 @@ static ti_list *ft_swap_nodes(ti_list *list)
 	return (list);
 }
 
-static void smoves(ti_list **lista, ti_list **listb, int p)
+static void smoves(t_listi **lista, t_listi **listb, int p)
 {
 	if (*lista && (*lista)->nodes > 1 && (p == 1 || p == 3))
 		*lista = ft_swap_nodes(*lista);
@@ -38,7 +38,7 @@ static void smoves(ti_list **lista, ti_list **listb, int p)
 	//ft_update_index(lista, listb);
 }
 
-static void rmoves(ti_list **lista, ti_list **listb, int p)
+static void rmoves(t_listi **lista, t_listi **listb, int p)
 {
 	if (*lista && (*lista)->nodes > 1 && (p == 1 || p == 3))
 	{
@@ -66,7 +66,7 @@ static void rmoves(ti_list **lista, ti_list **listb, int p)
 	}
 }
 
-static void pmoves(ti_list **lista, ti_list **listb, int p)
+static void pmoves(t_listi **lista, t_listi **listb, int p)
 {
 	if (*listb && p == 1)
 	{
@@ -92,7 +92,7 @@ static void pmoves(ti_list **lista, ti_list **listb, int p)
 	}
 }
 
-void sort_params(ti_list **lista, ti_list **listb, char *param)
+void sort_params(t_listi **lista, t_listi **listb, char *param)
 {
     if (ft_strncmp("sa", param, 2) == 0)
 		smoves (lista, listb, 1);

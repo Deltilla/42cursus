@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:18:18 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/02/14 04:14:26 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/02/22 10:37:10 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,39 +63,37 @@ static int is_correct(char **list)
 	return (1);
 }
 
-static ti_list *new_node(int n)
+static t_listi *new_node(int n)
 {
-    ti_list  *new;
+    t_listi  *new;
 
-    new = malloc(sizeof(ti_list));
+    new = malloc(sizeof(t_listi));
     new->content = n;
     new->prev = NULL;
     new->next = NULL;
     return (new);
 }
 
-ti_list *create_list(char **list)
+t_listi *create_list(char **list)
 {
-    ti_list  *tmp;
-    ti_list  *aux;
-    ti_list  *new;
+    t_listi  *aux;
+    t_listi  *new;
     int     i;
 
 	if (!is_correct(list))
 		return (NULL);
     new = new_node(ft_atoilong(list[0]));
     aux = new;
-    tmp = new;
-    i = 1;
-    while (list[i])
+    i = 0;
+    while (list[++i])
     {
         aux->index = i;
         aux->next = new_node(ft_atoilong(list[i]));
+        aux->next->prev = aux;
         aux = aux->next;
-        aux->prev = tmp;
-        tmp = tmp->next;
-        i++;
+		find_three_last(aux, 0);
     }
+	find_three_last(NULL, 1);
     aux->index = i;
     new->nodes = i;
     aux->next = new;

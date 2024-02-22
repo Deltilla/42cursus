@@ -6,15 +6,15 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 04:05:50 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/02/14 04:06:33 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/02/22 10:06:34 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int check_if_sorted(ti_list *list)
+int check_if_sorted(t_listi *list)
 {
-	ti_list	*cur;
+	t_listi	*cur;
 	int		nodes;
 	struct digit	i;
 
@@ -36,7 +36,7 @@ int check_if_sorted(ti_list *list)
 	return (1);
 }
 
-void sort_three(ti_list **list)
+void sort_three(t_listi **list)
 {
 	if ((*list)->content > (*list)->next->content)
 		sort_params(list, list, "sa");
