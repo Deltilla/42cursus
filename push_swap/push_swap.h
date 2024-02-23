@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:18:54 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/02/22 13:38:33 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/02/23 08:46:34 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void        sort_three(t_listi **list);
 void        big_sort(t_listi **lista, t_listi **listb);
 void        init_list(t_listi *lista, t_listi *listb);
 t_listi     *max_near(t_listi *lista, t_listi *listb);
+t_listi		*min_near(t_listi *lista, t_listi *listb);
 void		find_three_last(t_listi *list, int ctrl);
 t_listi		*find_index(t_listi *list, int index);
 void		loop_moves(t_listi **lista, t_listi **listb, char *param, int c);

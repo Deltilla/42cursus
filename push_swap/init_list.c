@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 11:00:13 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/02/22 13:06:02 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/02/23 08:46:47 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void update_targets_a(t_listi *lista, t_listi *listb)
 	cur = lista;
 	while (++i <= lista->nodes)
 	{
-		cur->target = max_near(cur, listb);
+		cur->target = min_near(cur, listb);
 		cur = cur->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 14:56:18 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/02/22 13:51:47 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/02/23 09:06:39 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@ int calc_cost(t_listi *lista, t_listi *listb, t_listi *cur, t_listi *target)
 {
 	int cost;
 
+	if (cur->index == 1 && cur->target->index == 1)
+		return (0);
+	if (cur->index == 2 && cur->target->index == 2)
+		return (1);
+	if ((cur->index == 1 && cur->target->index == 2) || (cur->index == 2 && cur->target->index == 1))
+		return (1);
 	if (cur->half_up != 1 && target->half_up != 1)
 		cost = lista->nodes - ((cur->index < target->index) ? cur->index : target->index);
 	if (cur->half_up == 1 && target->half_up == 1)
@@ -68,6 +74,29 @@ t_listi *max_near(t_listi *lista, t_listi *listb)
 		if (cur->content > lista->content && cur->content < max_near)
 		{
 			max_near = cur->content;
+			btarget = cur;
+		}
+		cur = cur->next;
+	}
+	return (btarget);
+}
+
+t_listi *min_near(t_listi *lista, t_listi *listb)
+{
+	int		i;
+	long	min_near;
+	t_listi	*cur;
+	t_listi *btarget;
+
+	i = 0;
+	min_near = LONG_MIN;
+	btarget = listb->prev;
+	cur = listb;
+	while (++i <= listb->nodes)
+	{
+		if (cur->content < lista->content && cur->content > min_near)
+		{
+			min_near = cur->content;
 			btarget = cur;
 		}
 		cur = cur->next;
