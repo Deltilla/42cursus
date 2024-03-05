@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:18:42 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/02/22 10:04:28 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/03/05 21:00:31 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,14 @@ int main(int argc, char **argv)
 	}
 	cur = listb;
 	i = -1;
+	// while (listb && ++i < listb->nodes)
+	// {
+	// 	printf("Content b: %d\nIndex b: %d\nNodes b: %d\nLast?: %d\n", cur->content, cur->index, cur->nodes, cur->three_last);
+	// 	cur = cur->next;
+	// }
 	while (listb && ++i < listb->nodes)
 	{
-		printf("Content b: %d\nIndex b: %d\nNodes b: %d\nLast?: %d\n", cur->content, cur->index, cur->nodes, cur->three_last);
+		printf("Content b: %d\n", cur->content);
 		cur = cur->next;
 	}
 	return (1);

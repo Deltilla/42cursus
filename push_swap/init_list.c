@@ -6,11 +6,25 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 11:00:13 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/02/23 08:46:47 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/03/05 22:14:48 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void update_cost(t_listi *lista, t_listi *listb)
+{
+	int		i;
+	t_listi	*cur;
+
+	i = 0;
+	cur = lista;
+	while (++i < lista->nodes)
+	{
+		cur->cost = calc_cost(lista, listb, cur, cur->target);
+		cur = cur->next;
+	}
+}
 
 static void update_index(t_listi *lista, t_listi *listb)
 {
@@ -58,4 +72,5 @@ void init_list(t_listi *lista, t_listi *listb)
 {
 	update_index(lista, listb);
 	update_targets_a(lista, listb);
+	update_cost(lista,listb);
 }

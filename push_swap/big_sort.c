@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 04:23:04 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/02/23 09:07:35 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/03/05 21:43:54 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ static int cheap_moves(t_listi **lista, t_listi **listb, t_listi *list, t_listi 
 	if (list->index == 1 && target->index == 1)
 		return (1);
 	if (list->index == 2 && list->index == 2)
-		return (sort_params(lista, listb, "ss"), 1);
+		return (sort_params(lista, listb, "rr"), 1);
 	if (list->index == 1 && target->index == 2)
-		return (sort_params(lista, listb, "sb"), 1);
+		return (sort_params(lista, listb, "rb"), 1); 
 	if (list->index == 2 && target->index == 1)
-		return (sort_params(lista, listb, "sa"), 1);
+		return (sort_params(lista, listb, "ra"), 1);
 	return (0);
 }
 
@@ -31,6 +31,7 @@ static void call_moves(t_listi **lista, t_listi **listb, int i)
 	t_listi	*cur;
 
 	cur = find_index(*lista, i);
+	//printf("cur.cost: %d\ncur.target: %d\ncur.content: %d\n", cur->cost,cur->target->content,cur->content);
 	moves = calc_cost(*lista, *listb, cur, cur->target);
 	if (cheap_moves(lista, listb, cur, cur->target))
 		;

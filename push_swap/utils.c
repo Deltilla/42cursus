@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 19:43:50 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/02/22 13:36:26 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/02/29 20:16:55 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_listi *find_index(t_listi *list, int index)
 
 void loop_moves(t_listi **lista, t_listi **listb, char *param, int c)
 {
-	while (c-- > 0)
+	while (c-- > 1)
 		sort_params(lista, listb, param);
 }
 

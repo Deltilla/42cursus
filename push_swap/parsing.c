@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:18:18 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/02/22 10:37:10 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/02/26 15:41:13 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,15 @@ static int ft_atoilong(char *str)
 	sign = 1;
 	if (!*str)
 		return (0);
+	if (*str == '-')
+	{
+		sign *= -1;
+		str++;
+	}
+	if (*str == '+')
+		str++;
 	while (*str)
 	{
-		if (*str == '-')
-		{
-			sign *= -1;
-			str++;
-		}
 		if (*str < '0' || *str > '9')
 			return (0);
 		r = (r * 10) + (*str - '0');
