@@ -6,24 +6,35 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 04:23:04 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/03/05 21:43:54 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/03/06 10:52:28 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int cheap_moves(t_listi **lista, t_listi **listb, t_listi *list, t_listi *target)
+static int cheap_moves(t_listi **lista, t_listi **listb, t_listi *cur, t_listi *target)
 {
-	if (list->index == 1 && target->index == 1)
+	if (cur->index == 1 && target->index == 1)
 		return (1);
-	if (list->index == 2 && list->index == 2)
+	if (cur->index == 2 && cur->index == 2)
 		return (sort_params(lista, listb, "rr"), 1);
-	if (list->index == 1 && target->index == 2)
+	if (cur->index == 1 && target->index == 2)
 		return (sort_params(lista, listb, "rb"), 1); 
-	if (list->index == 2 && target->index == 1)
+	if (cur->index == 2 && target->index == 1)
 		return (sort_params(lista, listb, "ra"), 1);
+	if (cur->index == (*lista)->nodes && target->index == (*listb)->nodes)
+		return (sort_params(lista, listb, "rrr"), 1);
+	if (cur->index == 1 && target->index == (*listb)->nodes)
+		return (sort_params(lista, listb, "rrb"), 1);
+	if (cur->index == (*lista)->nodes && target->index == 1)
+		return (sort_params(lista, listb, "rra"), 1);
 	return (0);
 }
+
+/* static void hard_moves(t_listi **lista, t_listi **listb, t_listi *cur, t_listi *target)
+{
+	
+} */
 
 static void call_moves(t_listi **lista, t_listi **listb, int i)
 {
@@ -31,7 +42,7 @@ static void call_moves(t_listi **lista, t_listi **listb, int i)
 	t_listi	*cur;
 
 	cur = find_index(*lista, i);
-	//printf("cur.cost: %d\ncur.target: %d\ncur.content: %d\n", cur->cost,cur->target->content,cur->content);
+	printf("cur.cost: %d\ncur.target: %d\ncur.content: %d\n", cur->cost,cur->target->content,cur->content);
 	moves = calc_cost(*lista, *listb, cur, cur->target);
 	if (cheap_moves(lista, listb, cur, cur->target))
 		;
@@ -58,7 +69,7 @@ static void pusha(t_listi **lista, t_listi **listb)
 	
 	while ((*lista)->nodes > 3)
 	{
-		i = find_cheapest(*lista, *listb);
+		i = find_cheapest(*lista);
 		call_moves(lista, listb, i);
 		init_list(*lista, *listb);
 	}

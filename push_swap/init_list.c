@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 11:00:13 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/03/05 22:14:48 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/03/06 08:16:25 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void update_index(t_listi *lista, t_listi *listb)
 		while (++i <= listb->nodes)
 		{
 			cur->index = i;
-			if (i < (listb->nodes / 2))
+			if (i <= (listb->nodes / 2))
 				cur->half_up = 1;
 			cur = cur->next;
 		}

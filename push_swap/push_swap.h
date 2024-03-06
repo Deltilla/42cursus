@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:18:54 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/02/23 08:46:34 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/03/06 09:15:50 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void		find_three_last(t_listi *list, int ctrl);
 t_listi		*find_index(t_listi *list, int index);
 void		loop_moves(t_listi **lista, t_listi **listb, char *param, int c);
 int			calc_cost(t_listi *lista, t_listi *listb, t_listi *cur, t_listi *target);
-int			find_cheapest(t_listi *lista, t_listi *listb);
+//int			find_cheapest(t_listi *lista, t_listi *listb);
+int			find_cheapest(t_listi *list);
+int			compare_int(int a, int b);
 
 #endif
