@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 14:56:18 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/03/06 09:11:20 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/03/11 21:25:50 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,22 @@ int find_cheapest(t_listi *lista, t_listi *listb)
 	return (cheapest_index);
 } */
 
-int compare_int(int a, int b)
+int compare_int(int a, int b, int ctrl)
 {
-	if (a < b)
-		return (a);
+	if (ctrl == 1)
+	{
+		if (a > b)
+			return (a);
+		else
+			return (b);
+	}
 	else
-		return (b);
+	{
+		if (a < b)
+			return (a);
+		else
+			return (b);
+	}
 }
 
 t_listi *max_near(t_listi *lista, t_listi *listb)

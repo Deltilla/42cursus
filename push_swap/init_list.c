@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 11:00:13 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/03/06 08:16:25 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/03/11 21:16:31 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ static void update_cost(t_listi *lista, t_listi *listb)
 
 	i = 0;
 	cur = lista;
-	while (++i < lista->nodes)
+	while (++i <= lista->nodes)
 	{
 		cur->cost = calc_cost(lista, listb, cur, cur->target);
 		cur = cur->next;
 	}
 }
 
-static void update_index(t_listi *lista, t_listi *listb)
+void update_index(t_listi *lista, t_listi *listb)
 {
 	int		i;
 	t_listi	*cur;
@@ -36,7 +36,7 @@ static void update_index(t_listi *lista, t_listi *listb)
 	while (++i <= lista->nodes)
 	{
 		cur->index = i;
-		if (i > (lista->nodes / 2))
+		if (i <= (lista->nodes / 2))
 			cur->half_up = 1;
 		cur = cur->next;
 	}

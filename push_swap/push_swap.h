@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:18:54 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/03/06 09:15:50 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/03/11 21:25:11 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int         check_if_sorted(t_listi *list);
 void        sort_three(t_listi **list);
 void        big_sort(t_listi **lista, t_listi **listb);
 void        init_list(t_listi *lista, t_listi *listb);
+void		update_index(t_listi *lista, t_listi *listb);
 t_listi     *max_near(t_listi *lista, t_listi *listb);
 t_listi		*min_near(t_listi *lista, t_listi *listb);
 void		find_three_last(t_listi *list, int ctrl);
@@ -52,6 +53,7 @@ void		loop_moves(t_listi **lista, t_listi **listb, char *param, int c);
 int			calc_cost(t_listi *lista, t_listi *listb, t_listi *cur, t_listi *target);
 //int			find_cheapest(t_listi *lista, t_listi *listb);
 int			find_cheapest(t_listi *list);
-int			compare_int(int a, int b);
+int			compare_int(int a, int b, int ctrl);
+void		sky_is_the_limit(t_listi **lista, t_listi **listb, t_listi *cur);
 
 #endif

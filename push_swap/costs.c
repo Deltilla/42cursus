@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 08:21:24 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/03/06 09:06:04 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/03/11 21:10:24 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,16 @@ int calc_cost(t_listi *lista, t_listi *listb, t_listi *cur, t_listi *target)
 	int				cost;
 
 	cost = 0;
+	if (cur->three_last == 1)
+		return (INT_MAX);
 	if ((cost = cheap_cost(lista, listb, cur, cur->target)))
 		return (cost);
 	if ((cost = compare_cost(lista, listb, cur, cur->target)))
 		return (cost);
 	if (cur->half_up == 1 && target->half_up == 1)
-		cost = compare_int(cur->index, cur->target->index);
+		cost = compare_int(cur->index, cur->target->index, 1);
 	if (cur->half_up != 1 && target->half_up != 1)
-		cost = compare_int(lista->nodes - cur->index, listb->nodes - cur->target->index);
+		cost = compare_int(lista->nodes - cur->index, listb->nodes - cur->target->index, 1);
 	return (cost);
 }
 
@@ -83,7 +85,7 @@ int find_cheapest(t_listi *list)
 	cheapest_index = 1;
 	cheapest = INT_MAX;
 	cur = list;
-	while (++i < list->nodes)
+	while (++i <= list->nodes)
 	{
 		if (cur->cost == 0)
 			return (cur->index);
@@ -92,6 +94,7 @@ int find_cheapest(t_listi *list)
 			cheapest = cur->cost;
 			cheapest_index = cur->index;
 		}
+		//printf("Content: %d\nCost: %d\n", cur->content, cur->cost);
 		cur = cur->next;
 	}
 	return (cheapest_index);

@@ -6,11 +6,36 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 19:43:50 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/02/29 20:16:55 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/03/11 22:04:07 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void sky_is_the_limit(t_listi **lista, t_listi **listb, t_listi *cur)
+{
+	struct digit	n;
+	int				cheaper;
+	int				i;
+
+	n.a = cur->index;
+	n.b = cur->target->index;
+	cheaper = compare_int(n.a, n.b, 2);
+	i = 0;
+	if (cur->half_up == 1 && cur->target->half_up == 1)
+		loop_moves(lista, listb, "rr", cheaper);
+	if (cur->half_up != 1 && cur->target->half_up != 1)
+		loop_moves(lista, listb, "rrr", cheaper);
+	update_index(*lista, *listb);
+	if (cur->half_up == 1)
+		loop_moves(lista, listb, "ra", n.a);
+	else
+		loop_moves(lista, listb, "rra", (*lista)->nodes - n.a);
+	if (cur->target->half_up == 1)
+		loop_moves(lista, listb, "rb", n.b);
+	else
+		loop_moves(lista,listb, "rrb", (*lista)->nodes - n.b);
+}
 
 t_listi *find_index(t_listi *list, int index)
 {
