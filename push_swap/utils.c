@@ -16,25 +16,27 @@ void sky_is_the_limit(t_listi **lista, t_listi **listb, t_listi *cur)
 {
 	struct digit	n;
 	int				cheaper;
-	int				i;
 
 	n.a = cur->index;
 	n.b = cur->target->index;
-	cheaper = compare_int(n.a, n.b, 2);
-	i = 0;
+	cheaper = compare_int(n.a, n.b, 2) - 1;
 	if (cur->half_up == 1 && cur->target->half_up == 1)
 		loop_moves(lista, listb, "rr", cheaper);
+	cheaper = compare_int((*lista)->nodes - n.a,(*listb)->nodes - n.b, 2) + 1;
 	if (cur->half_up != 1 && cur->target->half_up != 1)
 		loop_moves(lista, listb, "rrr", cheaper);
 	update_index(*lista, *listb);
-	if (cur->half_up == 1)
+	n.a = cur->index - 1;
+	n.b = cur->target->index - 1;
+	//printf("los n ezos: \tn.a: %d\tn.b: %d\n", n.a, n.b);
+	if (cur->half_up == 1 && cur->index != 1)
 		loop_moves(lista, listb, "ra", n.a);
-	else
+	else if (cur->half_up != 1 && cur->index != (*lista)->nodes)
 		loop_moves(lista, listb, "rra", (*lista)->nodes - n.a);
-	if (cur->target->half_up == 1)
+	if (cur->target->half_up == 1 && cur->target->index != 1)
 		loop_moves(lista, listb, "rb", n.b);
-	else
-		loop_moves(lista,listb, "rrb", (*lista)->nodes - n.b);
+	else if (cur->target->half_up != 1 && cur->target->index != (*listb)->nodes)
+		loop_moves(lista,listb, "rrb", (*listb)->nodes - n.b);
 }
 
 t_listi *find_index(t_listi *list, int index)
@@ -55,7 +57,7 @@ t_listi *find_index(t_listi *list, int index)
 
 void loop_moves(t_listi **lista, t_listi **listb, char *param, int c)
 {
-	while (c-- > 1)
+	while (c-- >= 1)
 		sort_params(lista, listb, param);
 }
 

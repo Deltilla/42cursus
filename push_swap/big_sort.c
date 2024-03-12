@@ -62,7 +62,7 @@ static void call_moves(t_listi **lista, t_listi **listb, int i)
 	t_listi	*cur;
 
 	cur = find_index(*lista, i);
-	printf("cur.target: %d\ncur.content: %d\ncur.half: %d\n", cur->target->content, cur->content, cur->target->half_up);
+	printf("cur.target: %d\ncur.content: %d\ncur.index: %d\n", cur->target->content, cur->content, cur->index);
 	sky_is_the_limit(lista, listb, cur);
 	sort_params(lista, listb, "pb");
 }
