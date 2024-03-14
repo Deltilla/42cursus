@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 08:21:24 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/03/14 01:27:13 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/03/14 17:23:32 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ int find_cheapest(t_listi *list)
 			cheapest = cur->cost;
 			cheapest_index = cur->index;
 		}
+		//printf("cur: %d\tcur.cost: %d\ncheapest: %d\n", cur->content, cur->cost, cheapest_index);
 		cur = cur->next;
 	}
 	return (cheapest_index);

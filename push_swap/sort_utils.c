@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 04:05:50 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/03/14 06:03:13 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/03/14 17:42:14 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,16 @@ void sky_is_the_limit_b(t_listi **lista, t_listi **listb, t_listi *cur)
 	if (cur->half_up != 1 && cur->target->half_up != 1)
 		loop_moves(lista, listb, "rrr", cheaper);
 	update_index(*lista, *listb);
+	//printf("cur: %d\ttarget: %d\tindex: %d\tnodes: %d\n", cur->content, cur->target->content, cur->index, (*listb)->nodes);
 	n.a = cur->index - 1;
 	n.b = cur->target->index - 1;
 	if (cur->half_up == 1 && cur->index != 1)
 		loop_moves(lista, listb, "rb", n.a);
-	else if (cur->half_up != 1)
+	else if (cur->half_up != 1 && cur->index != (*listb)->nodes)
 		loop_moves(lista, listb, "rrb", (*listb)->nodes - n.a);
 	if (cur->target->half_up == 1 && cur->target->index != 1)
 		loop_moves(lista, listb, "ra", n.b);
-	else if (cur->target->half_up != 1)
+	else if (cur->target->half_up != 1 && cur->target->index != (*lista)->nodes)
 		loop_moves(lista,listb, "rra", (*lista)->nodes - n.b);
 }
 

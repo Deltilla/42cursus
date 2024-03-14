@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:18:42 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/03/14 06:56:29 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/03/14 17:16:25 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void check_and_sort(t_listi **lista, t_listi **listb)
 {
-	/* if (*lista && !check_if_sorted(*lista))
+	if (*lista && !check_if_sorted(*lista))
 	{
 		if ((*lista)->nodes == 2)
 			sort_params(lista, listb, "sa");
@@ -22,11 +22,7 @@ static void check_and_sort(t_listi **lista, t_listi **listb)
 			sort_three(lista);
 		if ((*lista)->nodes > 3)
 			biggie_sort(lista, listb);
-	} */
-	sort_params(lista, listb, "pb");
-	sort_params(lista, listb, "pb");
-	sort_params(lista, listb, "pa");
-	printf("listb: %d\n")
+	}
 }
 
 int main(int argc, char **argv)
@@ -51,10 +47,10 @@ int main(int argc, char **argv)
 		return (ft_putstr_fd("Error\n", 2), 0);
 	check_and_sort(&lista, &listb);
 	cur = lista;
-	while (++i <= lista->nodes)
+/* 	while (++i <= lista->nodes)
 	{
 		printf("cur.content: %d\n", cur->content);
 		cur = cur->next;
-	}
+	} */
 	return (1);
 }

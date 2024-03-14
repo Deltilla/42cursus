@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 04:23:04 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/03/14 06:09:25 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/03/14 17:37:51 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,15 @@ static void call_moves(t_listi **lista, t_listi **listb, int i, char list)
 	if (list == 'a')
 	{
 		cur = find_index(*lista, i);
+		//printf("cur: %d\ttarget: %d\n", cur->content, cur->target->content);
 		sky_is_the_limit_a(lista, listb, cur);
 		sort_params(lista, listb, "pb");
 	}
 	if (list == 'b')
 	{
 		cur = find_index(*listb, i);
-		printf("cur: %d\ntarget: %d\n", cur->content, cur->target->content);
-		sky_is_the_limit_b(listb, lista, cur);
+		//printf("cur: %d\ttarget: %d\n", cur->content, cur->target->content);
+		sky_is_the_limit_b(lista, listb, cur);
 		sort_params(lista, listb, "pa");
 	}
 }
@@ -77,7 +78,11 @@ void biggie_sort(t_listi **lista, t_listi **listb)
 		sort_params(lista, listb, "ra");
 	sort_params(lista, listb, "pb");
 	if ((*lista)->nodes > 3)
+	{
+		while ((*lista)->three_last == 1)
+			sort_params(lista, listb, "ra");
 		sort_params(lista, listb, "pb");
+	}
 	if ((*lista)->nodes >= 3)
 	{
 		init_list_a(*lista, *listb);
