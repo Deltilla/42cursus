@@ -6,38 +6,11 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 19:43:50 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/03/11 22:04:07 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/03/14 05:57:34 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void sky_is_the_limit(t_listi **lista, t_listi **listb, t_listi *cur)
-{
-	struct digit	n;
-	int				cheaper;
-
-	n.a = cur->index;
-	n.b = cur->target->index;
-	cheaper = compare_int(n.a, n.b, 2) - 1;
-	if (cur->half_up == 1 && cur->target->half_up == 1)
-		loop_moves(lista, listb, "rr", cheaper);
-	cheaper = compare_int((*lista)->nodes - n.a,(*listb)->nodes - n.b, 2) + 1;
-	if (cur->half_up != 1 && cur->target->half_up != 1)
-		loop_moves(lista, listb, "rrr", cheaper);
-	update_index(*lista, *listb);
-	n.a = cur->index - 1;
-	n.b = cur->target->index - 1;
-	//printf("los n ezos: \tn.a: %d\tn.b: %d\n", n.a, n.b);
-	if (cur->half_up == 1 && cur->index != 1)
-		loop_moves(lista, listb, "ra", n.a);
-	else if (cur->half_up != 1 && cur->index != (*lista)->nodes)
-		loop_moves(lista, listb, "rra", (*lista)->nodes - n.a);
-	if (cur->target->half_up == 1 && cur->target->index != 1)
-		loop_moves(lista, listb, "rb", n.b);
-	else if (cur->target->half_up != 1 && cur->target->index != (*listb)->nodes)
-		loop_moves(lista,listb, "rrb", (*listb)->nodes - n.b);
-}
 
 t_listi *find_index(t_listi *list, int index)
 {
@@ -46,7 +19,7 @@ t_listi *find_index(t_listi *list, int index)
 
 	cur = list;
 	i = 0;
-	while (++i < list->nodes)
+	while (++i <= list->nodes)
 	{
 		if (cur->index == index)
 	 		return (cur);
@@ -84,7 +57,7 @@ void find_three_last(t_listi *list, int ctrl)
 	static t_listi	*flast;
 	static t_listi	*slast;
 	static t_listi	*llast;
-
+	
 	n.a = INT_MIN;
 	n.b = INT_MIN;
 	n.c = INT_MIN;

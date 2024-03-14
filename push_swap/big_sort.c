@@ -6,65 +6,57 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 04:23:04 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/03/11 21:58:58 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/03/14 06:09:25 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* static int cheap_moves(t_listi **lista, t_listi **listb, t_listi *cur, t_listi *target)
-{
-	if (cur->index == 1 && target->index == 1)
-		return (1);
-	if (cur->index == 2 && cur->index == 2)
-		return (sort_params(lista, listb, "rr"), 1);
-	if (cur->index == 1 && target->index == 2)
-		return (sort_params(lista, listb, "rb"), 1);
-	if (cur->index == 2 && target->index == 1)
-		return (sort_params(lista, listb, "ra"), 1);
-	if (cur->index == (*lista)->nodes && target->index == (*listb)->nodes)
-		return (sort_params(lista, listb, "rrr"), 1);
-	if (cur->index == 1 && target->index == (*listb)->nodes)
-		return (sort_params(lista, listb, "rrb"), 1);
-	if (cur->index == (*lista)->nodes && target->index == 1)
-		return (sort_params(lista, listb, "rra"), 1);
-	return (0);
-} */
-
-/* static void call_moves(t_listi **lista, t_listi **listb, int i)
-{
-	int		moves;
-	t_listi	*cur;
-
-	cur = find_index(*lista, i);
-	printf("cur.cost: %d\ncur.target: %d\ncur.content: %d\ncur.index: %d\n", cur->cost, cur->target->content, cur->content, cur->index);
-	moves = calc_cost(*lista, *listb, cur, cur->target);
-	if (cheap_moves(lista, listb, cur, cur->target))
-		;
-	else if (cur->half_up != 1 && cur->target->half_up != 1)
-		loop_moves(lista, listb, "rrr", moves);
-	else if (cur->half_up == 1 && cur->target->half_up == 1)
-		loop_moves(lista, listb, "rr", moves);
-	else if (cur->half_up != 1 && cur->target->half_up == 1)
-	{
-		loop_moves(lista, listb, "rra", (*lista)->nodes - cur->index);
-		loop_moves(lista, listb, "rb", cur->target->index);
-	}
-	else if (cur->half_up == 1 && cur->target->half_up != 1)
-	{
-		loop_moves(lista, listb, "ra", cur->index);
-		loop_moves(lista, listb, "rrb", (*listb)->nodes - cur->target->index);
-	}
-	sort_params(lista, listb, "pb");
-} */
-static void call_moves(t_listi **lista, t_listi **listb, int i)
+static void call_moves(t_listi **lista, t_listi **listb, int i, char list)
 {
 	t_listi	*cur;
 
-	cur = find_index(*lista, i);
-	printf("cur.target: %d\ncur.content: %d\ncur.index: %d\n", cur->target->content, cur->content, cur->index);
-	sky_is_the_limit(lista, listb, cur);
-	sort_params(lista, listb, "pb");
+	if (list == 'a')
+	{
+		cur = find_index(*lista, i);
+		sky_is_the_limit_a(lista, listb, cur);
+		sort_params(lista, listb, "pb");
+	}
+	if (list == 'b')
+	{
+		cur = find_index(*listb, i);
+		printf("cur: %d\ntarget: %d\n", cur->content, cur->target->content);
+		sky_is_the_limit_b(listb, lista, cur);
+		sort_params(lista, listb, "pa");
+	}
+}
+
+static void finish_him(t_listi **lista, t_listi **listb)
+{
+	t_listi	*first;
+
+	first = NULL;
+	if (!check_if_sorted(*lista))
+	{
+		first = find_min(*lista);
+		while (first != *(lista))
+		{
+			if (first->half_up == 1)
+				sort_params(lista, listb, "ra");
+			else
+				sort_params(lista, listb, "rra");
+		}
+	}
+}
+
+static void pushb(t_listi **lista, t_listi **listb)
+{
+	while (*listb)
+	{
+		init_list_b(*lista, *listb);
+		call_moves(lista, listb, 1, 'b');
+	}
+	update_index(*lista, *listb);
 }
 
 static void pusha(t_listi **lista, t_listi **listb)
@@ -74,21 +66,24 @@ static void pusha(t_listi **lista, t_listi **listb)
 	while ((*lista)->nodes > 3)
 	{
 		i = find_cheapest(*lista);
-		call_moves(lista, listb, i);
-		init_list(*lista, *listb);
+		call_moves(lista, listb, i, 'a');
+		init_list_a(*lista, *listb);
 	}
 }
 
-void big_sort(t_listi **lista, t_listi **listb)
+void biggie_sort(t_listi **lista, t_listi **listb)
 {
+	while ((*lista)->three_last == 1)
+		sort_params(lista, listb, "ra");
 	sort_params(lista, listb, "pb");
 	if ((*lista)->nodes > 3)
 		sort_params(lista, listb, "pb");
 	if ((*lista)->nodes >= 3)
 	{
-		init_list(*lista, *listb);
+		init_list_a(*lista, *listb);
 		pusha(lista, listb);
-		//pushb(lista,listb);
 	}
-	//sort_three(lista);
+	sort_three(lista);
+	pushb(lista,listb);
+	finish_him(lista, listb);
 }

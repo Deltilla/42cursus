@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:18:18 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/02/26 15:41:13 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/03/14 05:29:13 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,10 @@ t_listi *create_list(char **list)
         aux = aux->next;
 		find_three_last(aux, 0);
     }
-	find_three_last(NULL, 1);
     aux->index = i;
     new->nodes = i;
     aux->next = new;
     new->prev = aux;
+	find_three_last(new, 1);
     return (new);
 }

@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 17:50:48 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/02/22 10:06:52 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/03/14 06:35:55 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,30 +35,29 @@ static void smoves(t_listi **lista, t_listi **listb, int p)
 		*lista = ft_swap_nodes(*lista);
 	if (*listb && (*listb)->nodes > 1 && (p == 2 || p == 3))
 		*listb = ft_swap_nodes(*listb);
-	//ft_update_index(lista, listb);
 }
 
 static void rmoves(t_listi **lista, t_listi **listb, int p)
 {
-	if (*lista && (*lista)->nodes > 1 && (p == 1 || p == 3))
+	if (lista && *lista && (*lista)->nodes > 1 && (p == 1 || p == 3))
 	{
 		*lista = (*lista)->next;
 		(*lista)->nodes = (*lista)->prev->nodes;
 		(*lista)->prev->nodes = 0;
 	}
-	if (*listb && (*listb)->nodes > 1 && (p == 2 || p == 3))
+	if (listb && *listb && (*listb)->nodes > 1 && (p == 2 || p == 3))
 	{
 		*listb = (*listb)->next;
 		(*listb)->nodes = (*listb)->prev->nodes;
 		(*listb)->prev->nodes = 0;
 	}	
-	if (*lista && (*lista)->nodes > 1 && (p == 4 || p == 6))
+	if (lista && *lista && (*lista)->nodes > 1 && (p == 4 || p == 6))
 	{
 		*lista = (*lista)->prev;
 		(*lista)->nodes = (*lista)->next->nodes;
 		(*lista)->prev->nodes = 0;
 	}
-	if (*listb && (*listb)->nodes > 1 && (p == 5 || p == 6))
+	if (listb && *listb && (*listb)->nodes > 1 && (p == 5 || p == 6))
 	{
 		*listb = (*listb)->prev;
 		(*listb)->nodes = (*listb)->next->nodes;
