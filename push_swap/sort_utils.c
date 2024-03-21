@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 04:05:50 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/03/14 17:42:14 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/03/21 15:04:42 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,55 +14,33 @@
 
 void sky_is_the_limit_a(t_listi **lista, t_listi **listb, t_listi *cur)
 {
-	struct digit	n;
-	int				cheaper;
-
-	n.a = cur->index;
-	n.b = cur->target->index;
-	cheaper = compare_int(n.a, n.b, 2) - 1;
-	if (cur->half_up == 1 && cur->target->half_up == 1)
-		loop_moves(lista, listb, "rr", cheaper);
-	cheaper = compare_int((*lista)->nodes - n.a, (*listb)->nodes - n.b, 2) + 1;
-	if (cur->half_up != 1 && cur->target->half_up != 1)
-		loop_moves(lista, listb, "rrr", cheaper);
-	update_index(*lista, *listb);
-	n.a = cur->index - 1;
-	n.b = cur->target->index - 1;
-	if (cur->half_up == 1 && cur->index != 1)
-		loop_moves(lista, listb, "ra", n.a);
-	else if (cur->half_up != 1)
-		loop_moves(lista, listb, "rra", (*lista)->nodes - n.a);
-	if (cur->target->half_up == 1 && cur->target->index != 1)
-		loop_moves(lista, listb, "rb", n.b);
-	else if (cur->target->half_up != 1)
-		loop_moves(lista,listb, "rrb", (*listb)->nodes - n.b);
+	while (*lista != cur)
+	{
+		if (cur->half_up)
+			sort_params(lista, listb, "ra");
+		else
+			sort_params(lista, listb, "rra");
+	}
+	if (listb && *listb)
+	{
+		while (*listb != cur->target)
+		{
+			if (cur->target->half_up)
+				sort_params(lista, listb, "rb");
+			else
+				sort_params(lista, listb, "rrb");
+		}
+	}
 }
 
 void sky_is_the_limit_b(t_listi **lista, t_listi **listb, t_listi *cur)
 {
-	struct digit	n;
-	int				cheaper;
-
-	n.a = cur->index;
-	n.b = cur->target->index;
-	cheaper = compare_int(n.a, n.b, 2) - 1;
-	if (cur->half_up == 1 && cur->target->half_up == 1)
-		loop_moves(lista, listb, "rr", cheaper);
-	cheaper = compare_int((*lista)->nodes - n.a, (*listb)->nodes - n.b, 2) + 1;
-	if (cur->half_up != 1 && cur->target->half_up != 1)
-		loop_moves(lista, listb, "rrr", cheaper);
-	update_index(*lista, *listb);
-	//printf("cur: %d\ttarget: %d\tindex: %d\tnodes: %d\n", cur->content, cur->target->content, cur->index, (*listb)->nodes);
-	n.a = cur->index - 1;
-	n.b = cur->target->index - 1;
-	if (cur->half_up == 1 && cur->index != 1)
-		loop_moves(lista, listb, "rb", n.a);
-	else if (cur->half_up != 1 && cur->index != (*listb)->nodes)
-		loop_moves(lista, listb, "rrb", (*listb)->nodes - n.a);
-	if (cur->target->half_up == 1 && cur->target->index != 1)
-		loop_moves(lista, listb, "ra", n.b);
-	else if (cur->target->half_up != 1 && cur->target->index != (*lista)->nodes)
-		loop_moves(lista,listb, "rra", (*lista)->nodes - n.b);
+	if (cur->target->half_up)
+		while (cur->target != *lista)
+			sort_params(lista, listb, "ra");
+	else
+		while (cur->target != *lista)
+	 	sort_params(lista, listb, "rra");
 }
 
 int check_if_sorted(t_listi *list)

@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:18:42 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/03/14 17:16:25 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/03/21 15:19:10 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,5 @@ int main(int argc, char **argv)
 		return (ft_putstr_fd("Error\n", 2), 0);
 	check_and_sort(&lista, &listb);
 	cur = lista;
-/* 	while (++i <= lista->nodes)
-	{
-		printf("cur.content: %d\n", cur->content);
-		cur = cur->next;
-	} */
 	return (1);
 }

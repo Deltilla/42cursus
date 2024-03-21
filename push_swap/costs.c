@@ -6,96 +6,51 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 08:21:24 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/03/14 17:23:32 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/03/21 14:23:08 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int cheap_cost(t_listi *lista, t_listi *listb, t_listi *cur, t_listi *target)
+static void calc_cost(t_listi *lista, t_listi *listb, t_listi *cur, t_listi *target)
 {
-	if (cur->index == 1 && cur->target->index == 1)
-		return (0);
-	if (cur->index == 2 && cur->target->index == 2)
-		return (1);
-	if ((cur->index == 1 && cur->target->index == 2) || (cur->index == 2 && cur->target->index == 1))
-		return (1);
-	if (cur->index == lista->nodes && target->index == listb->nodes)
-		return (1);
-	if (cur->index == lista->nodes && target->index == 1)
-		return (1);
-	if (cur->index == 1 && target->index == listb->nodes)
-		return (1);
-	return (-1);
-}
-
-static int compare_cost(t_listi *lista, t_listi *listb, t_listi *cur, t_listi *target)
-{
-	struct digit	n;
-		
-	n.a = 0;
-	n.b = 0;
-	if (cur->half_up == 1 && target->half_up != 1)
-	{
-		n.a = target->index - cur->index;
-		n.b = listb->nodes - target->index;
-		if (n.a < n.b)
-			return (cur->target->index);
-		else
-			return ((listb->nodes - target->index) + cur->index);
-	}
-	if (cur->half_up != 1 && target->half_up == 1)
-	{
-		n.a = cur->index - target->index;
-		n.b = lista->nodes - cur->index;
-		if (n.a < n.b)
-			return (cur->index);
-		else
-			return ((lista->nodes - cur->index) + target->index);
-	}
-	return (0);
-} 
-
-int calc_cost(t_listi *lista, t_listi *listb, t_listi *cur, t_listi *target)
-{
-	int	cost;
+	struct digit	index;
+	int				cost;
 
 	cost = 0;
-	if (cur->three_last == 1)
-		return (INT_MAX);
-	if ((cost = cheap_cost(lista, listb, cur, cur->target)) != -1)
-		return (cost);
-	if ((cost = compare_cost(lista, listb, cur, cur->target)))
-		return (cost);
-	if (cur->half_up == 1 && target->half_up == 1)
-		cost = compare_int(cur->index, cur->target->index, 1);
-	if (cur->half_up != 1 && target->half_up != 1)
-		cost = compare_int(lista->nodes - cur->index, listb->nodes - cur->target->index, 1);
-	return (cost);
+	index.a = cur->index;
+	index.b = target->index;
+	if (cur->half_up && (target->half_up || index.b - index.a < listb->nodes / 2))
+		cur->cost = compare_int(index.a, index.b, 1);
+	else if (!cur->half_up && (!target->half_up || index.b + (lista->index - index.a) > listb->nodes / 2))
+		cur->cost = compare_int(lista->nodes - index.a + 1, listb->nodes - index.b + 1, 1);
+	else if (cur->half_up)
+		cur->cost = index.a + (listb->nodes - index.b + 1);
+	else
+		cur->cost = (lista->nodes - index.a + 1) + index.b;
+	if (cur->three_last)
+		cur->cost = INT_MAX;
 }
 
-int find_cheapest(t_listi *list)
+t_listi *update_cost(t_listi *lista, t_listi *listb)
 {
 	int		i;
-	int		cheapest_index;
-	int		cheapest;
+	int		cheapest_cost;
+	t_listi	*cheapest;
 	t_listi	*cur;
 
 	i = 0;
-	cheapest_index = 1;
-	cheapest = INT_MAX;
-	cur = list;
-	while (++i <= list->nodes)
+	cheapest_cost = INT_MAX;
+	cur = lista;
+	while (++i <= lista->nodes)
 	{
-		if (cur->cost == 0)
-			return (cur->index);
-		if (cur->cost < cheapest)
+		calc_cost(lista, listb, cur, cur->target);
+		if (cur->cost < cheapest_cost)
 		{
-			cheapest = cur->cost;
-			cheapest_index = cur->index;
+			cheapest_cost = cur->cost;
+			cheapest = cur;
 		}
-		//printf("cur: %d\tcur.cost: %d\ncheapest: %d\n", cur->content, cur->cost, cheapest_index);
 		cur = cur->next;
 	}
-	return (cheapest_index);
+	return (cheapest);
 }
