@@ -6,13 +6,13 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:18:18 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/03/14 05:29:13 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/04/08 19:05:20 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-static int ft_atoilong(char *str)
+static int	ft_atoilong(char *str)
 {
 	long	r;
 	int		sign;
@@ -41,20 +41,22 @@ static int ft_atoilong(char *str)
 	return (r);
 }
 
-static int is_correct(char **list)
+static int	is_correct(char **list)
 {
-	struct digit	i;	
-	struct digit	n;
+	t_digit	i;	
+	t_digit	n;
 
 	i.a = 0;
 	while (list[i.a])
 	{
+		n.a = ft_atoilong(list[i.a]);
 		i.b = i.a + 1;
-		if(!(n.a = ft_atoilong(list[i.a])) && list[i.a][0] != '0')
+		if (!n.a && list[i.a][0] != '0')
 			return (0);
 		while (list[i.b])
-		{	
-			if (!(n.b = ft_atoilong(list[i.b])) && list[i.b][0] != '0')
+		{
+			n.b = ft_atoilong(list[i.b]);
+			if (!n.b && list[i.b][0] != '0')
 				return (0);
 			if (n.a == n.b)
 				return (0);
@@ -65,40 +67,43 @@ static int is_correct(char **list)
 	return (1);
 }
 
-static t_listi *new_node(int n)
+static t_listi	*new_node(int n)
 {
-    t_listi  *new;
+	t_listi	*new;
 
-    new = malloc(sizeof(t_listi));
-    new->content = n;
-    new->prev = NULL;
-    new->next = NULL;
-    return (new);
+	new = malloc(sizeof(t_listi));
+	if (!new)
+		return (NULL);
+	new->content = n;
+	new->prev = NULL;
+	new->next = NULL;
+	return (new);
 }
 
-t_listi *create_list(char **list)
+t_listi	*create_list(char **list)
 {
-    t_listi  *aux;
-    t_listi  *new;
-    int     i;
+	t_listi	*aux;
+	t_listi	*new;
+	int		i;
 
 	if (!is_correct(list))
 		return (NULL);
-    new = new_node(ft_atoilong(list[0]));
-    aux = new;
-    i = 0;
-    while (list[++i])
-    {
-        aux->index = i;
-        aux->next = new_node(ft_atoilong(list[i]));
-        aux->next->prev = aux;
-        aux = aux->next;
-		find_three_last(aux, 0);
-    }
-    aux->index = i;
-    new->nodes = i;
-    aux->next = new;
-    new->prev = aux;
-	find_three_last(new, 1);
-    return (new);
+	new = new_node(ft_atoilong(list[0]));
+	aux = new;
+	i = 0;
+	while (list[++i])
+	{
+		aux->index = i;
+		aux->next = new_node(ft_atoilong(list[i]));
+		if (!aux->next)
+			free_list(&new, 1);
+		aux->next->prev = aux;
+		aux = aux->next;
+	}
+	aux->index = i;
+	new->nodes = i;
+	aux->next = new;
+	new->prev = aux;
+	find_three_last(new);
+	return (new);
 }

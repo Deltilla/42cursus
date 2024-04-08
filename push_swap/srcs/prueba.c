@@ -6,13 +6,27 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:18:42 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/03/21 15:19:10 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/04/08 19:03:08 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-static void check_and_sort(t_listi **lista, t_listi **listb)
+static char	**check_argc(int argc, char **argv, char ***n, int *ctrl)
+{
+	if (argc < 2)
+		return (0);
+	else if (argc == 2)
+	{
+		*n = ft_split(argv[1], ' ');
+		*ctrl = 1;
+	}
+	else if (argc > 2)
+		*n = argv + 1;
+	return (*n);
+}
+
+static void	check_and_sort(t_listi **lista, t_listi **listb)
 {
 	if (*lista && !check_if_sorted(*lista))
 	{
@@ -25,27 +39,25 @@ static void check_and_sort(t_listi **lista, t_listi **listb)
 	}
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_listi	*lista;
 	t_listi	*listb;
 	char	**n;
-	int		i;
-	t_listi *cur;
+	int		ctrl;
 
-	i = 0;
+	n = NULL;
 	listb = NULL;
-	if (argc == 1)
-		return(ft_putstr_fd("Error\n", 2), 0);
-	else if (argc == 2)
-		n = ft_split(argv[1], ' ');
-	else
-		n = argv + 1;
-	if (!*n)
-		return (ft_putstr_fd("Error\n", 2), 0);
-	if (!(lista = create_list(n)))
-		return (ft_putstr_fd("Error\n", 2), 0);
+	ctrl = 0;
+	n = check_argc(argc, argv, &n, &ctrl);
+	if (!n || !*n)
+		exit_error();
+	lista = create_list(n);
+	if (!lista)
+		exit_error();
+	if (ctrl == 1)
+		free_array(n);
 	check_and_sort(&lista, &listb);
-	cur = lista;
-	return (1);
+	free_list(&lista, 0);
+	return (0);
 }

@@ -6,13 +6,13 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 11:00:13 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/03/21 15:17:30 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/04/02 19:16:45 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-void update_index(t_listi *lista, t_listi *listb)
+void	update_index(t_listi *lista, t_listi *listb)
 {
 	int		i;
 	t_listi	*cur;
@@ -41,7 +41,7 @@ void update_index(t_listi *lista, t_listi *listb)
 	}
 }
 
-static void update_targets(t_listi *lista, t_listi *listb, char list)
+static void	update_targets(t_listi *lista, t_listi *listb, char list)
 {
 	int		i;
 	t_listi	*cur;
@@ -57,7 +57,7 @@ static void update_targets(t_listi *lista, t_listi *listb, char list)
 		}
 	}
 	if (list == 'b')
-	{	
+	{
 		i = 0;
 		cur = listb;
 		while (++i <= listb->nodes)
@@ -68,13 +68,13 @@ static void update_targets(t_listi *lista, t_listi *listb, char list)
 	}
 }
 
-void init_list_a(t_listi *lista, t_listi *listb)
+void	init_list_a(t_listi *lista, t_listi *listb)
 {
 	update_index(lista, listb);
 	update_targets(lista, listb, 'a');
 }
 
-void init_list_b(t_listi *lista, t_listi *listb)
+void	init_list_b(t_listi *lista, t_listi *listb)
 {
 	update_index(lista, listb);
 	update_targets(lista, listb, 'b');

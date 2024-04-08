@@ -6,13 +6,13 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 14:56:18 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/03/13 23:34:59 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/04/02 19:16:40 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-int compare_int(int a, int b, int ctrl)
+int	compare_int(int a, int b, int ctrl)
 {
 	if (ctrl == 1)
 	{
@@ -30,7 +30,7 @@ int compare_int(int a, int b, int ctrl)
 	}
 }
 
-t_listi *find_min(t_listi *list)
+t_listi	*find_min(t_listi *list)
 {
 	t_listi	*cur;
 	t_listi	*target;
@@ -41,7 +41,7 @@ t_listi *find_min(t_listi *list)
 	target = NULL;
 	i = 0;
 	min = LONG_MAX;
-	while(++i <= list->nodes)
+	while (++i <= list->nodes)
 	{
 		if (cur->content < min)
 		{
@@ -53,7 +53,7 @@ t_listi *find_min(t_listi *list)
 	return (target);
 }
 
-t_listi *find_max(t_listi *list)
+t_listi	*find_max(t_listi *list)
 {
 	t_listi	*cur;
 	t_listi	*target;
@@ -64,7 +64,7 @@ t_listi *find_max(t_listi *list)
 	target = NULL;
 	i = 0;
 	max = LONG_MIN;
-	while(++i <= list->nodes)
+	while (++i <= list->nodes)
 	{
 		if (cur->content > max)
 		{
@@ -76,12 +76,12 @@ t_listi *find_max(t_listi *list)
 	return (target);
 }
 
-t_listi *max_near(t_listi *lista, t_listi *listb)
+t_listi	*max_near(t_listi *lista, t_listi *listb)
 {
 	int		i;
 	long	max_near;
 	t_listi	*cur;
-	t_listi *target;
+	t_listi	*target;
 
 	i = 0;
 	max_near = LONG_MAX;
@@ -101,12 +101,12 @@ t_listi *max_near(t_listi *lista, t_listi *listb)
 	return (target);
 }
 
-t_listi *min_near(t_listi *lista, t_listi *listb)
+t_listi	*min_near(t_listi *lista, t_listi *listb)
 {
 	int		i;
 	long	min_near;
 	t_listi	*cur;
-	t_listi *target;
+	t_listi	*target;
 
 	i = 0;
 	min_near = LONG_MIN;

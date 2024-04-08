@@ -6,13 +6,13 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 17:50:48 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/03/14 06:35:55 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/04/02 19:16:30 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-static t_listi *ft_swap_nodes(t_listi *list)
+static t_listi	*ft_swap_nodes(t_listi *list)
 {
 	t_listi	*aux;
 
@@ -29,7 +29,7 @@ static t_listi *ft_swap_nodes(t_listi *list)
 	return (list);
 }
 
-static void smoves(t_listi **lista, t_listi **listb, int p)
+static void	smoves(t_listi **lista, t_listi **listb, int p)
 {
 	if (*lista && (*lista)->nodes > 1 && (p == 1 || p == 3))
 		*lista = ft_swap_nodes(*lista);
@@ -37,7 +37,7 @@ static void smoves(t_listi **lista, t_listi **listb, int p)
 		*listb = ft_swap_nodes(*listb);
 }
 
-static void rmoves(t_listi **lista, t_listi **listb, int p)
+static void	rmoves(t_listi **lista, t_listi **listb, int p)
 {
 	if (lista && *lista && (*lista)->nodes > 1 && (p == 1 || p == 3))
 	{
@@ -50,7 +50,7 @@ static void rmoves(t_listi **lista, t_listi **listb, int p)
 		*listb = (*listb)->next;
 		(*listb)->nodes = (*listb)->prev->nodes;
 		(*listb)->prev->nodes = 0;
-	}	
+	}
 	if (lista && *lista && (*lista)->nodes > 1 && (p == 4 || p == 6))
 	{
 		*lista = (*lista)->prev;
@@ -65,7 +65,7 @@ static void rmoves(t_listi **lista, t_listi **listb, int p)
 	}
 }
 
-static void pmoves(t_listi **lista, t_listi **listb, int p)
+static void	pmoves(t_listi **lista, t_listi **listb, int p)
 {
 	if (*listb && p == 1)
 	{
@@ -91,29 +91,29 @@ static void pmoves(t_listi **lista, t_listi **listb, int p)
 	}
 }
 
-void sort_params(t_listi **lista, t_listi **listb, char *param)
+void	sort_params(t_listi **lista, t_listi **listb, char *param)
 {
-    if (ft_strncmp("sa", param, 2) == 0)
+	if (ft_strncmp("sa", param, 2) == 0)
 		smoves (lista, listb, 1);
-    if (ft_strncmp("sb", param, 2) == 0)
+	if (ft_strncmp("sb", param, 2) == 0)
 		smoves (lista, listb, 2);
-    if (ft_strncmp("ss", param, 2) == 0)
+	if (ft_strncmp("ss", param, 2) == 0)
 		smoves (lista, listb, 3);
-    if (ft_strncmp("ra", param, 2) == 0)
+	if (ft_strncmp("ra", param, 2) == 0)
 		rmoves (lista, listb, 1);
-    if (ft_strncmp("rb", param, 2) == 0)
+	if (ft_strncmp("rb", param, 2) == 0)
 		rmoves (lista, listb, 2);
-    if (ft_strncmp("rr", param, 3) == 0)
+	if (ft_strncmp("rr", param, 3) == 0)
 		rmoves (lista, listb, 3);
-    if (ft_strncmp("rra", param, 3) == 0)
+	if (ft_strncmp("rra", param, 3) == 0)
 		rmoves (lista, listb, 4);
-    if (ft_strncmp("rrb", param, 3) == 0)
+	if (ft_strncmp("rrb", param, 3) == 0)
 		rmoves (lista, listb, 5);
-    if (ft_strncmp("rrr", param, 3) == 0)
+	if (ft_strncmp("rrr", param, 3) == 0)
 		rmoves (lista, listb, 6);
-    if (ft_strncmp("pa", param, 2) == 0)
+	if (ft_strncmp("pa", param, 2) == 0)
 		pmoves (lista, listb, 1);
-    if (ft_strncmp("pb", param, 2) == 0)
+	if (ft_strncmp("pb", param, 2) == 0)
 		pmoves (lista, listb, 2);
-	printf("%s\n", param);
+	ft_printf("%s\n", param);
 }

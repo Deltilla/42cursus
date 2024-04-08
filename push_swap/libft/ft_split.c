@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: analba-s <analba-s@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:57:30 by analba-s          #+#    #+#             */
-/*   Updated: 2023/09/27 18:29:45 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/04/02 19:07:10 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static char	**ft_words(const char *s, char c)
 	return (words);
 }
 
-static char	**ft_free(char **words, int i)
+static char	**ft_free_arr(char **words, int i)
 {
 	while (i >= 0)
 	{
@@ -88,7 +88,7 @@ char	**ft_split(const char *s, char c)
 		{
 			words[i] = ft_substr(s, stw, enw - stw);
 			if (!words[i])
-				return (ft_free(words, i - 1));
+				return (ft_free_arr(words, i - 1));
 			i++;
 			stw = enw;
 		}

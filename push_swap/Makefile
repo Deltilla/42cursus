@@ -6,18 +6,21 @@
 #    By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 21:19:06 by analba-sa         #+#    #+#              #
-#    Updated: 2024/03/06 08:21:43 by analba-s         ###   ########.fr        #
+#    Updated: 2024/04/08 18:18:46 by analba-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 LIBFT_PATH = libft
 LIBFT = $(LIBFT_PATH)/libft.a
+SRCS_PATH = srcs
 CC = gcc
-CFLAGS = -g -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 AR = ar rcs
 
-SOURCES = prueba.c parsing.c moves.c move_utils.c sort_utils.c big_sort.c math_utils.c init_list.c costs.c utils.c
+SOURCES = $(SRCS_PATH)/prueba.c $(SRCS_PATH)/parsing.c $(SRCS_PATH)/moves.c \
+	$(SRCS_PATH)/move_utils.c $(SRCS_PATH)/sort_utils.c $(SRCS_PATH)/big_sort.c \
+	$(SRCS_PATH)/math_utils.c $(SRCS_PATH)/init_list.c $(SRCS_PATH)/costs.c $(SRCS_PATH)/utils.c
 
 OBJ = $(SOURCES:.c=.o)
 

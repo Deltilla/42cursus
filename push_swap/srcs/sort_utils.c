@@ -6,13 +6,13 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 04:05:50 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/03/21 15:04:42 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/04/02 19:16:08 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-void sky_is_the_limit_a(t_listi **lista, t_listi **listb, t_listi *cur)
+void	sky_is_the_limit_a(t_listi **lista, t_listi **listb, t_listi *cur)
 {
 	while (*lista != cur)
 	{
@@ -33,21 +33,21 @@ void sky_is_the_limit_a(t_listi **lista, t_listi **listb, t_listi *cur)
 	}
 }
 
-void sky_is_the_limit_b(t_listi **lista, t_listi **listb, t_listi *cur)
+void	sky_is_the_limit_b(t_listi **lista, t_listi **listb, t_listi *cur)
 {
 	if (cur->target->half_up)
 		while (cur->target != *lista)
 			sort_params(lista, listb, "ra");
 	else
 		while (cur->target != *lista)
-	 	sort_params(lista, listb, "rra");
+			sort_params(lista, listb, "rra");
 }
 
-int check_if_sorted(t_listi *list)
+int	check_if_sorted(t_listi *list)
 {
 	t_listi	*cur;
 	int		nodes;
-	struct digit	i;
+	t_digit	i;
 
 	nodes = list->nodes;
 	i.a = -1;
@@ -67,9 +67,9 @@ int check_if_sorted(t_listi *list)
 	return (1);
 }
 
-void sort_three(t_listi **list)
+void	sort_three(t_listi **list)
 {
-	t_listi *max;
+	t_listi	*max;
 
 	max = find_max(*list);
 	if (max == *list)
@@ -79,4 +79,3 @@ void sort_three(t_listi **list)
 	if ((*list)->content > (*list)->next->content)
 		sort_params(list, list, "sa");
 }
-
