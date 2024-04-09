@@ -6,13 +6,13 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:18:42 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/04/09 20:38:19 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/04/09 22:29:20 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static char	**check_argc(int argc, char **argv, char ***n, int *ctrl)
+char	**check_argc(int argc, char **argv, char ***n, int *ctrl)
 {
 	if (argc < 2)
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:08:35 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/04/09 21:19:06 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/04/09 22:32:57 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	check_imput(t_listi **a, t_listi **b, char *gnl)
 		gnl = sort_params_bonus(a, b, gnl);
 		free(aux);
 	}
-	if (*b || !check_if_sorted(a))
+	if (*b || !check_if_sorted(*a))
 		write(1, "KO", 2);
 	else
 		write(1, "OK", 2);

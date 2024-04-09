@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 17:50:48 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/04/02 19:16:30 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/04/09 22:27:09 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static t_listi	*ft_swap_nodes(t_listi *list)
 	return (list);
 }
 
-static void	smoves(t_listi **lista, t_listi **listb, int p)
+void	smoves(t_listi **lista, t_listi **listb, int p)
 {
 	if (*lista && (*lista)->nodes > 1 && (p == 1 || p == 3))
 		*lista = ft_swap_nodes(*lista);
@@ -37,7 +37,7 @@ static void	smoves(t_listi **lista, t_listi **listb, int p)
 		*listb = ft_swap_nodes(*listb);
 }
 
-static void	rmoves(t_listi **lista, t_listi **listb, int p)
+void	rmoves(t_listi **lista, t_listi **listb, int p)
 {
 	if (lista && *lista && (*lista)->nodes > 1 && (p == 1 || p == 3))
 	{
@@ -65,7 +65,7 @@ static void	rmoves(t_listi **lista, t_listi **listb, int p)
 	}
 }
 
-static void	pmoves(t_listi **lista, t_listi **listb, int p)
+void	pmoves(t_listi **lista, t_listi **listb, int p)
 {
 	if (*listb && p == 1)
 	{
