@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:18:54 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/04/01 21:31:12 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/04/09 22:29:37 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,12 @@ typedef struct i_digit
 	int	c;
 }				t_digit;
 
+char		**check_argc(int argc, char **argv, char ***n, int *ctrl);
 t_listi		*create_list(char **list);
 void		sort_params(t_listi **lista, t_listi **listb, char *param);
+void		pmoves(t_listi **lista, t_listi **listb, int p);
+void		rmoves(t_listi **lista, t_listi **listb, int p);
+void		smoves(t_listi **lista, t_listi **listb, int p);
 t_listi		*update_list(t_listi *lista, t_listi **listb);
 t_listi		*update_cost(t_listi *lista, t_listi *listb);
 t_listi		*ft_isol_node(t_listi *list);

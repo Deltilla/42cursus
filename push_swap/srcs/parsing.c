@@ -6,11 +6,25 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:18:18 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/04/08 19:05:20 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/04/12 17:38:35 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+
+char	**check_argc(int argc, char **argv, char ***n, int *ctrl)
+{
+	if (argc < 2)
+		return (0);
+	else if (argc == 2)
+	{
+		*n = ft_split(argv[1], ' ');
+		*ctrl = 1;
+	}
+	else if (argc > 2)
+		*n = argv + 1;
+	return (*n);
+}
 
 static int	ft_atoilong(char *str)
 {
