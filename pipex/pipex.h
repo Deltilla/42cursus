@@ -24,7 +24,7 @@ void	prueba(int a, int b);
 
 typedef struct	s_pipex
 {
-	int pid;
+	pid_t pid;
 	int fd[2];
 	char **cmd;
 	char **path;

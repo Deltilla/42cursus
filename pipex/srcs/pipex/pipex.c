@@ -12,30 +12,55 @@
 
 #include "../../pipex.h"
 
-/* void check_args(int argc, char **argv, char *envp)
+void	exeguttor(char **cmd, char **envp)
 {
-	if (argc != 5)
-	{
-		perror("Not enough arguments");
-		exit(EXIT_FAILURE);
-	}
-} */
+	char	*path;
 
-char	**get_path(char **cmd, char **envp)
+	path = get_path(cmd[0], envp);
+	if (execve(path, cmd, envp) == -1)
+	{
+		ft_putstr_fd("pipex: command not found: ", 2);
+		ft_putendl_fd(cmd[0], 2);
+		free_matrix(cmd);
+		exit(exit);
+	}
+}
+
+void	child(char **argv, t_pipex process, char **envp)
 {
-	while (ft_strncmp("PATH=", envp, 5))
-		*envp += 1;
-	return (envp);
+	int	fd;
+
+	close(process.fd[0]);
+	fd = open_file(argv[1], 1);
+	dup2(fd, STDIN_FILENO);
+	dup2(process.fd[1], STDOUT_FILENO);
+	exeguttor(ft_split((argv[2]), ' '), envp);
+}
+
+void	parent(char **argv, t_pipex process, char **envp)
+{
+	int	fd;
+
+	close(process.fd[1]);
+	fd = open_file(argv[4], 1);
+	dup2(fd, STDOUT_FILENO);
+	dup2(process.fd[0], STDIN_FILENO);
+	exeguttor(ft_split((argv[4]), ' '), envp);
 }
 
 int	main(int argc, char **argv, char **envp)
 {
-	char *args[3];
-	t_pipex pipex;
+	t_pipex process;
 	
-	args[0] = "ls";
-	args[1] = "-l";
-	args[2] = NULL;
-	//check_args(argc, argv, envp);
-	pipex.path = get_path(args, envp);
+	if (argc != 5)
+		exit_error();
+	if (pipe(process.fd) == -1)
+		exit_error();
+	process.pid = fork();
+	if (process.pid == -1)
+		exit_error();
+	if (!process.pid)
+		child(argv, process, envp);
+	else
+		parent(argv, process, envp);
 }
