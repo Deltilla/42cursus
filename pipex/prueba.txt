@@ -1,0 +1,40 @@
+< infile.txt  ls -l | wc -l > outfile.txt
+./pipex infile.txt "ls -l" "wc -l" outfile.txt
+ 
+< infile.txt  ls -l | grep '{print $1}' > outfile.txt
+./pipex infile.txt "ls -l" "grep '{print \$1}'" outfile.txt
+
+< infile.txt  grep a1 | wc -l > outfile.txt
+./pipex infile.txt "grep a1" "wc -l" outfile.txt
+
+< infile.txt  ls -l | awk '{count++} END {printf count}' > outfile.txt
+./pipex infile.txt "ls -l" "awk '{count++}' END {printf count}" outfile.txt
+
+< infile.txt  tr '[:lower:]''[:upper:]' | grep PIPEX > outfile.txt
+./pipex infile.txt "tr '[:lower:]'[:upper:]'" "grep PIPEX" outfile.txt
+
+< infile.txt  uniq | wc -l > outfile.txt
+./pipex infile.txt "uniq" "wc -l" outfile.txt
+
+< infile.txt  sort | uniq > outfile.txt
+./pipex infile.txt "sort" "uniq" outfile.txt
+
+< infile.txt  grep -i artificial | wc -l > outfile.txt
+./pipex infile.txt "grep -i artificial" "wc -l" outfile.txt
+
+Arg Errors:
+./pipex infile.txt "sort" outfile.txt
+./pipex infile.txt "sort" "uniq" "wc" outfile.txt
+
+Cmd Errors:
+./pipex infile.txt "sor" "uni" outfile.txt
+< innfile.txt sor | uni > outfile.txt
+
+Infile Errors:
+chmod 000 outfile.txt
+chmod 000 infile.txt
+./pipex infile.txt "sort" "uniq" outfile.txt
+< infile.txt sort | uniq > outfile.txt
+
+chmod 644 outfile.txt
+chmod 644 outfile.txt

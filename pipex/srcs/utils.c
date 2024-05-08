@@ -6,15 +6,15 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 18:42:22 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/04/30 10:14:21 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/05/07 19:44:14 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-void	exit_error(void)
+void	exit_error(char *error)
 {
-	perror("./pipex infile cmd cmd outfile\n");
+	perror(error);
 	exit(EXIT_FAILURE);
 }
 
@@ -35,8 +35,11 @@ int	open_file(char *file, int ctrl)
 {
 	int	fd;
 
+	fd = 0;
 	if (ctrl == 1)
 		fd = open(file, O_RDONLY);
+	if (fd == -1)
+		exit_error("pipex: no such file or directory: infile.txt");
 	if (ctrl == 2)
 		fd = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	return (fd);

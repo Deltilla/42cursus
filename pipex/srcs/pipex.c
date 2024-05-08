@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 18:42:22 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/04/30 10:15:07 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/05/07 19:44:36 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,24 @@ void	exeguttor(char **cmd, char **envp)
 		free_matrix(cmd);
 		exit(EXIT_FAILURE);
 	}
+	exit(EXIT_SUCCESS);
+}
+
+char	**check_cmd(char *argv)
+{
+	char	**cmd;
+
+	if (!ft_strncmp(argv, "awk", 3))
+	{
+		if (argv[4] == '\'')
+			cmd = ft_split(argv, '\'');
+		if (argv[4] == '\"')
+			cmd = ft_split(argv, '\"');
+		cmd[0] = ft_strtrim(cmd[0], " ");
+	}
+	else
+		cmd = ft_split(argv, ' ');
+	return (cmd);
 }
 
 void	child(char **argv, t_pipex process, char **envp)
@@ -35,7 +53,7 @@ void	child(char **argv, t_pipex process, char **envp)
 	dup2(fd, STDIN_FILENO);
 	dup2(process.fd[1], STDOUT_FILENO);
 	close(fd);
-	exeguttor(ft_split((argv[2]), ' '), envp);
+	exeguttor(check_cmd(argv[2]), envp);
 }
 
 void	parent(char **argv, t_pipex process, char **envp)
@@ -47,7 +65,7 @@ void	parent(char **argv, t_pipex process, char **envp)
 	fd = open_file(argv[4], 2);
 	dup2(fd, STDOUT_FILENO);
 	close(fd);
-	exeguttor(ft_split((argv[3]), ' '), envp);
+	exeguttor(check_cmd((argv[3])), envp);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -58,12 +76,12 @@ int	main(int argc, char **argv, char **envp)
 	process.fd[1] = 0;
 	process.fd[0] = 0;
 	if (argc != 5)
-		exit_error();
+		exit_error("./pipex infile.txt cmd cmd outfile.txt\n");
 	if (pipe(process.fd) == -1)
-		exit_error();
+		exit_error("pipex: pipe failed\n");
 	process.pid = fork();
 	if (process.pid == -1)
-		exit_error();
+		exit_error("pipex: fork failed\n");
 	if (!process.pid)
 		child(argv, process, envp);
 	else
