@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 18:42:22 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/05/07 19:44:14 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/05/13 09:48:19 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	open_file(char *file, int ctrl)
 	if (ctrl == 1)
 		fd = open(file, O_RDONLY);
 	if (fd == -1)
-		exit_error("pipex: no such file or directory: infile.txt");
+		exit_error("pipex");
 	if (ctrl == 2)
 		fd = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	return (fd);

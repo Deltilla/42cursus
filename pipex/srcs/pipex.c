@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 18:42:22 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/05/07 19:44:36 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/05/13 09:54:52 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,15 @@ int	main(int argc, char **argv, char **envp)
 	process.fd[1] = 0;
 	process.fd[0] = 0;
 	if (argc != 5)
-		exit_error("./pipex infile.txt cmd cmd outfile.txt\n");
+	{
+		ft_putstr_fd("./pipex infile.txt cmd cmd outfile.txt\n", 2);
+		exit(EXIT_FAILURE);
+	}
 	if (pipe(process.fd) == -1)
-		exit_error("pipex: pipe failed\n");
+		exit_error("pipex");
 	process.pid = fork();
 	if (process.pid == -1)
-		exit_error("pipex: fork failed\n");
+		exit_error("pipex");
 	if (!process.pid)
 		child(argv, process, envp);
 	else
