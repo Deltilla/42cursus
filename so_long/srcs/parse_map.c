@@ -6,71 +6,107 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:46:39 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/05/13 14:51:00 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/05/15 23:04:28 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	valid_map(char **map, t_data *data)
+int	valid_map(t_map *map)
 {
-	t_utils	it;
+	t_utils	i;
 
-	it.i = 0;
-	it.j = 0;
-	while (map[it.i])
+	i.a = 0;
+	while (map->map[i.a])
 	{
-		while(map[it.i][it.j] != '\n')
+		i.b = 0;
+		while(map->map[i.a][i.b])
 		{
-			if (map[it.i][it.j] == 'C')
-				data->c += 1;
-			else if (map[it.i][it.j] == 'P')
-				data->p += 1;
-			else if (map[it.i][it.j] == 'E')
-				data->p += 1;
-			else if (map[it.i][it.j] == '0' || map[it.i][it.j] == '1')
+			if (map->map[i.a][i.b] == 'C')
+				map->c += 1;
+			else if (map->map[i.a][i.b] == 'P')
+				map->p += 1;
+			else if (map->map[i.a][i.b] == 'E')
+				map->p += 1;
+			else if (map->map[i.a][i.b] == '0' || map->map[i.a][i.b] == '1')
 				;
-			else
 				return (0);
-			it.j++;
+			i.b++;
 		}
-		it.i++;
+		i.a++;
 	}
 	return (1);
 }
 
-char	**check_map(int fd)
+void	*check_map(int fd, t_map *map)
 {
-	char	**map;
-	t_data	data;
+	t_utils	len;
 	int		i;
 
 	i = 0;
-	map[i] = get_next_line(fd);
-	while (map[i])
+	map->map[i] = ft_strtrim(get_next_line(fd), '\n');
+	len.a = ft_strlen(map->map[i]);
+	len.b = len.a;
+	while (map->map[i] && len.b == len.a)
 	{
-		map[i] = get_next_line(fd);
 		i++;
+		map->map[i] = ft_strtrim(get_next_line(fd), '\n');
+		len.b = ft_strlen(map->map[i]);
 	}
-	map[i] = '\0';
-	if (!valid_map(map, &data));
-		return (NULL);
-	if (data.c <= 0 || data.p > 1 || data.e > 1)
-		return (NULL);
-	return (map);
+	if (map->map[i] && len.b != len.a)
+		free_matrix(map->map);
+	map->map[i] = NULL;
+	if (!valid_map(map));
+		free_matrix(map->map);
+	if (map->c <= 0 || map->p > 1 || map->e > 1)
+		free_matrix(map->map);
 }
 
-char **parse_map(int arc, char **arv)
+t_utils	find_player(char **map)
+{
+	t_utils	pos;
+
+	pos.a = 0;
+	pos.b = 0;
+	while (map[pos.a])
+	{
+		while (map[pos.a][pos.b])
+		{
+			if (map[pos.a][pos.b] == 'P')
+				return (pos);
+			pos.b++;
+		}
+		pos.a++;
+	}
+}
+
+t_map	*init_map(int fd, t_map *map)
+{
+	char	**map_copy;
+	
+	check_map(fd, map);
+	if (!map->map)
+		return (free_matrix(map->map));
+	map_copy = copy_map(map->map);
+	if (!map_copy)
+		return (free_matrix(map->map));
+	map->p_pos = find_player(map->map);
+	flood_fill(map_copy, map->p_pos.a, map->p_pos.b);
+	if (!check_flood(map_copy))
+		return (free_matrix(map->map));
+	return (NULL);
+}
+
+void	parse_map(int arc, char **arv, t_map *map)
 {
 	int	fd;
-	char	**map;
 	
 	if (arc != 2)
 		exit_error("so_long");
 	fd = open(arv[1], O_RDONLY);
 	if (fd == -1)
 		exit_error("so_long");
-	map = check_map(fd);
+	map = init_map(fd, map);
 	if (!map)
 		exit_error("so_long");
 }
