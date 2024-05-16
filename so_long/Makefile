@@ -6,7 +6,7 @@
 #    By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 21:19:06 by analba-sa         #+#    #+#              #
-#    Updated: 2024/05/13 10:58:22 by analba-s         ###   ########.fr        #
+#    Updated: 2024/05/16 20:48:39 by analba-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ CC = gcc
 CFLAGS = -g -Wall -Werror -Wextra
 AR = ar rcs
 
-MAIN_SOURCES = $(MAIN_PATH)/so_long.c
+MAIN_SOURCES = $(MAIN_PATH)/so_long.c $(MAIN_PATH)/parse_map.c $(MAIN_PATH)/parse_utils.c
 
 SOURCES = $(SRCS_PATH)/utils.c
 
