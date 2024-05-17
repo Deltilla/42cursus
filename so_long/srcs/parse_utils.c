@@ -6,18 +6,18 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 20:28:06 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/05/16 21:09:49 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/05/17 19:52:06 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-char	**copy_map(char **map)
+char	**copy_map(char **map, int rows)
 {
 	char	**map_copy;
 	int		i;
 
-	map_copy = NULL;
+	map_copy = ft_calloc(rows, sizeof(char *));
 	i = -1;
 	while (map[++i])
 	{

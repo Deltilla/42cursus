@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:45:04 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/05/16 20:46:26 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/05/17 19:52:48 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ void	*free_matrix(char **map);
 void	parse_map(int arc, char **arv, t_map **map);
 void	flood_fill(char **map, int i, int j);
 int		check_flood(char **map);
-char	**copy_map(char **map);
+char	**copy_map(char **map, int rows);
 
 #endif
