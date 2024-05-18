@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:46:39 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/05/17 20:56:45 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/05/18 20:27:32 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,32 +58,6 @@ int	valid_map(t_map **map)
 	return (1);
 }
 
-int	count_rows(char *arv, t_map *map)
-{
-	int		fd;
-	int		rows;
-	t_utils	len;
-	char	*line;
-
-	fd = open(arv, O_RDONLY);
-	line = get_next_line(fd);
-	len.a = ft_strlen(ft_strtrim(line, "\n"));
-	len.b = len.a;
-	rows = 0;
-	while (line && len.b == len.a)
-	{
-		rows++;
-		line = get_next_line(fd);
-		if (line)
-			len.b = ft_strlen(ft_strtrim(line, "\n"));
-	}
-	if (line && len.b != len.a)
-		return (free(line), 0);
-	free(line);
-	map->map = ft_calloc((rows + 1), sizeof(char *));
-	return (rows);
-}
-
 void	check_map(int fd, t_map **map, int rows)
 {
 	int		i;
@@ -95,41 +69,79 @@ void	check_map(int fd, t_map **map, int rows)
 		i++;
 	}
 	if (!valid_map(map))
-		free_matrix((*map)->map);
+		exit_error("so_long");
 	if ((*map)->c <= 0 || (*map)->p > 1 || (*map)->e > 1)
-		free_matrix((*map)->map);
+		exit_error("so_long");
 }
 
 
-t_map	*init_map(int fd, t_map *map, int rows)
+void	init_map(char *arv, t_map *map, int rows)
 {
-	char	**map_copy;
+	int		fd;
 	
+	fd = open(arv, O_RDONLY);
+	if (fd == -1)
+		exit_error("so_long");
 	check_map(fd, &map, rows);
-	if (!map->map)
-		return (free_matrix(map->map));
-	map_copy = copy_map(map->map, rows);
-	if (!map_copy)
-		return (free_matrix(map->map));
+	map->copy = copy_map(map->map, rows);
+	if (!map->copy)
+		exit_error("so_long");
 	map->p_pos = find_player(map->map);
-	flood_fill(map_copy, map->p_pos.a, map->p_pos.b);
-	if (!check_flood(map_copy))
-		return (free_matrix(map->map));
-	return (map);
+	flood_fill(map->copy, map->p_pos.a, map->p_pos.b);
+	if (!check_flood(map->copy))
+		exit_error("so_long");
+	free(map->copy);
+}
+
+void	count_rows(char *arv, t_map *map)
+{
+	int		fd;
+
+	fd = open(arv, O_RDONLY);
+	if (fd == -1)
+		exit_error("so_long");
+	map->line = get_next_line(fd);
+	if (!map->line)
+		exit_error("so_long");
+	map->len.a = ft_strlen(ft_strtrim(map->line, "\n"));
+	map->len.b = map->len.a;
+	map->rows = 1;
+	while (map->line && map->len.b == map->len.a)
+	{
+		map->line = get_next_line(fd);
+		if (map->line)
+			map->len.b = ft_strlen(ft_strtrim(map->line, "\n"));
+		map->rows++;
+	}
+	if (map->line && map->len.b != map->len.a)
+		exit_error("so_long");
+	if (map->rows == 0)
+		exit_error("so_long");
+	map->map = ft_calloc(map->rows, sizeof(char *));
+	if (!map->map)
+		exit_error("so_long");
+}
+
+void	check_args(int arc, char **arv)
+{
+	char *str;
+	int		i;
+
+	if (arc != 2)
+		exit_error("so_long");
+	i = 0;
+	str = arv[1];
+	while (str[i] && ft_strncmp(&str[i], ".ber", 4))
+		i++;
+	if (!str[i]);
+		exit_error("so_long");
 }
 
 void	parse_map(int arc, char **arv, t_map **map)
 {
-	int	fd;
 	int rows;
-	
-	if (arc != 2)
-		exit_error("so_long");
-	fd = open(arv[1], O_RDONLY);
-	if (fd == -1)
-		exit_error("so_long");
-	rows = count_rows(arv[1], *map);
-	*map = init_map(fd, *map, rows);
-	if (!*map)
-		exit_error("so_long");
+
+	check_args(arc, arv);
+	count_rows(arv[1], *map);
+	init_map(arv[1], *map, rows);
 }

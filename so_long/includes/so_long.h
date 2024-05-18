@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:45:04 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/05/17 19:52:48 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/05/18 20:19:02 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,12 @@ typedef struct	s_map
 	int		c;
 	int		p;
 	int		e;
+	int		rows;
+	char	*line;
 	char	**map;
+	char	**copy;
+	t_utils	len;
+	t_utils	width;
 	t_utils p_pos;
 }				t_map;
 
