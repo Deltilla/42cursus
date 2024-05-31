@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 20:28:06 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/05/17 19:52:06 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/05/31 14:37:14 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ char	**copy_map(char **map, int rows)
 		if (!map_copy[i])
 			return (free_matrix(map_copy));
 	}
+	map_copy[i] = '\0';
 	return (map_copy);
 }
 

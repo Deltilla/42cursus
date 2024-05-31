@@ -1,7 +1,7 @@
 NAME = libft.a
 FT_PRINTF_PATH = ft_printf
 GNL_PATH = gnl
-CC = gcc
+CC = clang
 CFLAGS = -Wall -Werror -Wextra
 AR = ar rcs
 

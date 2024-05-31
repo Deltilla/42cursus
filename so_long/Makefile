@@ -6,7 +6,7 @@
 #    By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 21:19:06 by analba-sa         #+#    #+#              #
-#    Updated: 2024/05/16 20:48:39 by analba-s         ###   ########.fr        #
+#    Updated: 2024/05/26 20:48:35 by analba-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ LIBFT_PATH = libft
 LIBFT = $(LIBFT_PATH)/libft.a
 MAIN_PATH = srcs
 SRCS_PATH = srcs
-CC = gcc
+CC = clang
 CFLAGS = -g -Wall -Werror -Wextra
 AR = ar rcs
 

@@ -1,6 +1,6 @@
 NAME = libftprintf.a
 AR = ar rcs
-CC = gcc
+CC = clang
 CFLAS = -g -Wall -Wextra -Werror
 
 SRCS = ft_printf.c ft_putnbr_base.c ft_utils.c
