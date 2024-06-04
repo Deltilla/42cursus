@@ -14,12 +14,11 @@
 
 int main(int arc, char **arv)
 {
-	t_map	*map;
+	t_map	map;
 	int		i;
 
-	map = (t_map *)malloc(sizeof(t_map));
 	parse_map(arc, arv, &map);
 	i = -1;
-	while (map->map[++i])
-		ft_printf("%s\n", map->map[i]);
+	while (map.map[++i])
+		ft_printf("%s\n", map.map[i]);
 }

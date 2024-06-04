@@ -43,7 +43,7 @@ typedef struct	s_map
 
 void	exit_error(char *error);
 void	*free_matrix(char **map);
-void	parse_map(int arc, char **arv, t_map **map);
+void	parse_map(int arc, char **arv, t_map *map);
 void	flood_fill(char **map, int i, int j);
 int		check_flood(char **map);
 char	**copy_map(char **map, int rows);

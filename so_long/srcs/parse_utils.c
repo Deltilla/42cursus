@@ -25,7 +25,7 @@ char	**copy_map(char **map, int rows)
 		if (!map_copy[i])
 			return (free_matrix(map_copy));
 	}
-	map_copy[i] = '\0';
+	map_copy[i] = NULL;
 	return (map_copy);
 }
 
