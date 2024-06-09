@@ -6,11 +6,11 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 20:28:06 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/05/31 14:37:14 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/06/09 18:35:04 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include <so_long.h>
 
 char	**copy_map(char **map, int rows)
 {
@@ -60,11 +60,11 @@ int	check_flood(char **map)
 
 void	flood_fill(char **map, int i, int j)
 {
-	if (i < 0 || j < 0 || !map[i][j] || **map == 'F' || **map == '1')
+	if (i < 0 || j < 0 || !map[i][j] || map[i][j] == 'F' || map[i][j] == '1')
 		return ;
-	if (**map == 'C' || **map == 'E' || **map == '0')
+	if (map[i][j] == 'P' || map[i][j] == 'C' || map[i][j] == 'E' || map[i][j] == '0')
 	{
-		**map = 'F';
+		map[i][j] = 'F';
 		flood_fill(map, i, j + 1);
 		flood_fill(map, i, j - 1);
 		flood_fill(map, i + 1, j);

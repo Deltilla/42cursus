@@ -6,11 +6,11 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:39:55 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/05/31 14:11:54 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/06/09 16:20:37 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include <so_long.h>
 
 int main(int arc, char **arv)
 {

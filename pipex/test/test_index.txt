@@ -1,0 +1,73 @@
+Should work tests:
+
+    TEST 1
+    This command counts the files in the actual directory and redirect it to the outfile.
+    The infile imput shouldn't care.
+
+    ./pipex test/infile "ls -l" "awk '{count++} END {print count}'" outfile
+    < test/infile ls -l | awk '{count++} END {print count}' > outfile
+
+    TEST 2
+    This command should takes only the line that have the word PIPEX and redirect it to the oufile as uppercase.
+
+    ./pipex test/infile "tr '[:lower:]' '[:upper:]'" "grep PIPEX" outfile
+    < test/infile tr '[:lower:]' '[:upper:]' | grep PIPEX > outfile
+
+    TEST 3
+    This command should count the number of words in the infile and redirect it to the outfile.
+
+    ./pipex test/infile1 "wc -w" "awk '{print $1}'" outfile
+    < test/infile1 wc -w | awk '{print $1}' > outfile
+
+    TEST 4
+    This command counts the number of unique lines in the infile and writes the count to outfile.
+
+    ./pipex test/infile2 "uniq" "wc -l" outfile
+    < test/infile2 uniq | wc -l > outfile
+
+    TEST 5
+    This command sorts the lines in the infile, removes adjacent duplicates, and writes the result to the outfile.
+
+    ./pipex test/infile2 "sort" "uniq" outfile
+    < test/infile2 sort | uniq > outfile
+
+    TEST 6
+    This command counts the number of lines in tests/infile that contain the term "bro" (case-insensitive) and writes the count to outfile.
+
+    ./pipex test/infile3 "grep -i bro" "wc -l" outfile
+    < test/infile3 grep -i bro | wc -l > outfile
+
+    TEST 7
+    This command should take only the name of the files on actual directory and redirect it to the outfile.
+    
+    ./pipex test/infile "ls -l" "awk '{print \$9}'" outfile
+    < test/infile ls -l | awk '{print $9}' > outfile
+
+Error tests:
+
+    ARGUMENTS TESTS
+    
+    ./pipex test/infile "sort" outfile
+    ./pipex test/infile "sort" "uniq" "wc" outfile
+
+    COMMANDS TESTS
+
+    ./pipex test/infile "sor" "uni" outfile
+    < test/infile sor | uni > outfile
+
+    INFILE TESTS
+
+    This should return non exiting file:
+        ./pipex test/infile0 "uniq" "wc -l" outfile
+        < test/infile0 uniq | wc -l > outfile
+    
+    This should return permission fail:
+        chmod 000 infile
+        ./pipex test/infile "grep -i PIPEX" "wc -l" outfile
+        < test/infile grep -i PIPEX | wc -l > outfile
+
+    OUTFILE TESTS
+
+    chmod 000 outfile
+    ./pipex test/infile "sort" "uniq" outfile
+    < test/infile sort | uniq > outfile

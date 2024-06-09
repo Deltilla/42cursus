@@ -6,7 +6,7 @@
 #    By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 21:19:06 by analba-sa         #+#    #+#              #
-#    Updated: 2024/05/26 20:48:35 by analba-s         ###   ########.fr        #
+#    Updated: 2024/06/09 17:41:08 by analba-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ MAIN_PATH = srcs
 SRCS_PATH = srcs
 CC = clang
 CFLAGS = -g -Wall -Werror -Wextra
-AR = ar rcs
+DEPS = -I includes
 
 MAIN_SOURCES = $(MAIN_PATH)/so_long.c $(MAIN_PATH)/parse_map.c $(MAIN_PATH)/parse_utils.c
 
@@ -38,7 +38,7 @@ $(LIBFT) :
 
 
 %.o : %.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@ $(DEPS)
 
 clean :
 	@rm -f $(OBJ)

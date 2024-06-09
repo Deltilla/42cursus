@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 18:44:21 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/04/30 11:25:41 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:04:01 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,14 @@
 
 typedef struct s_pipex
 {
-	pid_t	pid;
+	pid_t	pid_1;
+	pid_t	pid_2;
 	int		fd[2];
 }				t_pipex;
 
-void	prueba(int a, int b);
+void	exeguttor(char **cmd, char **envp);
+char	**check_cmd(char *argv);
 char	*get_path(char *cmd, char **envp);
-char	**get_path_matrix(char **envp);
 int		open_file(char *file, int ctrl);
 void	free_matrix(char **matrix);
 void	exit_error(char *error);

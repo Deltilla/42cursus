@@ -6,11 +6,11 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:46:39 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/05/31 15:10:19 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/06/09 18:35:09 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include <so_long.h>
 
 t_utils	find_player(char **map)
 {
@@ -91,7 +91,6 @@ void	init_map(char *arv, t_map *map)
 	flood_fill(map->copy, map->p_pos.a, map->p_pos.b);
 	if (!check_flood(map->copy))
 		exit_error("so_long");
-	free(map->copy);
 }
 
 void	count_rows(char *arv, t_map *map)
@@ -102,7 +101,7 @@ void	count_rows(char *arv, t_map *map)
 	if (fd == -1)
 		exit_error("so_long");
 	map->line = get_next_line(fd);
-	if (map->line)
+	if (!map->line)
 		exit_error("so_long");
 	map->len.a = ft_strlen(ft_strtrim(map->line, "\n"));
 	map->len.b = map->len.a;
