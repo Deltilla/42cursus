@@ -6,50 +6,79 @@
 #    By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 21:19:06 by analba-sa         #+#    #+#              #
-#    Updated: 2024/06/09 17:41:08 by analba-s         ###   ########.fr        #
+#    Updated: 2024/06/09 21:55:34 by analba-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
-LIBFT_PATH = libft
+LIBFT_PATH = lib/libft
+MLX_PATH = lib/mlx42
 LIBFT = $(LIBFT_PATH)/libft.a
-MAIN_PATH = srcs
 SRCS_PATH = srcs
 CC = clang
 CFLAGS = -g -Wall -Werror -Wextra
-DEPS = -I includes
+OBJ_DIR = obj
+DEPS = -I include -I $(LIBFT_PATH) -I $(MLX_PATH)/include
 
-MAIN_SOURCES = $(MAIN_PATH)/so_long.c $(MAIN_PATH)/parse_map.c $(MAIN_PATH)/parse_utils.c
+SOURCES = $(SRCS_PATH)/so_long.c $(SRCS_PATH)/parse_map.c $(SRCS_PATH)/parse_utils.c $(SRCS_PATH)/utils.c
 
-SOURCES = $(SRCS_PATH)/utils.c
+OBJ = $(addprefix $(OBJ_DIR)/, $(notdir $(SOURCES:.c=.o)))
 
-MAIN_OBJ = $(MAIN_SOURCES:.c=.o)
 
-OBJ = $(SOURCES:.c=.o)
+################################################################################
+##                                    COLOURS                                 ##
+################################################################################
 
-all : $(NAME)
+WHITE=\033[0m
+BOLD=\033[1m
+GREEN=\033[0;32m
+RED=\033[0;31m
+BLUE=\033[0;34m
+YELLOW=\033[33m
+MAGENTA=\033[35m
+TURQUOISE=\033[36m
 
-$(NAME) : $(LIBFT) $(MAIN_OBJ) $(OBJ)
-	@$(CC) $(CFLAGS) -o $(NAME) $(MAIN_OBJ) $(OBJ) -L$(LIBFT_PATH) -lft
-	@echo "Archivo creado"
+################################################################################
+##                                    RULES                                   ##
+################################################################################
+
+all : head $(NAME)
+
+head:
+	@echo "$(BLUE)"
+	@echo "\t                                                                               "
+	@echo "\t      ::::::::   ::::::::            :::        ::::::::  ::::    :::  :::::::: " 
+	@echo "\t    :+:    :+: :+:    :+:           :+:       :+:    :+: :+:+:   :+: :+:    :+:" 
+	@echo "\t   +:+        +:+    +:+           +:+       +:+    +:+ :+:+:+  +:+ +:+        " 
+	@echo "\t  +#++:++#++ +#+    +:+           +#+       +#+    +:+ +#+ +:+ +#+ :#:         " 
+	@echo "\t        +#+ +#+    +#+           +#+       +#+    +#+ +#+  +#+#+# +#+   +#+#   " 
+	@echo "\t#+#    #+# #+#    #+#           #+#       #+#    #+# #+#   #+#+# #+#    #+#    " 
+	@echo "\t########   ######## ########## ########## ########  ###    ####  ########" 
+	@echo "\t        By analba-s"
+	@echo "\tProyect: \033[36m so_long $(BLUE)"
+	@echo "\tCommands:\033[36m all clean fclean re $(WHITE)\n"
+
+$(NAME) : $(LIBFT) $(OBJ)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -L$(LIBFT_PATH) -lft
 
 $(LIBFT) :
-	@$(MAKE) -C $(LIBFT_PATH)
+	@$(MAKE) -s -C $(LIBFT_PATH)
 
-
-%.o : %.c
+$(OBJ_DIR)/%.o : $(SRCS_PATH)/%.c
+	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@ $(DEPS)
+	@echo "  ✓ Compiled: $(notdir $<)"
 
 clean :
-	@rm -f $(OBJ)
-	@rm -f $(MAIN_OBJ)
-	@$(MAKE) -C $(LIBFT_PATH) clean_libft
-	@echo "Limpieza realizada"
+	@rm -rf $(OBJ_DIR)
+	@$(MAKE) -s -C $(LIBFT_PATH) clean_libft
+	@echo "$(GREEN)Clean  ✓ $(WHITE)"
 
-fclean : clean
+fclean :
+	@rm -rf $(OBJ_DIR)
 	@rm -f $(NAME)
-	@$(MAKE) -C $(LIBFT_PATH) fclean_libft
-	@echo "Limpieza profunda realizada"
+	@$(MAKE) -s -C $(LIBFT_PATH) fclean_libft
+	@echo "$(GREEN)Hardly clean  ✓ $(WHITE)"
 
 re : fclean all
 
