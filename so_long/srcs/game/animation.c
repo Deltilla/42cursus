@@ -1,23 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   animation.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/13 10:39:55 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/06/10 13:02:18 by analba-s         ###   ########.fr       */
+/*   Created: 2024/06/10 17:18:27 by analba-s          #+#    #+#             */
+/*   Updated: 2024/06/10 18:25:21 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
-int main(int arc, char **arv)
+void    animation(void *param)
 {
-	t_game	game;
+    t_utils i;
+    t_game  *game;
 
-	parse_map(arc, arv, game.map);
-	game.mlx_ptr = mlx_init(game.map->width, game.map->height, "so_long", true);
-	game.win_ptr = mlx_new_window(game.mlx_ptr, game.map->width * 16, game.map->height * 16, "so_long");
-	game.map->img = init_imgs(game.mlx_ptr);
+    game = param;
+    i.a = 0;
+    game->map->frames++;
+    while (i.a < game->map->height)
+    {
+        i.b = 0;
+        while (i.b < game->map->width)
+        {
+            if (game->map->map[i.a][i.b] == 'D')
+            {
+                if (!game->map->frames % 60)
+                    update_sprite(game);
+            }
+        }
+    }
 }

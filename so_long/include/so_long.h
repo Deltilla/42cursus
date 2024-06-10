@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:45:04 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/06/09 20:22:07 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/06/10 17:38:24 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,57 @@ typedef struct	s_utils
 	int b;
 }				t_utils;
 
+typedef struct	s_soldier
+{
+	mlx_image_t	*stay;
+	mlx_image_t	*up;
+	mlx_image_t	*down;
+	mlx_image_t	*left;
+	mlx_image_t	*right;
+	int			alive;
+}				t_soldier;
+
+typedef struct	s_img
+{
+	mlx_image_t	*floor;
+	mlx_image_t	*wall;
+	mlx_image_t	*grass;
+	mlx_image_t	*tree;
+	mlx_image_t	*player;
+	mlx_image_t	*player_up;
+	mlx_image_t	*player_down;
+	mlx_image_t	*player_left;
+	mlx_image_t	*player_right;
+	mlx_image_t	*collect;
+	mlx_image_t	*exit;
+	mlx_image_t	*exit_open;
+	t_soldier	soldier;
+}				t_img;
+
 typedef struct	s_map
 {
 	int		c;
 	int		p;
 	int		e;
-	int		rows;
+	char	p_move;
+	int		height;
+	int		width;
+	int		len;
+	int		moves;
+	int		frames;
 	char	*line;
 	char	**map;
 	char	**copy;
-	t_utils	len;
-	t_utils	width;
+	t_img	*img;
 	t_utils p_pos;
 }				t_map;
+
+typedef struct	s_game
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+	t_map	*map;
+}				t_game;	
 
 
 void	exit_error(char *error);
