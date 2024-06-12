@@ -6,11 +6,41 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:49:53 by analba-s          #+#    #+#             */
-/*   Updated: 2024/06/10 17:17:50 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/06/11 17:54:18 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
+
+void    game_moves(t_game *game, char move)
+{
+    char    *str;
+
+    game->map->p_move = move;
+    move_player(game, game->map->p_pos,move);
+    ft_printf("\rMoves: %d", game->map->moves);
+    mlx_image_to_window(game->mlx_ptr, game->map->img->wall, 0 * 16, 0 * 16);
+    str = ft_itoa(game->map->moves);
+    mlx_pur_str(game->mlx_ptr, str, 8, 8, str);
+    free(str);
+}
+
+void    key_hook(mlx_key_data_t *key_data, void *param)
+{
+    t_game  *game;
+
+    game = param;
+    if (key_data->key == MLX_KEY_W || key_data->key == MLX_KEY_UP)
+        game_moves(game, 'w');
+    if (key_data->key == MLX_KEY_S || key_data->key == MLX_KEY_DOWN)
+        game_moves(game, 's');
+    if (key_data->key == MLX_KEY_A || key_data->key == MLX_KEY_LEFT)
+        game_moves(game, 'a');
+    if (key_data->key == MLX_KEY_D || key_data->key == MLX_KEY_RIGHT)
+        game_moves(game, 'd');
+    if (key_data->key == MLX_KEY_ESCAPE)
+        finish_game(game, 0);
+}
 
 void    process(t_game *game)
 {

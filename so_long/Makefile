@@ -6,7 +6,7 @@
 #    By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 21:19:06 by analba-sa         #+#    #+#              #
-#    Updated: 2024/06/09 21:55:34 by analba-s         ###   ########.fr        #
+#    Updated: 2024/06/12 19:54:54 by analba-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,9 @@ OBJ_DIR = obj
 DEPS = -I include -I $(LIBFT_PATH) -I $(MLX_PATH)/include
 
 SOURCES = $(SRCS_PATH)/so_long.c $(SRCS_PATH)/parse_map.c $(SRCS_PATH)/parse_utils.c $(SRCS_PATH)/utils.c
-
+	$(SRCS_PATH)/animation.c $(SRCS_PATH)/fill_map.c $(SRCS_PATH)/images.c $(SRCS_PATH)/load_map.c
+	$(SRCS_PATH)/load_player.c $(SRCS_PATH)/load_soldier.c $(SRCS_PATH)/mlx_calling.c $(SRCS_PATH)/move_player.c
+	
 OBJ = $(addprefix $(OBJ_DIR)/, $(notdir $(SOURCES:.c=.o)))
 
 

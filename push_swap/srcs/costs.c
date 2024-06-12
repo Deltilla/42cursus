@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 08:21:24 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/04/02 19:16:50 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/06/12 19:31:25 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ static void	calc_cost(t_listi *a, t_listi *b, t_listi *cur, t_listi *trgt)
 {
 	t_digit	index;
 	t_digit	size;
-	int		cost;
 
-	cost = 0;
 	index.a = cur->index;
 	index.b = trgt->index;
 	size.a = a->nodes;

@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:45:04 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/06/10 17:38:24 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/06/11 15:15:10 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ typedef struct	s_utils
 
 typedef struct	s_soldier
 {
+	mlx_image_t	*monster0;
+	mlx_image_t	*monster1;
+	mlx_image_t	*monster2;
 	mlx_image_t	*stay;
 	mlx_image_t	*up;
 	mlx_image_t	*down;
