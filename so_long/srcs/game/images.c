@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 13:08:24 by analba-s          #+#    #+#             */
-/*   Updated: 2024/06/14 16:14:00 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/06/14 18:08:48 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ t_img   *init_imgs(mlx_t *mlx_ptr)
     assets = load_player_down(mlx_ptr, assets);
     assets = load_player_right(mlx_ptr, assets);
     assets = load_player_left(mlx_ptr, assets);
-    assets = load_soldier(mlx_ptr, assets);
-    assets = load_soldier_up(mlx_ptr, assets);
-    assets = load_soldier_down(mlx_ptr, assets);
-	assets = load_soldier_right(mlx_ptr, assets);
-	assets = load_soldier_left(mlx_ptr, assets);
+    //assets = load_soldier(mlx_ptr, assets);
+    //assets = load_soldier_up(mlx_ptr, assets);
+    //assets = load_soldier_down(mlx_ptr, assets);
+	//assets = load_soldier_right(mlx_ptr, assets);
+	//assets = load_soldier_left(mlx_ptr, assets);
 	return (assets);
 }

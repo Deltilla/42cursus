@@ -6,7 +6,7 @@
 #    By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 21:19:06 by analba-sa         #+#    #+#              #
-#    Updated: 2024/06/14 16:04:28 by analba-s         ###   ########.fr        #
+#    Updated: 2024/06/14 18:12:16 by analba-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ LIBS = $(LIBGL) $(MLX42) $(LIBFT)
 
 SOURCES = $(SRCS_PATH)/so_long.c $(SRCS_PATH)/parse/parse_map.c $(SRCS_PATH)/parse/parse_utils.c $(SRCS_PATH)/utils/utils.c \
 			$(SRCS_PATH)/game/animation.c $(SRCS_PATH)/game/fill_map.c $(SRCS_PATH)/game/images.c $(SRCS_PATH)/game/load_map.c \
-			$(SRCS_PATH)/game/load_player.c $(SRCS_PATH)/game/load_soldier.c $(SRCS_PATH)/game/mlx_calling.c $(SRCS_PATH)/game/move_player.c
+			$(SRCS_PATH)/game/load_player.c $(SRCS_PATH)/game/mlx_calling.c $(SRCS_PATH)/game/move_player.c $(SRCS_PATH)/game/reload_map.c \
 
 OBJ = $(SOURCES:$(SRCS_PATH)/%.c=$(OBJ_DIR)/%.o)
 

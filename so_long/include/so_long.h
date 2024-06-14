@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:45:04 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/06/14 12:22:18 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/06/14 18:10:19 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,12 +116,13 @@ int     move_down(t_game *game, int a, int b);
 int	 	move_left(t_game *game, int a, int b);
 int     move_right(t_game *game, int a, int b);
 void    process(t_game *game);
-void    key_hook(mlx_key_data_t *key_data, void *param);
+void    key_hook(mlx_key_data_t key_data, void *param);
 void    game_moves(t_game *game, char move);
-void	reload_map(t_game *game, int a, int b, char move);
+void	reload_map(t_game *game, t_utils p_pos, char move);
 void    animation(void *param);
 void    check_exit(t_game *game);
 void    open_exit(t_game *game, t_utils i);
 void    update_sprite(t_game *game, t_utils i, int monster);
+void	finish_game(t_game *game, int good_ending);
 
 #endif

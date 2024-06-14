@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 16:30:22 by analba-s          #+#    #+#             */
-/*   Updated: 2024/06/14 13:24:25 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/06/14 18:10:36 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int move_up(t_game *game, int a, int b)
 {
 	if (game->map->map[a - 1][b] == 'E' && game->map->c == 0)
-		finish_game();
+		finish_game(game ,1);
 	else if (game->map->map[a - 1][b] == 'D')
 	{
 		ft_printf("Gitgud nobbie\n");
@@ -39,7 +39,7 @@ int move_up(t_game *game, int a, int b)
 int	move_left(t_game *game, int a, int b)
 {
 	if (game->map->map[a][b - 1] == 'E' && game->map->c == 0)
-		finish_game();
+		finish_game(game, 1);
 	else if (game->map->map[a][b - 1] == 'D')
 	{
 		ft_printf("Gitgud nobbie\n");
@@ -63,7 +63,7 @@ int	move_left(t_game *game, int a, int b)
 int	move_down(t_game *game, int a, int b)
 {
 	if (game->map->map[a + 1][b] == 'E' && game->map->c == 0)
-		finish_game();
+		finish_game(game, 1);
 	else if (game->map->map[a + 1][b] == 'D')
 	{
 		ft_printf("Gitgud nobbie\n");
@@ -87,7 +87,7 @@ int	move_down(t_game *game, int a, int b)
 int	move_right(t_game *game, int a, int b)
 {
     if (game->map->map[a][b + 1] == 'E' && game->map->c == 0)
-		finish_game();
+		finish_game(game, 1);
 	else if (game->map->map[a][b + 1] == 'D')
 	{
 		ft_printf("Gitgud nobbie\n");
@@ -122,5 +122,5 @@ void    move_player(t_game *game, t_utils p_pos, char move)
     else if (move == 'd' && game->map->map[p_pos.a][p_pos.b + 1] != '1')
         ctrl = move_right(game, p_pos.a, p_pos.b);
     if (ctrl)
-        reload_map(game, p_pos.a, p_pos.b, move);
+        reload_map(game, p_pos, move);
 }

@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 17:18:27 by analba-s          #+#    #+#             */
-/*   Updated: 2024/06/11 16:02:59 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/06/14 17:48:06 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void    check_exit(t_game *game)
 }
 void    update_sprite(t_game *game, t_utils i, int monster)
 {
-    mlx_image_to_window(game->mlx_ptr, game->map->img->wall, i.b * 16, i.a * 16);
+    mlx_image_to_window(game->mlx_ptr, game->map->img->floor, i.b * 16, i.a * 16);
     if (monster == 0)
         mlx_image_to_window(game->mlx_ptr, game->map->img->soldier.monster0, i.b * 16, i.a * 16);
     else if (monster == 1)
