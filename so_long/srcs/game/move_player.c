@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 16:30:22 by analba-s          #+#    #+#             */
-/*   Updated: 2024/06/12 19:05:12 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/06/14 13:24:25 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,5 +122,5 @@ void    move_player(t_game *game, t_utils p_pos, char move)
     else if (move == 'd' && game->map->map[p_pos.a][p_pos.b + 1] != '1')
         ctrl = move_right(game, p_pos.a, p_pos.b);
     if (ctrl)
-        reload_map(game, p_pos);
+        reload_map(game, p_pos.a, p_pos.b, move);
 }

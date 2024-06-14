@@ -6,25 +6,28 @@
 #    By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 21:19:06 by analba-sa         #+#    #+#              #
-#    Updated: 2024/06/12 19:54:54 by analba-s         ###   ########.fr        #
+#    Updated: 2024/06/14 16:04:28 by analba-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 LIBFT_PATH = lib/libft
 MLX_PATH = lib/mlx42
-LIBFT = $(LIBFT_PATH)/libft.a
+LIBFT = -L$(LIBFT_PATH) -lft
+MLX42 = $(MLX_PATH)/build/libmlx42.a
+LIBGL = -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib"
 SRCS_PATH = srcs
 CC = clang
 CFLAGS = -g -Wall -Werror -Wextra
 OBJ_DIR = obj
 DEPS = -I include -I $(LIBFT_PATH) -I $(MLX_PATH)/include
+LIBS = $(LIBGL) $(MLX42) $(LIBFT)
 
-SOURCES = $(SRCS_PATH)/so_long.c $(SRCS_PATH)/parse_map.c $(SRCS_PATH)/parse_utils.c $(SRCS_PATH)/utils.c
-	$(SRCS_PATH)/animation.c $(SRCS_PATH)/fill_map.c $(SRCS_PATH)/images.c $(SRCS_PATH)/load_map.c
-	$(SRCS_PATH)/load_player.c $(SRCS_PATH)/load_soldier.c $(SRCS_PATH)/mlx_calling.c $(SRCS_PATH)/move_player.c
-	
-OBJ = $(addprefix $(OBJ_DIR)/, $(notdir $(SOURCES:.c=.o)))
+SOURCES = $(SRCS_PATH)/so_long.c $(SRCS_PATH)/parse/parse_map.c $(SRCS_PATH)/parse/parse_utils.c $(SRCS_PATH)/utils/utils.c \
+			$(SRCS_PATH)/game/animation.c $(SRCS_PATH)/game/fill_map.c $(SRCS_PATH)/game/images.c $(SRCS_PATH)/game/load_map.c \
+			$(SRCS_PATH)/game/load_player.c $(SRCS_PATH)/game/load_soldier.c $(SRCS_PATH)/game/mlx_calling.c $(SRCS_PATH)/game/move_player.c
+
+OBJ = $(SOURCES:$(SRCS_PATH)/%.c=$(OBJ_DIR)/%.o)
 
 
 ################################################################################
@@ -44,7 +47,7 @@ TURQUOISE=\033[36m
 ##                                    RULES                                   ##
 ################################################################################
 
-all : head $(NAME)
+all : head mlx42 libft $(NAME)
 
 head:
 	@echo "$(BLUE)"
@@ -60,14 +63,17 @@ head:
 	@echo "\tProyect: \033[36m so_long $(BLUE)"
 	@echo "\tCommands:\033[36m all clean fclean re $(WHITE)\n"
 
-$(NAME) : $(LIBFT) $(OBJ)
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -L$(LIBFT_PATH) -lft
-
-$(LIBFT) :
+libft :
 	@$(MAKE) -s -C $(LIBFT_PATH)
 
+mlx42 :
+	@cmake $(MLX_PATH) -B $(MLX_PATH)/build && make -s -C $(MLX_PATH)/build -j4
+
+$(NAME) : $(OBJ)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBS)
+
 $(OBJ_DIR)/%.o : $(SRCS_PATH)/%.c
-	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(@D)
 	@$(CC) $(CFLAGS) -c $< -o $@ $(DEPS)
 	@echo "  ✓ Compiled: $(notdir $<)"
 

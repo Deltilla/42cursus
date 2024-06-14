@@ -6,22 +6,22 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 19:12:56 by analba-s          #+#    #+#             */
-/*   Updated: 2024/06/12 19:15:17 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/06/14 13:26:20 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
-void	reload_map(t_game *game, int a, int b, char move)
+void	reload_map(t_game *game, t_utils p_pos, char move)
 {
-	mlx_image_to_window(game->mlx_ptr, game->map->img->floor, a * 16, b * 16);
+	mlx_image_to_window(game->mlx_ptr, game->map->img->floor, p_pos.a * 16, p_pos.b * 16);
 	if (move == 'w')
-		a--;
+		game->map->p_pos.a--;
 	else if (move == 'a')
-		b--;
+		game->map->p_pos.b--;
 	else if (move == 's')
-		a++;
+		game->map->p_pos.a++;
 	else if (move == 'd')
-		b++;
-	add_player(game, a, b);
+		game->map->p_pos.b++;
+	add_player(game, game->map->p_pos);
 }
