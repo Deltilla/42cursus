@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:46:39 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/06/10 10:19:23 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/06/16 16:52:36 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,9 +137,10 @@ void	check_args(int arc, char **arv)
 		exit_error("so_long");
 }
 
-void	parse_map(int arc, char **arv, t_map *map)
+void	parse_map(int arc, char **arv, t_game *game)
 {
+	game->map = malloc(sizeof(t_map));
 	check_args(arc, arv);
-	count_rows(arv[1], map);
-	init_map(arv[1], map);
+	count_rows(arv[1], game->map);
+	init_map(arv[1], game->map);
 }

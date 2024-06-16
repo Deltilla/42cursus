@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:45:04 by analba-sa         #+#    #+#             */
-/*   Updated: 2024/06/14 18:10:19 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/06/16 16:53:30 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ typedef struct	s_game
 
 void	exit_error(char *error);
 void	*free_matrix(char **map);
-void	parse_map(int arc, char **arv, t_map *map);
+void	parse_map(int arc, char **arv, t_game *game);
 void	flood_fill(char **map, int i, int j);
 int		check_flood(char **map);
 char	**copy_map(char **map, int rows);
