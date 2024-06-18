@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 14:37:39 by analba-s          #+#    #+#             */
-/*   Updated: 2024/06/10 15:44:17 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/06/18 20:52:46 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void    add_objects(t_game *game, t_utils i)
     if (game->map->map[i.a][i.b] == 'C')
         mlx_image_to_window(game->mlx_ptr, game->map->img->collect, i.a * 16, i.b * 16);
     else if (game->map->map[i.a][i.b] == 'E')
-        mlx_image_to_window(game->mlx_ptr, game->map->img->exit, i.a * 16, i.b * 16);
+    	mlx_image_to_window(game->mlx_ptr, game->map->img->exit, i.a * 16, i.b * 16);
     else if (game->map->map[i.a][i.b] == 'P')
         add_player(game, i);
 }

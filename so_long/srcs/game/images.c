@@ -47,6 +47,8 @@ t_img   *init_imgs(mlx_t *mlx_ptr)
     assets = load_player_down(mlx_ptr, assets);
     assets = load_player_right(mlx_ptr, assets);
     assets = load_player_left(mlx_ptr, assets);
+    assets = load_exit(mlx_ptr, assets);
+    assets = load_exit_open(mlx_ptr, assets);
     //assets = load_soldier(mlx_ptr, assets);
     //assets = load_soldier_up(mlx_ptr, assets);
     //assets = load_soldier_down(mlx_ptr, assets);
