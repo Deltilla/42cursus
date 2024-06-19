@@ -47,7 +47,8 @@ int	valid_map(t_map *map)
 				map->p += 1;
 			else if (map->map[i.a][i.b] == 'E')
 				map->e += 1;
-			else if (map->map[i.a][i.b] == '0' || map->map[i.a][i.b] == '1')
+			else if (map->map[i.a][i.b] == '0' || map->map[i.a][i.b] == '1' 
+				|| map->map[i.a][i.b] == 'D')
 				;
 			else
 				return (0);

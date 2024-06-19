@@ -60,7 +60,8 @@ int	check_flood(char **map)
 
 void	flood_fill(char **map, int i, int j)
 {
-	if (i < 0 || j < 0 || !map[i][j] || map[i][j] == 'F' || map[i][j] == '1')
+	if (i < 0 || j < 0 || !map[i][j] 
+		|| map[i][j] == 'F' || map[i][j] == '1' || map[i][j] == 'D')
 		return ;
 	if (map[i][j] == 'P' || map[i][j] == 'C' || map[i][j] == 'E' || map[i][j] == '0')
 	{

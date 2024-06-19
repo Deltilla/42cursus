@@ -18,8 +18,8 @@ int main(int arc, char **arv)
 
 	game = malloc(sizeof(t_game));
 	parse_map(arc, arv, game);
-	game->mlx_ptr = mlx_init(game->map->width, game->map->height, "so_long", true);
-	game->win_ptr = mlx_new_image(game->mlx_ptr, game->map->width * 16, game->map->height * 16);
+	game->mlx_ptr = mlx_init(game->map->width * 64, game->map->height * 64, "so_long", false);
+	game->win_ptr = mlx_new_image(game->mlx_ptr, game->map->width * 64, game->map->height * 64);
 	game->map->img = init_imgs(game->mlx_ptr);
 	fill_map(game);
 	process(game);

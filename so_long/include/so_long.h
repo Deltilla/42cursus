@@ -27,18 +27,13 @@ typedef struct	s_utils
 	int b;
 }				t_utils;
 
-typedef struct	s_soldier
+typedef struct	s_enemy
 {
 	mlx_image_t	*monster0;
 	mlx_image_t	*monster1;
 	mlx_image_t	*monster2;
-	mlx_image_t	*stay;
-	mlx_image_t	*up;
-	mlx_image_t	*down;
-	mlx_image_t	*left;
-	mlx_image_t	*right;
 	int			alive;
-}				t_soldier;
+}				t_enemy;
 
 typedef struct	s_img
 {
@@ -54,7 +49,7 @@ typedef struct	s_img
 	mlx_image_t	*collect;
 	mlx_image_t	*exit;
 	mlx_image_t	*exit_open;
-	t_soldier	soldier;
+	t_enemy		enemy;
 }				t_img;
 
 typedef struct	s_map
@@ -102,11 +97,9 @@ t_img   *load_player_up(mlx_t *mlx_ptr, t_img *img);
 t_img   *load_player_down(mlx_t *mlx_ptr, t_img *img);
 t_img   *load_player_left(mlx_t *mlx_ptr, t_img *img);
 t_img   *load_player_right(mlx_t *mlx_ptr, t_img *img);
-t_img   *load_soldier(mlx_t *mlx_ptr, t_img *img);
-t_img   *load_soldier_up(mlx_t *mlx_ptr, t_img *img);
-t_img   *load_soldier_down(mlx_t *mlx_ptr, t_img *img);
-t_img   *load_soldier_left(mlx_t *mlx_ptr, t_img *img);
-t_img   *load_soldier_right(mlx_t *mlx_ptr, t_img *img);
+t_img   *load_monster(mlx_t *mlx_ptr, t_img *img);
+t_img   *load_monster1(mlx_t *mlx_ptr, t_img *img);
+t_img   *load_monster2(mlx_t *mlx_ptr, t_img *img);
 void    fill_map(t_game *game);
 void    add_player(t_game *game, t_utils i);
 void    add_objects(t_game *game, t_utils i);

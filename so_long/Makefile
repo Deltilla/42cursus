@@ -23,9 +23,11 @@ OBJ_DIR = obj
 DEPS = -I include -I $(LIBFT_PATH) -I $(MLX_PATH)/include
 LIBS = $(LIBGL) $(MLX42) $(LIBFT)
 
-SOURCES = $(SRCS_PATH)/so_long.c $(SRCS_PATH)/parse/parse_map.c $(SRCS_PATH)/parse/parse_utils.c $(SRCS_PATH)/utils/utils.c \
-			$(SRCS_PATH)/game/animation.c $(SRCS_PATH)/game/fill_map.c $(SRCS_PATH)/game/images.c $(SRCS_PATH)/game/load_map.c \
-			$(SRCS_PATH)/game/load_player.c $(SRCS_PATH)/game/mlx_calling.c $(SRCS_PATH)/game/move_player.c $(SRCS_PATH)/game/reload_map.c \
+SOURCES = $(SRCS_PATH)/so_long.c $(SRCS_PATH)/parse/parse_map.c $(SRCS_PATH)/parse/parse_utils.c \
+			$(SRCS_PATH)/utils/utils.c $(SRCS_PATH)/game/animation.c $(SRCS_PATH)/game/fill_map.c \
+			$(SRCS_PATH)/game/images.c $(SRCS_PATH)/game/load_map.c $(SRCS_PATH)/game/load_player.c \
+			$(SRCS_PATH)/game/load_monster.c $(SRCS_PATH)/game/mlx_calling.c $(SRCS_PATH)/game/move_player.c \
+			$(SRCS_PATH)/game/reload_map.c \
 
 OBJ = $(SOURCES:$(SRCS_PATH)/%.c=$(OBJ_DIR)/%.o)
 

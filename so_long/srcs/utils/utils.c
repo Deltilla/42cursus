@@ -17,12 +17,12 @@ void	finish_game(t_game *game, int good_ending)
 	if (!good_ending)
 	{
 		mlx_close_window(game->mlx_ptr);
-		printf("Will you give up?\n");
+		printf("\rWill you give up?\n");
 	}
 	else
 	{
 		mlx_close_window(game->mlx_ptr);
-		printf("Oh wow you won, congrats...\n");
+		printf("\rOh wow you won, congrats...\n");
 	}
 	exit(EXIT_SUCCESS);
 }

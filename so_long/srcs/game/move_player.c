@@ -18,7 +18,7 @@ int move_up(t_game *game, int a, int b)
 		finish_game(game ,1);
 	else if (game->map->map[a - 1][b] == 'D')
 	{
-		ft_printf("Gitgud nobbie\n");
+		ft_printf("\rGitgud nobbie\n");
 		exit(EXIT_SUCCESS);
 	}
 	else if (game->map->map[a - 1][b] != 'E')
@@ -31,7 +31,6 @@ int move_up(t_game *game, int a, int b)
 	}
 	game->map->map[a][b] = '0';
 	game->map->map[a - 1][b] = 'P';
-	game->map->p_pos.a -= 1;
 	game->map->moves += 1;
 	return (1);
 }
@@ -42,7 +41,7 @@ int	move_left(t_game *game, int a, int b)
 		finish_game(game, 1);
 	else if (game->map->map[a][b - 1] == 'D')
 	{
-		ft_printf("Gitgud nobbie\n");
+		ft_printf("\rGitgud nobbie\n");
 		exit(EXIT_SUCCESS);
 	}
 	else if (game->map->map[a][b - 1] != 'E')
@@ -55,7 +54,6 @@ int	move_left(t_game *game, int a, int b)
 	}
 	game->map->map[a][b] = '0';
 	game->map->map[a][b - 1] = 'P';
-	game->map->p_pos.b -= 1;
 	game->map->moves += 1;
 	return (1);
 }
@@ -66,7 +64,7 @@ int	move_down(t_game *game, int a, int b)
 		finish_game(game, 1);
 	else if (game->map->map[a + 1][b] == 'D')
 	{
-		ft_printf("Gitgud nobbie\n");
+		ft_printf("\rGitgud nobbie\n");
 		exit(EXIT_SUCCESS);
 	}
 	else if (game->map->map[a + 1][b] != 'E')
@@ -79,7 +77,6 @@ int	move_down(t_game *game, int a, int b)
 	}
 	game->map->map[a][b] = '0';
 	game->map->map[a + 1][b] = 'P';
-	game->map->p_pos.a += 1;
 	game->map->moves += 1;
 	return (1);
 }
@@ -90,7 +87,7 @@ int	move_right(t_game *game, int a, int b)
 		finish_game(game, 1);
 	else if (game->map->map[a][b + 1] == 'D')
 	{
-		ft_printf("Gitgud nobbie\n");
+		ft_printf("\rGitgud nobbie\n");
 		exit(EXIT_SUCCESS);
 	}
 	else if (game->map->map[a][b + 1] != 'E')
@@ -103,7 +100,6 @@ int	move_right(t_game *game, int a, int b)
 	}
 	game->map->map[a][b] = '0';
 	game->map->map[a][b + 1] = 'P';
-	game->map->p_pos.b += 1;
 	game->map->moves += 1;
 	return (1);
 }

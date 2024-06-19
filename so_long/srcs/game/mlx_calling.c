@@ -19,9 +19,9 @@ void    game_moves(t_game *game, char move)
     game->map->p_move = move;
     move_player(game, game->map->p_pos,move);
     ft_printf("\rMoves: %d", game->map->moves);
-    mlx_image_to_window(game->mlx_ptr, game->map->img->wall, 0 * 16, 0 * 16);
+    mlx_image_to_window(game->mlx_ptr, game->map->img->wall, 0 * 64, 0 * 64);
     str = ft_itoa(game->map->moves);
-    mlx_put_string(game->mlx_ptr, str, 8, 8);
+    mlx_put_string(game->mlx_ptr, str, 16, 16);
     free(str);
 }
 
@@ -30,15 +30,19 @@ void    key_hook(mlx_key_data_t key_data, void *param)
     t_game  *game;
 
     game = param;
-    if (key_data.key == MLX_KEY_W || key_data.key == MLX_KEY_UP)
+    if ((key_data.key == MLX_KEY_W || key_data.key == MLX_KEY_UP)
+        && key_data.action == MLX_PRESS)
         game_moves(game, 'w');
-    if (key_data.key == MLX_KEY_S || key_data.key == MLX_KEY_DOWN)
+    if ((key_data.key == MLX_KEY_S || key_data.key == MLX_KEY_DOWN)
+        && key_data.action == MLX_PRESS)
         game_moves(game, 's');
-    if (key_data.key == MLX_KEY_A || key_data.key == MLX_KEY_LEFT)
+    if ((key_data.key == MLX_KEY_A || key_data.key == MLX_KEY_LEFT)
+        && key_data.action == MLX_PRESS)
         game_moves(game, 'a');
-    if (key_data.key == MLX_KEY_D || key_data.key == MLX_KEY_RIGHT)
+    if ((key_data.key == MLX_KEY_D || key_data.key == MLX_KEY_RIGHT)
+        && key_data.action == MLX_PRESS)
         game_moves(game, 'd');
-    if (key_data.key == MLX_KEY_ESCAPE)
+    if (key_data.key == MLX_KEY_ESCAPE && key_data.action == MLX_PRESS)
         finish_game(game, 0);
 }
 
