@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:49:53 by analba-s          #+#    #+#             */
-/*   Updated: 2024/06/14 18:06:28 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/06/21 21:07:49 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,16 @@ void    key_hook(mlx_key_data_t key_data, void *param)
 
     game = param;
     if ((key_data.key == MLX_KEY_W || key_data.key == MLX_KEY_UP)
-        && key_data.action == MLX_PRESS)
+        && (key_data.action == MLX_PRESS || key_data.action == MLX_REPEAT))
         game_moves(game, 'w');
     if ((key_data.key == MLX_KEY_S || key_data.key == MLX_KEY_DOWN)
-        && key_data.action == MLX_PRESS)
+        && (key_data.action == MLX_PRESS || key_data.action == MLX_REPEAT))
         game_moves(game, 's');
     if ((key_data.key == MLX_KEY_A || key_data.key == MLX_KEY_LEFT)
-        && key_data.action == MLX_PRESS)
+        && (key_data.action == MLX_PRESS || key_data.action == MLX_REPEAT))
         game_moves(game, 'a');
     if ((key_data.key == MLX_KEY_D || key_data.key == MLX_KEY_RIGHT)
-        && key_data.action == MLX_PRESS)
+        && (key_data.action == MLX_PRESS || key_data.action == MLX_REPEAT))
         game_moves(game, 'd');
     if (key_data.key == MLX_KEY_ESCAPE && key_data.action == MLX_PRESS)
         finish_game(game, 0);

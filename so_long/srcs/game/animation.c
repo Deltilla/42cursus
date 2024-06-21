@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 17:18:27 by analba-s          #+#    #+#             */
-/*   Updated: 2024/06/14 17:48:06 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/06/21 21:57:49 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,18 @@ void    check_exit(t_game *game)
 }
 void    update_sprite(t_game *game, t_utils i, int monster)
 {
+	mlx_image_to_window(game->mlx_ptr, game->map->img->floor, i.b * 64, i.a * 64);
     if (monster == 0)
-        mlx_image_to_window(game->mlx_ptr, game->map->img->enemy.monster0, i.b * 64, i.a * 64);
+		mlx_image_to_window(game->mlx_ptr, game->map->img->enemy.monster0, i.b * 64, i.a * 64);
     else if (monster == 1)
-        mlx_image_to_window(game->mlx_ptr, game->map->img->enemy.monster1, i.b * 64, i.a * 64);
+		mlx_image_to_window(game->mlx_ptr, game->map->img->enemy.monster1, i.b * 64, i.a * 64);
     else if (monster == 2)
-        mlx_image_to_window(game->mlx_ptr, game->map->img->enemy.monster2, i.b * 64, i.a * 64);
+		mlx_image_to_window(game->mlx_ptr, game->map->img->enemy.monster2, i.b * 64, i.a * 64);
 }
 
 void    animation(void *param)
 {
+	int		monster_state;
     t_utils i;
     t_game  *game;
 
@@ -60,12 +62,8 @@ void    animation(void *param)
         {
             if (game->map->map[i.a][i.b] == 'D')
             {
-                if (game->map->frames % 60 == 0)
-            		update_sprite(game, i, 0);
-                else if (game->map->frames % 30 == 0)
-                    update_sprite(game, i, 1);
-                else if (game->map->frames % 10 == 0)
-                    update_sprite(game, i, 2);
+                monster_state = (game->map->frames / 20) % 3;
+                update_sprite(game, i, monster_state);
             }
             i.b++;
         }
