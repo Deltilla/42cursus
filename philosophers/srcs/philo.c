@@ -14,9 +14,9 @@
 
 int main(int arc, char **arv)
 {
-	t_data	*data;
+	t_data	data;
 	
-	data = malloc(sizeof(t_data));
-	if (!parse_data(arc, arv, data))
+	if (!parse_data(arc, arv, &data))
 		return (free_data(data));
+	philos_threads(&data);
 }

@@ -20,7 +20,7 @@ OBJ_DIR = obj
 DEPS = -I includes -I $(LIBFT_PATH)
 LIBS = $(LIBFT)
 
-SOURCES = $(SRCS_PATH)/philo.c $(SRCS_PATH)/parse.c
+SOURCES = $(SRCS_PATH)/philo.c $(SRCS_PATH)/parse.c $(SRCS_PATH)/threads.c $(SRCS_PATH)/philo_actions.c $(SRCS_PATH)/observer.c $(SRCS_PATH)/utils.c
 
 OBJ = $(SOURCES:$(SRCS_PATH)/%.c=$(OBJ_DIR)/%.o)
 
