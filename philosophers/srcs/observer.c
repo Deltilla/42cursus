@@ -3,7 +3,7 @@
 int philo_dead(t_philo *philo, int die_time)
 {
     pthread_mutex_lock(philo->meal_lock);
-    if (get_cur_time() - philo->last_meal >= philo->data->die_time && philo->eating == 0)
+    if (get_cur_time() - philo->last_meal >= die_time && philo->eating == 0)
     {
         pthread_mutex_unlock(philo->meal_lock);
         return (1);
@@ -54,15 +54,15 @@ int meals_checker(t_data *data)
         pthread_mutex_unlock(&data->dead_lock);
         return (1);
     }
-    return (1);
+    return (0);
 }
 
-void    observing(void *pointer)
+void    *observing(void *pointer)
 {
     t_data *data;
 
     data = (t_data *)pointer;
-    while (dead_checker(data) || meals_checker(data))
+    while (!dead_checker(data) && !meals_checker(data))
         ;
-    return (0);
+    return (NULL);
 }

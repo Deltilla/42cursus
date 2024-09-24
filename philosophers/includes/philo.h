@@ -6,17 +6,22 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 12:46:29 by analba-s          #+#    #+#             */
-/*   Updated: 2024/09/17 20:03:52 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/09/24 13:35:37 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef PHILO_H
+# define PHILO_H
 
 #include <stdlib.h>
 #include <pthread.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <limits.h>
+#include <sys/time.h>
 
-
+typedef struct s_philo	t_philo;
+typedef struct s_data	t_data;
 
 typedef struct s_data
 {
@@ -49,3 +54,18 @@ typedef struct s_philo
 	pthread_mutex_t	*write_lock;
 	t_data			*data;
 }				t_philo;
+
+int		parse_data(int arc, char **arv, t_data *data);
+int 	philos_threads(t_data *data);
+void    eat(t_philo *philo);
+void    dream(t_philo *philo);
+void    think(t_philo *philo);
+int 	dead_loop(t_philo *philo);
+void    *observing(void *pointer);
+int 	ft_usleep(int ms);
+int 	get_cur_time(void);
+void 	ph_print(char *str, t_philo *philo, int name);
+int		ft_atoilong(char *str);
+int		finish_him(char *str, t_data *data);
+
+#endif

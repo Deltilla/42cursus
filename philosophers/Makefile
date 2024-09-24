@@ -6,21 +6,20 @@
 #    By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 21:19:06 by analba-sa         #+#    #+#              #
-#    Updated: 2024/09/17 13:15:54 by analba-s         ###   ########.fr        #
+#    Updated: 2024/09/23 19:04:55 by analba-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
-LIBFT_PATH = libft
-LIBFT = -L$(LIBFT_PATH) -lft
 SRCS_PATH = srcs
 CC = clang
 CFLAGS = -g -Wall -Werror -Wextra
 OBJ_DIR = obj
-DEPS = -I includes -I $(LIBFT_PATH)
-LIBS = $(LIBFT)
+DEPS = -I includes
 
-SOURCES = $(SRCS_PATH)/philo.c $(SRCS_PATH)/parse.c $(SRCS_PATH)/threads.c $(SRCS_PATH)/philo_actions.c $(SRCS_PATH)/observer.c $(SRCS_PATH)/utils.c
+SOURCES = $(SRCS_PATH)/philo.c $(SRCS_PATH)/parse.c \
+		$(SRCS_PATH)/threads.c $(SRCS_PATH)/philo_actions.c $(SRCS_PATH)/observer.c \
+		$(SRCS_PATH)/utils.c
 
 OBJ = $(SOURCES:$(SRCS_PATH)/%.c=$(OBJ_DIR)/%.o)
 
@@ -42,25 +41,25 @@ TURQUOISE=\033[36m
 ##                                    RULES                                   ##
 ################################################################################
 
-all : head libft $(NAME)
+all : head $(NAME)
 
 head:
 	@echo "$(BLUE)"
-	@echo "\t                                  						"
-	@echo "\t				,------. ,--.     ,--.,--.        		"
-	@echo "\t				|  .--. '|  ,---. `--'|  | ,---.  		"
-	@echo "\t				|  '--' ||  .-.  |,--.|  || .-. | 		"
-	@echo "\t				|  | --' |  | |  ||  ||  |' '-' ' 		"
-	@echo "\t				`--'     `--' `--'`--'`--' `---'  	    "
+	@echo "\t                                                                               "
+	@echo "\t      :::::::::  :::    ::: ::::::::::: :::        ::::::::   ::::::::   ::::::::  :::::::::  :::::::::: :::::::::   :::::::: " 
+	@echo "\t     :+:    :+: :+:    :+:     :+:     :+:       :+:    :+: :+:    :+: :+:    :+: :+:    :+: :+:        :+:    :+: :+:    :+: " 
+	@echo "\t    +:+    +:+ +:+    +:+     +:+     +:+       +:+    +:+ +:+        +:+    +:+ +:+    +:+ +:+        +:+    +:+ +:+         " 
+	@echo "\t   +#++:++#+  +#++:++#++     +#+     +#+       +#+    +:+ +#++:++#++ +#+    +:+ +#++:++#+  +#++:++#   +#++:++#:  +#++:++#++   " 
+	@echo "\t  +#+        +#+    +#+     +#+     +#+       +#+    +#+        +#+ +#+    +#+ +#+        +#+        +#+    +#+        +#+    " 
+	@echo "\t #+#        #+#    #+#     #+#     #+#       #+#    #+# #+#    #+# #+#    #+# #+#        #+#        #+#    #+# #+#    #+#     " 
+	@echo "\t###        ###    ### ########### ########## ########   ########   ########  ###        ########## ###    ###  ########       " 
 	@echo "\t        By analba-s"
 	@echo "\tProyect: \033[36m so_long $(BLUE)"
 	@echo "\tCommands:\033[36m all clean fclean re $(WHITE)\n"
 
-libft :
-	@$(MAKE) -s -C $(LIBFT_PATH)
 
 $(NAME) : $(OBJ)
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBS)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
 
 $(OBJ_DIR)/%.o : $(SRCS_PATH)/%.c
 	@mkdir -p $(@D)
@@ -69,13 +68,11 @@ $(OBJ_DIR)/%.o : $(SRCS_PATH)/%.c
 
 clean :
 	@rm -rf $(OBJ_DIR)
-	@$(MAKE) -s -C $(LIBFT_PATH) clean_libft
 	@echo "$(GREEN)Clean  ✓ $(WHITE)"
 
 fclean :
 	@rm -rf $(OBJ_DIR)
 	@rm -f $(NAME)
-	@$(MAKE) -s -C $(LIBFT_PATH) fclean_libft
 	@echo "$(GREEN)Hardly clean  ✓ $(WHITE)"
 
 re : fclean all
