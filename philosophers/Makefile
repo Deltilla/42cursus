@@ -6,20 +6,21 @@
 #    By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 21:19:06 by analba-sa         #+#    #+#              #
-#    Updated: 2024/09/23 19:04:55 by analba-s         ###   ########.fr        #
+#    Updated: 2024/10/01 15:52:24 by analba-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 SRCS_PATH = srcs
-CC = clang
-CFLAGS = -g -Wall -Werror -Wextra
+CC = gcc
+CFLAGS = -g -Wall -Werror -Wextra -ltsan -fsanitize=thread
+LDFLAGS = -fsanitize=thread -pthread
 OBJ_DIR = obj
 DEPS = -I includes
 
 SOURCES = $(SRCS_PATH)/philo.c $(SRCS_PATH)/parse.c \
 		$(SRCS_PATH)/threads.c $(SRCS_PATH)/philo_actions.c $(SRCS_PATH)/observer.c \
-		$(SRCS_PATH)/utils.c
+		$(SRCS_PATH)/utils.c $(SRCS_PATH)/finish_and_destroy.c
 
 OBJ = $(SOURCES:$(SRCS_PATH)/%.c=$(OBJ_DIR)/%.o)
 
@@ -43,7 +44,7 @@ TURQUOISE=\033[36m
 
 all : head $(NAME)
 
-head:
+head :
 	@echo "$(BLUE)"
 	@echo "\t                                                                               "
 	@echo "\t      :::::::::  :::    ::: ::::::::::: :::        ::::::::   ::::::::   ::::::::  :::::::::  :::::::::: :::::::::   :::::::: " 
@@ -59,7 +60,7 @@ head:
 
 
 $(NAME) : $(OBJ)
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
+	@$(CC) $(LDFLAGS) -o $(NAME) $(OBJ)
 
 $(OBJ_DIR)/%.o : $(SRCS_PATH)/%.c
 	@mkdir -p $(@D)

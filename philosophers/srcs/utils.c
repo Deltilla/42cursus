@@ -1,12 +1,16 @@
-#include <philo.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/24 17:24:52 by analba-s          #+#    #+#             */
+/*   Updated: 2024/09/24 17:39:03 by analba-s         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int	finish_him(char *str, t_data *data)
-{
-	pthread_mutex_lock(&data->write_lock);
-	printf("%s\n", str);
-	pthread_mutex_unlock(&data->write_lock);
-	return (0);
-}
+#include <philo.h>
 
 int	ft_atoilong(char *str)
 {
@@ -37,32 +41,32 @@ int	ft_atoilong(char *str)
 	return (r);
 }
 
-void ph_print(char *str, t_philo *philo, int name)
+void	ph_print(char *str, t_philo *philo, int name)
 {
-    int time;
+	int	time;
 
-    pthread_mutex_lock(&philo->data->write_lock);
-    time = get_cur_time() - philo->data->start_time;
-    if (!dead_loop(philo))
+	pthread_mutex_lock(&philo->data->write_lock);
+	time = get_cur_time() - philo->data->start_time;
+	if (!dead_loop(philo))
 		printf("%d %d %s\n", time, name, str);
 	pthread_mutex_unlock(&philo->data->write_lock);
 }
 
-int get_cur_time(void)
+int	get_cur_time(void)
 {
-    struct timeval	time;
+	struct timeval	time;
 
-    if (gettimeofday(&time, NULL) == -1)
-        write(2, "gettimeofday() error\n", 22);
-    return (time.tv_sec * 1000 + time.tv_usec / 1000);
+	if (gettimeofday(&time, NULL) == -1)
+		write(2, "gettimeofday() error\n", 22);
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
-int ft_usleep(int ms)
+int	ft_usleep(int ms)
 {
-    int start;
+	int	start;
 
-    start = get_cur_time();
-    while ((get_cur_time() - start) < ms)
-        usleep(500);
-    return (0);
+	start = get_cur_time();
+	while ((get_cur_time() - start) < ms)
+		usleep(500);
+	return (0);
 }

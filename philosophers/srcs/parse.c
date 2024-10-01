@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 16:55:27 by analba-s          #+#    #+#             */
-/*   Updated: 2024/09/24 13:37:49 by analba-s         ###   ########.fr       */
+/*   Updated: 2024/10/01 18:29:11 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	init_forks(t_data *data)
 
 void	init_philos(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (++i < data->num_philos)
@@ -51,7 +51,7 @@ void	init_philos(t_data *data)
 		data->philos[i].dead_lock = &data->dead_lock;
 		data->philos[i].meal_lock = &data->meal_lock;
 		data->philos[i].write_lock = &data->write_lock;
-		data->philos[i].dead = data->philo_dead;
+		data->philos[i].dead = &data->philo_dead;
 		data->philos[i].l_fork = &data->forks[i];
 		if (i == data->num_philos - 1)
 			data->philos[i].r_fork = &data->forks[0];
@@ -73,8 +73,12 @@ int	parse_data(int arc, char **arv, t_data *data)
 		if (arc == 6)
 			data->max_meals = ft_atoilong(arv[5]);
 	}
+	else
+		return (printf("./philo needs 5 or 6 arguments\n"), 0);
 	if (!positive_data(data))
-		return (0);
+		return (printf("Arguments needs to be > 0\n"), 0);
+	if (ft_atoilong(arv[1]) > 200)
+		return (printf("Too many philosophers\n"), 0);
 	data->philo_dead = 0;
 	init_philos(data);
 	init_forks(data);
