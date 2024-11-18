@@ -1,88 +1,60 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/18 20:06:48 by analba-s          #+#    #+#             */
+/*   Updated: 2024/11/18 20:22:49 by analba-s         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include "libft.h"
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <string.h>
+# include <libft.h>
 # include <fcntl.h>
-# include <dirent.h>
-# include <sys/wait.h>
 # include <limits.h>
-# include <errno.h>
-# include <signal.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <unistd.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <sys/wait.h>
 
-# define EMPTY 0
-# define CMD 1
-# define ARG 2
-# define TRUNC 3
-# define APPEND 4
-# define INPUT 5
-# define PIPE 6
-# define END 7
-
-# define STDIN 0
-# define STDOUT 1
-# define STDERR 2
-
-# define SKIP 1
-# define NOSKIP 0
-
-# define BUFF_SIZE 4096
-# define EXPANSION -36
-# define ERROR 1
-# define SUCCESS 0
-# define IS_DIRECTORY 126
-# define UNKNOWN_COMMAND 127
-
-typedef struct	s_token
+typedef enum	e_tok_type
 {
-	char			*str;
-	int				type;
-	struct s_token	*prev;
-	struct s_token	*next;
-}				t_token;
+	T_WORD = 1,
+	T_QUOTE = 2,
+	T_DQUOTE = 3,
+}				t_tok_type;
 
-typedef struct	s_env
+typedef struct	s_tok
 {
-	char			*value;
-	struct s_env	*next;
-}				t_env;
+	char	*content;
+	int		type;
+	int		flag;
+	struct s_tok	*next;
+}				t_tok;
 
-typedef struct	s_mini
+typedef struct	s_cmd
 {
-	t_token			*start;
-	t_env			*env;
-	t_env			*secret_env;
-	int				in;
-	int				out;
-	int				fdin;
-	int				fdout;
-	int				pipin;
-	int				pipout;
-	int				pid;
-	int				charge;
-	int				parent;
-	int				last;
-	int				ret;
-	int				exit;
-	int				no_exec;
-}				t_mini;
+	char *cmd;
+	int fdin;
+	int fdout;
+	struct s_cmd	*next;
+}				t_cmd;
 
-typedef struct	s_sig
-{
-	int				sigint;
-	int				sigquit;
-	int				exit_status;
-	pid_t			pid;
-}				t_sig;
 
-typedef struct	s_expansions
+typedef struct	s_mnsh
 {
-	char			*new_arg;
-	int				i;
-	int				j;
-}				t_expansions;
+	t_cmd		*cmd;
+	t_tok		*tok;
+	char		*prompt;
+}				t_mnsh;
+
+
 
 #endif
