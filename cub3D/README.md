@@ -1,22 +1,24 @@
 # 📜 README#
-https://prod.liveshare.vsengsaas.visualstudio.com/join?E34D133D6359AD98C746AE3B280DAC35D1AB
+https://prod.liveshare.vsengsaas.visualstudio.com/join?18CFD429E41A2A5A2915B73CD58FC34A5212
 
-# ToDo
+# ToDo ❓ ✅
 - [ ] Loop jugable
 	- [ ] 1era habitacion solo personaje y arma.
 	- [ ] Coges arma se abre habitacion.
-	- [ ] Avanzas al coger item de cada habitacion.
+	- [x] Avanzas al coger item de cada habitacion.
 	- [ ] Ganas al coger todos los items.
 - [ ] Items
+	- [ ] Animación de sprite.
+	- [ ] Contador restante por pantalla.
 - [ ] Personaje
-	- [ ] Spawn en habitacion limpia, con objeto arma.
+	- [ ] Spawn en habitacion limpia, con item arma.
+	- [ ] Una vez que se coje el arma se habbilitan funcionalidades de esta.
 - [ ] Enemigos
 	- [ ] Movimento
 	- [ ] Siempre HS
 	- [ ] Animacion de muerte (?)
 	- [ ] Daño por colision
-	- [ ] Spawn
-		- [ ] Spawn por habitacion en funcion de dificultad
+	- [ ] Spawn por habitacion en funcion de dificultad
 - [ ] Puertas
 	- [ ] Animacion puerta corredera
 	- [ ] Trigger de activacion
@@ -35,11 +37,12 @@ https://prod.liveshare.vsengsaas.visualstudio.com/join?E34D133D6359AD98C746AE3B2
 	- [ ] Balas
 		- [ ] Cantidad 1
 	- [ ] Animaciones
-		- [ ] Retroeceso
+		- [ ] Retroceso
 		- [ ] Floritura (?)
 		- [ ] Recarga
 - [ ] Vida 
 	- [ ] Vidas en funcion de dificultad (Minimo 3).
+- [ ] Minimapa
 - [ ] Main menu (?)
 	- [ ] Aparece si arc = 1, si arc = 2 carga de mapa directa.
 	- [ ] Selectores por numero, no controles
@@ -49,7 +52,6 @@ https://prod.liveshare.vsengsaas.visualstudio.com/join?E34D133D6359AD98C746AE3B2
 		- [ ] Mid
 		- [ ] Hard
 		- [ ] Tryhard ( sin arma )
-			- [ ] No hay arma en spawnroom, se recoge otro coleccionable
-			- [ ] Se bloquean funcionalidades de arma
+			- [ ] No hay arma en spawnroom, se recoge otro coleccionable.
+			- [ ] Se bloquean funcionalidades de arma.
 ```
-
