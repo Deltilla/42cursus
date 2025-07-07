@@ -1,5 +1,5 @@
 # 📜 README#
-https://prod.liveshare.vsengsaas.visualstudio.com/join?2DF1B88EF0B1C6393ABB6CCA9602705AD65E
+https://prod.liveshare.vsengsaas.visualstudio.com/join?E34D133D6359AD98C746AE3B280DAC35D1AB
 
 # ToDo
 - [ ] Loop jugable
@@ -15,7 +15,7 @@ https://prod.liveshare.vsengsaas.visualstudio.com/join?2DF1B88EF0B1C6393ABB6CCA9
 	- [ ] Siempre HS
 	- [ ] Animacion de muerte (?)
 	- [ ] Daño por colision
-	- Spawn 
+	- [ ] Spawn
 		- [ ] Spawn por habitacion en funcion de dificultad
 - [ ] Puertas
 	- [ ] Animacion puerta corredera
@@ -44,6 +44,12 @@ https://prod.liveshare.vsengsaas.visualstudio.com/join?2DF1B88EF0B1C6393ABB6CCA9
 	- [ ] Aparece si arc = 1, si arc = 2 carga de mapa directa.
 	- [ ] Selectores por numero, no controles
 	- [ ] Selector de nivel
-	- [ ] Selcetor dificultad
+	- [ ] Selcetor dificultad 
+		- [ ] Easy
+		- [ ] Mid
+		- [ ] Hard
+		- [ ] Tryhard ( sin arma )
+			- [ ] No hay arma en spawnroom, se recoge otro coleccionable
+			- [ ] Se bloquean funcionalidades de arma
 ```
 
