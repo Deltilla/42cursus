@@ -3,30 +3,29 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+         #
+#    By: frmarian <frmarian@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 21:19:06 by analba-sa         #+#    #+#              #
-#    Updated: 2025/06/25 13:21:42 by analba-s         ###   ########.fr        #
+#    Updated: 2025/07/08 12:37:38 by frmarian         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
 LIBFT_PATH = libs/libft
-#MLX_PATH = lib/mlx42
-LIBFT = -L$(LIBFT_PATH) -lft
-#MLX42 = $(MLX_PATH)/build/libmlx42.a
-#LIBGL = -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib"
+MLX_PATH = libs/mlx
+LIBFT = $(LIBFT_PATH)/libft.a
+MLX = $(MLX_PATH)/libmlx.a
+MLX_FLAGS = -L$(MLX_PATH) -lmlx -lXext -lX11
 SRCS_PATH = srcs
 CC = clang
 CFLAGS = -g -Wall -Werror -Wextra
 OBJ_DIR = obj
-DEPS = -I include -I $(LIBFT_PATH) #-I $(MLX_PATH)/include
-LIBS = $(LIBGL) $(LIBFT) #$(MLX42)
+DEPS = -Iinclude -I$(LIBFT_PATH) -I$(MLX_PATH)
+LIBS = $(LIBFT) $(MLX_FLAGS)
 
 SOURCES = $(SRCS_PATH)/cub3D.c
 
 OBJ = $(SOURCES:$(SRCS_PATH)/%.c=$(OBJ_DIR)/%.o)
-
 
 ################################################################################
 ##                                    COLOURS                                 ##
@@ -45,7 +44,7 @@ TURQUOISE=\033[36m
 ##                                    RULES                                   ##
 ################################################################################
 
-all : head libft $(NAME) #before $NAME <-- mlx42
+all : head libft mlx $(NAME)
 
 head:
 	@echo "$(BLUE)"
@@ -54,33 +53,34 @@ head:
 	@echo "\t  ▛▘▌▌▛▌ ▄▌▌▌"
 	@echo "\t  ▙▖▙▌▙▌ ▄▌▙▘"
 	@echo "\t        By analba-s" 
-	@echo "\tProyect: \033[36m so_long $(BLUE)"
+	@echo "\tProyect: \033[36m cub3D $(BLUE)"
 	@echo "\tCommands:\033[36m all clean fclean re $(WHITE)\n"
 
 libft :
-	@$(MAKE) -s -C $(LIBFT_PATH)
+	@$(MAKE) -s -C $(LIBFT_PATH) > /dev/null 2>&1
 
-#mlx42 :
-#	@cmake $(MLX_PATH) -B $(MLX_PATH)/build && make -s -C $(MLX_PATH)/build -j4
+mlx :
+	@$(MAKE) -s -C $(MLX_PATH) > /dev/null 2>&1
 
-$(NAME) : $(OBJ)
+$(NAME) : $(OBJ) $(LIBFT)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBS)
+	@echo "$(GREEN)✅ $(NAME) compiled successfully!\n$(WHITE)"
 
 $(OBJ_DIR)/%.o : $(SRCS_PATH)/%.c
 	@mkdir -p $(@D)
 	@$(CC) $(CFLAGS) -c $< -o $@ $(DEPS)
-	@echo "  ✓ Compiled: $(notdir $<)"
 
 clean :
 	@rm -rf $(OBJ_DIR)
-	@$(MAKE) -s -C $(LIBFT_PATH) clean_libft
-	@echo "$(GREEN)Clean  ✓ $(WHITE)"
+	@$(MAKE) -s -C $(LIBFT_PATH) clean_libft > /dev/null 2>&1
+	@$(MAKE) -s -C $(MLX_PATH)  clean > /dev/null 2>&1
+	@echo "🧹 $(GREEN)Object files removed\n$(WHITE)"
 
 fclean :
 	@rm -rf $(OBJ_DIR)
 	@rm -f $(NAME)
-	@$(MAKE) -s -C $(LIBFT_PATH) fclean_libft
-	@echo "$(GREEN)Hardly clean  ✓ $(WHITE)"
+	@$(MAKE) -s -C $(LIBFT_PATH) fclean_libft > /dev/null 2>&1
+	@echo "🗑️  $(GREEN)$(NAME) removed\n$(WHITE)"
 
 re : fclean all
 

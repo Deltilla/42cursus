@@ -5,7 +5,7 @@ https://prod.liveshare.vsengsaas.visualstudio.com/join?1A8DA593923655D52BE92F629
 - [ ] Loop jugable
 	- [ ] 1era habitacion solo personaje y arma.
 	- [ ] Coges arma se abre habitacion.
-	- [x] Avanzas al coger item de cada habitacion.
+	- [ ] Avanzas al coger item de cada habitacion.
 	- [ ] Ganas al coger todos los items.
 - [ ] Items
 	- [ ] Animación de sprite.

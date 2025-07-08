@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: frmarian <frmarian@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 13:05:09 by analba-s          #+#    #+#             */
-/*   Updated: 2025/06/25 13:22:06 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/07/08 12:29:06 by frmarian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,10 @@
 
 int main()
 {
-	
+	t_game game;
+
+
+	game.posX = 1;
+
+	return 0;
 }
