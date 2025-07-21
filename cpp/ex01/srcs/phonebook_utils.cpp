@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:09:19 by analba-s          #+#    #+#             */
-/*   Updated: 2025/07/11 14:30:09 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/07/21 18:05:55 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ void	add_contact(phonebook *book, int *i)
 void	search_contact(phonebook *book)
 {
 	int			i;
-	std::string contact;
+	int			index;
+	std::string			contact;
 	
 	i = 0;
 	while (book->contacts[i].added)
@@ -73,6 +74,24 @@ void	search_contact(phonebook *book)
 		std::cout << book->contacts[i].first_name << "|";
 		std::cout << book->contacts[i].last_name << "|";
 		std::cout << book->contacts[i].nickname << std::endl;
+		i++;
+	}
+	i = 0;
+	std::cout << "Douchebag's ASSPP: ";
+	contact = handle_imput(contact);
+	//std::stringstream	ss(handle_imput(contact));
+	ss >> index;
+	while (book->contacts[i].added)
+	{
+		if (index == book->contacts[i].index)
+		{
+			std::cout << book->contacts[i].index << std::endl;
+			std::cout << book->contacts[i].first_name << std::endl;
+			std::cout << book->contacts[i].last_name << std::endl;
+			std::cout << book->contacts[i].nickname << std::endl;
+			std::cout << book->contacts[i].phone << std::endl;
+			std::cout << book->contacts[i].secret << std::endl;
+		}
 		i++;
 	}
 }

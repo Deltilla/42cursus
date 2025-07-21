@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 12:43:54 by analba-s          #+#    #+#             */
-/*   Updated: 2025/07/11 14:28:21 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/07/21 17:33:30 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <cctype>
 # include <iostream>
 # include <string>
+# include <sstream>
+# include <cstdlib>
 # include <stdlib.h>
 # include <stdbool.h>
 
