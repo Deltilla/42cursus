@@ -57,7 +57,7 @@ void	add_contact(phonebook *book, int *i)
 	cur->secret = fill_data(cur->secret);
 	cur->added = true;
 	*i += 1;
-	if (*i > 8)
+	if (*i == 8)
 		*i = 0;
 }
 
@@ -68,7 +68,7 @@ void	search_contact(phonebook *book)
 	std::string			contact;
 	
 	i = 0;
-	while (book->contacts[i].added)
+	while (i < 8 && book->contacts[i].added)
 	{
 		std::cout << book->contacts[i].index << "|";
 		std::cout << book->contacts[i].first_name << "|";
@@ -78,10 +78,9 @@ void	search_contact(phonebook *book)
 	}
 	i = 0;
 	std::cout << "Douchebag's ASSPP: ";
-	contact = handle_imput(contact);
-	//std::stringstream	ss(handle_imput(contact));
+	std::stringstream	ss(handle_imput(contact));
 	ss >> index;
-	while (book->contacts[i].added)
+	while (i < 8 && book->contacts[i].added)
 	{
 		if (index == book->contacts[i].index)
 		{
