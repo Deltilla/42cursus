@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:09:19 by analba-s          #+#    #+#             */
-/*   Updated: 2025/07/21 18:05:55 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/07/28 12:50:09 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,17 @@ std::string	right_align(std::string imput, std::string::size_type len)
 
 std::string fill_data(std::string data)
 {
-	std::string	imput;
 	std::string::size_type len;
-
-	imput = handle_imput(imput);
-	len = imput.size();
+	
+	len = data.size();
 	if (len < 10)
-		data = right_align(imput, len);
+		data = right_align(data, len);
 	else if (len > 10)
-		data = truncate_imput(imput);
+		data = truncate_imput(data);
 	return (data);
 }
+
+
 
 void	add_contact(phonebook *book, int *i)
 {
@@ -46,15 +46,15 @@ void	add_contact(phonebook *book, int *i)
 
 	cur = book->contacts + *i;
 	std::cout << "First name: ";
-	cur->first_name = fill_data(cur->first_name);
+	cur->first_name = handle_imput(cur->first_name);
 	std::cout << "Last name: ";
-	cur->last_name = fill_data(cur->last_name);
+	cur->last_name = handle_imput(cur->last_name);
 	std::cout<< "Nickname: ";
-	cur->nickname = fill_data(cur->nickname);
+	cur->nickname = handle_imput(cur->nickname);
 	std::cout<< "Phone Number: ";
-	cur->phone = fill_data(cur->phone);
+	cur->phone = handle_imput(cur->phone);
 	std::cout<< "Darkest Secret: ";
-	cur->secret = fill_data(cur->secret);
+	cur->secret = handle_imput(cur->secret);
 	cur->added = true;
 	*i += 1;
 	if (*i == 8)
@@ -68,28 +68,31 @@ void	search_contact(phonebook *book)
 	std::string			contact;
 	
 	i = 0;
+	std::cout << "     index|first name| last name|  nickname" << std::endl;
 	while (i < 8 && book->contacts[i].added)
 	{
-		std::cout << book->contacts[i].index << "|";
-		std::cout << book->contacts[i].first_name << "|";
-		std::cout << book->contacts[i].last_name << "|";
-		std::cout << book->contacts[i].nickname << std::endl;
+		std::cout << "         " << book->contacts[i].index << "|";
+		std::cout << fill_data(book->contacts[i].first_name) << "|";
+		std::cout << fill_data(book->contacts[i].last_name) << "|";
+		std::cout << fill_data(book->contacts[i].nickname) << std::endl;
 		i++;
 	}
 	i = 0;
-	std::cout << "Douchebag's ASSPP: ";
+	std::cout << "Index: ";
 	std::stringstream	ss(handle_imput(contact));
 	ss >> index;
+	if (index > 8)
+		std::cout << "index out of range" << std::endl << "Index: ";
 	while (i < 8 && book->contacts[i].added)
 	{
 		if (index == book->contacts[i].index)
 		{
-			std::cout << book->contacts[i].index << std::endl;
-			std::cout << book->contacts[i].first_name << std::endl;
-			std::cout << book->contacts[i].last_name << std::endl;
-			std::cout << book->contacts[i].nickname << std::endl;
-			std::cout << book->contacts[i].phone << std::endl;
-			std::cout << book->contacts[i].secret << std::endl;
+			std::cout << "index: " << book->contacts[i].index << std::endl;
+			std::cout << "first name: " << book->contacts[i].first_name << std::endl;
+			std::cout << "last_name: " << book->contacts[i].last_name << std::endl;
+			std::cout << "nickname: " << book->contacts[i].nickname << std::endl;
+			std::cout << "phone: " << book->contacts[i].phone << std::endl;
+			std::cout << "darkest secret: " << book->contacts[i].secret << std::endl;
 		}
 		i++;
 	}
