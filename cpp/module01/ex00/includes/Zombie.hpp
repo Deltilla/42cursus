@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 13:01:25 by analba-s          #+#    #+#             */
-/*   Updated: 2025/08/01 14:04:41 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/08/05 17:33:17 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 //                               Zombie Class                                 //
 // ************************************************************************** //
 
-class Zombie	{
+class Zombie {
 	
 private:
 
-	static std::string	name;
+	std::string	name;
 
 	Zombie( void );
 
@@ -31,8 +31,8 @@ public:
 
 	typedef	Zombie	t;
 
-	static Zombie	*newZombie( std::string name );
-	static void	randomChump( std::string name );
+	static Zombie*	newZombie( std::string name );
+	static void		randomChump( std::string name );
 
 	Zombie( std::string name );
 	~Zombie( void );
