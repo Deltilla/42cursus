@@ -6,20 +6,19 @@
 #    By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 21:19:06 by analba-sa         #+#    #+#              #
-#    Updated: 2025/08/05 17:18:00 by analba-s         ###   ########.fr        #
+#    Updated: 2025/08/07 13:16:09 by analba-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ex00
+NAME = ex01
 SRCS_PATH = srcs
 CC = c++
 CFLAGS = -g -Wall -Werror -Wextra -std=c++98
 OBJ_DIR = obj
 DEPS = -I includes
 
-SOURCES = srcs/newZombie.cpp \
-		srcs/randomChump.cpp \
-		srcs/Zombie.cpp \
+SOURCES = srcs/Zombie.cpp \
+		srcs/zombieHorde.cpp \
 		srcs/main.cpp
 
 OBJ = $(SOURCES:$(SRCS_PATH)/%.cpp=$(OBJ_DIR)/%.o)

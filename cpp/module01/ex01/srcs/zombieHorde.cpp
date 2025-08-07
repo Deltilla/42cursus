@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/01 13:38:55 by analba-s          #+#    #+#             */
-/*   Updated: 2025/08/07 15:49:07 by analba-s         ###   ########.fr       */
+/*   Created: 2025/08/07 12:51:15 by analba-s          #+#    #+#             */
+/*   Updated: 2025/08/07 17:50:02 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Zombie.hpp>
 
-Zombie::Zombie( std::string name )
+Zombie* Zombie::zombieHorde( int N, std::string name )
 {
-	this->_name = name;
-}
+	Zombie* horde;
 
-Zombie::~Zombie()
-{
-	std::cout << this->_name << ": got destoyed" << std::endl;
-}
-
-void	Zombie::Announce( void )
-{
-	std::cout << this->_name << ": BraiiiiiiinnnzzzZ" << std::endl;
+	if (N < 0) {
+		std::cout << "invalid number of zombies" << std::endl;
+		return (NULL);
+	}
+	horde = new Zombie[N];
+	for (int i = 0; i < N; ++i) {
+		horde[i].setName(name);
+	}
+	return (horde);
 }
