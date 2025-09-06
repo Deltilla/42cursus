@@ -17,7 +17,6 @@
 HumanA::HumanA ( std::string name, Weapon &type) : _weapon(type)
 {
 	this->_name = name;
-	//this->_weapon = type;
 }
 
 HumanA::~HumanA( void )

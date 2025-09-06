@@ -21,6 +21,7 @@ class HumanB {
 private:
 
 	std::string	_name;
+	Weapon*		_weapon;
 
 public:
 
@@ -29,7 +30,7 @@ public:
 	~HumanB( void );
 
 	void	attack();
-	void	setWeapon( Weapon type );
+	void	setWeapon( Weapon &type );
 };
 
 #endif
