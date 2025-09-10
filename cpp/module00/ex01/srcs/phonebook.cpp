@@ -6,12 +6,13 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:35:32 by analba-s          #+#    #+#             */
-/*   Updated: 2025/07/11 14:29:38 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/09/10 19:12:14 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <phonebook.hpp>
 #include <stdio.h>
+#include <cctype>
 
 std::string handle_imput(std::string data)
 {
@@ -19,7 +20,15 @@ std::string handle_imput(std::string data)
 	if (data.empty())
 		exit(EXIT_FAILURE);
 	else
-		return (data);
+	{
+		for (size_t i = 0; i < data.length(); i++)
+			if (!std::isprint(data[i]))
+			{
+				std::cout << "It seems like you are very special, please enter a valid imput" << std::endl;
+				return (handle_imput(data));
+			}
+	}
+	return (data);
 }
 
 int	handle_commands(phonebook *book, std::string username, std::string cmd, int *i, bool special)
