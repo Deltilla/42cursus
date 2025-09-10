@@ -25,11 +25,12 @@ int main(int arc, char **arv)
 
     if (arc == 4)
     {
-        char* fname = arv[1];
-        std::ifstream in(fname, std::ios_base::in);
+		std::string fname = arv[1];
+		std::string ofname = fname + ".replace";
+        std::ifstream in(fname.c_str(), std::ios_base::in);
         if (!in.is_open())
             std::cout << "error: Could not open the file" << std::endl;
-		std::ofstream of("replace", std::ios_base::out);
+		std::ofstream of(ofname.c_str(), std::ios_base::out);
 		if (!of.is_open())
         std::cout << "error: Could not create the replace file" << std::endl;
 		while (getline(in, line))
