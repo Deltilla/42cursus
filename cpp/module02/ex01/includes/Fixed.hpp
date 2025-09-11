@@ -15,31 +15,34 @@
 
 # include <iostream>
 # include <string>
-# include <map>
+# include <cmath>
 
 // ************************************************************************** //
 //                               Zombie Class                                 //
 // ************************************************************************** //
 
-class Fixed
+class Fixed 
 {
-	
-public:
+	public:
 
-	Fixed( void );
-	Fixed( const Fixed& copy );
-	Fixed& operator = ( const Fixed& copy );
-	~Fixed( void );
-	
+    	Fixed();
+    	Fixed(const Fixed& other);
+    	Fixed(const int intValue);
+    	Fixed(const float floatValue);
+    	Fixed& operator=(const Fixed& other);
+    	~Fixed();
 
-	int getRawBits( void ) const;
-	void setRawBits( int const raw );
+    	int		getRawBits(void) const;
+    	void	setRawBits(int const raw);
+    	float	toFloat(void) const;
+    	int		toInt(void) const;
 
-private:
+	private:
+		int					_value;
+		static const int	_fractionalBits = 8;
 
-	int					_value;
-	static const int	_fractionalBits = 8;
-	
 };
+
+std::ostream& operator<<(std::ostream& os, const Fixed& fp);
 
 #endif

@@ -25,6 +25,18 @@ Fixed::Fixed( const Fixed& copy)
 	*this = copy;
 }
 
+Fixed::Fixed( const int intValue )
+{
+    std::cout << "Int constructor called" << std::endl;
+    this->_value = intValue << _fractionalBits;
+}
+
+Fixed::Fixed(const float floatValue)
+{
+    std::cout << "Float constructor called" << std::endl;
+    this->_value = roundf(floatValue * (1 << _fractionalBits));
+}
+
 Fixed& Fixed::operator=( const Fixed& copy )
 {
 	std::cout << "Copy assigment opperator called" << std::endl;
@@ -43,6 +55,22 @@ void Fixed::setRawBits( int const raw )
 {
 	std::cout << "setRawBits member function called" << std::endl;
 	this->_value = raw;
+}
+
+float Fixed::toFloat(void) const
+{
+    return static_cast<float>(this->_value) / (1 << _fractionalBits);
+}
+
+int Fixed::toInt(void) const
+{
+    return this->_value >> _fractionalBits;
+}
+
+std::ostream& operator<<(std::ostream& os, const Fixed& fp)
+{
+    os << fp.toFloat();
+    return os;
 }
 
 Fixed::~Fixed()
