@@ -17,7 +17,8 @@ CFLAGS = -g -Wall -Werror -Wextra -std=c++98
 OBJ_DIR = obj
 DEPS = -I includes
 
-SOURCES = $(SRCS_PATH)/phonebook.cpp \
+SOURCES = $(SRCS_PATH)/contact.cpp \
+			$(SRCS_PATH)/phonebook.cpp \
 			$(SRCS_PATH)/phonebook_utils.cpp
 
 OBJ = $(SOURCES:$(SRCS_PATH)/%.cpp=$(OBJ_DIR)/%.o)
