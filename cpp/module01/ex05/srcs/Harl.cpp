@@ -6,11 +6,13 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 13:38:55 by analba-s          #+#    #+#             */
-/*   Updated: 2025/09/10 19:02:39 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/09/17 16:59:19 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Harl.hpp>
+
+// El uso de map esta prohibido hasta el modulo 08, en consecuencia hay que cambiar este proyecto
 
 Harl::Harl( void )
 {

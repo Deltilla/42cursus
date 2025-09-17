@@ -1,46 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Harl.hpp                                           :+:      :+:    :+:   */
+/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 13:01:25 by analba-s          #+#    #+#             */
-/*   Updated: 2025/09/17 16:59:46 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/09/17 19:23:45 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HARL_H
-#define	HARL_H
+#ifndef CLAPTRAP_H
+#define	CLAPTRAP_H
 
 # include <iostream>
 # include <string>
-# include <map>
 
 // ************************************************************************** //
 //                               Zombie Class                                 //
 // ************************************************************************** //
 
-class Harl {
-	
-public:
-	
-	typedef void (Harl::*complainLevel)(void);
+class ClapTrap
+{
+	public:
 
-	Harl( void );
-	~Harl( void );
-	
-	void complain( std::string level );
+    	ClapTrap();
+		ClapTrap( std::string name );
+    	ClapTrap(const ClapTrap& other);
+		ClapTrap& operator=(const ClapTrap& other);
+    	~ClapTrap();
 
-private:
+		std::string		getName( void ) const;
+		unsigned int	getHitPoints( void ) const;
+		unsigned int	getEnergyPoints( void ) const;
+		unsigned int	getAtackDamage( void ) const;
 
-	void	debug( void );
-	void	info( void );
-	void	warning( void );
-	void	error( void );	
+		void	setName( std::string name );
+		void	setHitPoints( unsigned int amount );
+		void	setEnergyPoints( unsigned int amount );
+		void	setAtackDamage( unsigned int amount );
+		
+		
+    	void	attack( const std::string& target );
+		void	takeDamage( unsigned int amount );
+		void	beRepaired( unsigned int amount );
+
+	private:
 	
-	std::map<std::string, complainLevel> complaints;
-	
+		std::string		_name;
+		unsigned int	_hitPoints;
+		unsigned int	_energyPoints;
+		unsigned int	_atackDamage;
+
 };
 
 #endif

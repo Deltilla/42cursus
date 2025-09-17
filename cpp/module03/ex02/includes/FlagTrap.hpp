@@ -1,46 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Harl.hpp                                           :+:      :+:    :+:   */
+/*   FlagTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/01 13:01:25 by analba-s          #+#    #+#             */
-/*   Updated: 2025/09/17 16:59:46 by analba-s         ###   ########.fr       */
+/*   Created: 2025/09/17 19:08:08 by analba-s          #+#    #+#             */
+/*   Updated: 2025/09/17 20:07:14 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HARL_H
-#define	HARL_H
+#ifndef FLAGTRAP_H
+#define	FLAGTRAP_H
 
 # include <iostream>
 # include <string>
-# include <map>
+# include <ClapTrap.hpp>
 
 // ************************************************************************** //
 //                               Zombie Class                                 //
 // ************************************************************************** //
 
-class Harl {
-	
-public:
-	
-	typedef void (Harl::*complainLevel)(void);
+class FlagTrap : public ClapTrap
+{
+	public:
 
-	Harl( void );
-	~Harl( void );
-	
-	void complain( std::string level );
+    	FlagTrap();
+		FlagTrap( std::string name );
+    	FlagTrap( const FlagTrap& copy );
+		FlagTrap& operator=( const FlagTrap& copy );
+    	~FlagTrap();
+		
+    	void highFivesGuys(void);
 
-private:
-
-	void	debug( void );
-	void	info( void );
-	void	warning( void );
-	void	error( void );	
-	
-	std::map<std::string, complainLevel> complaints;
-	
 };
 
 #endif
