@@ -6,20 +6,18 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 13:38:55 by analba-s          #+#    #+#             */
-/*   Updated: 2025/09/17 16:59:19 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/09/22 19:30:33 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Harl.hpp>
 
-// El uso de map esta prohibido hasta el modulo 08, en consecuencia hay que cambiar este proyecto
-
 Harl::Harl( void )
 {
-	complaints["debug"] = &Harl::debug;
-	complaints["info"] = &Harl::info;
-	complaints["warning"] = &Harl::warning;
-	complaints["error"] = &Harl::error;
+	this->levels[0] = &Harl::debug;
+	this->levels[1] = &Harl::info;
+	this->levels[2] = &Harl::warning;
+	this->levels[3] = &Harl::error;
 }
 
 Harl::~Harl()
@@ -48,9 +46,14 @@ void Harl::error( void )
 
 void Harl::complain( std::string level )
 {
-	std::map<std::string, complainLevel>::iterator it = complaints.find(level);
-	if (it != complaints.end())
-		(this->*(it->second))();
-	else
-		std::cout << "Harl is complaining about something irrelevant" << std::endl;
+	std::string		levelNames[] = { "DEBUG", "INFO", "WARNING", "ERROR" };
+	for (int i = 0; i < 4; i++)
+	{
+		if (level.compare(levelNames[i]) == 0)
+		{
+			(this->*levels[i])();
+			return ;
+		}
+	}
+	std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 13:01:25 by analba-s          #+#    #+#             */
-/*   Updated: 2025/09/17 16:59:46 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/09/22 19:29:07 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,9 @@
 
 # include <iostream>
 # include <string>
-# include <map>
 
 // ************************************************************************** //
-//                               Zombie Class                                 //
+//                               Harl Class                                   //
 // ************************************************************************** //
 
 class Harl {
@@ -34,12 +33,12 @@ public:
 
 private:
 
+	complainLevel	levels[4];
+
 	void	debug( void );
 	void	info( void );
 	void	warning( void );
-	void	error( void );	
-	
-	std::map<std::string, complainLevel> complaints;
+	void	error( void );
 	
 };
 

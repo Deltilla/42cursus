@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 13:53:21 by analba-s          #+#    #+#             */
-/*   Updated: 2025/08/05 17:30:09 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/09/22 17:43:00 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 void	Zombie::randomChump( std::string name )
 {
-	typedef	Zombie::t	zombie_t;
-
-	zombie_t	zombie(name);
+	Zombie zombie(name);
+	
 	zombie.Zombie::Announce();
 }

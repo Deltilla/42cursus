@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 13:50:06 by analba-s          #+#    #+#             */
-/*   Updated: 2025/08/05 17:32:52 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/09/22 17:43:38 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 Zombie*	Zombie::newZombie( std::string name )
 {
-	typedef Zombie::t	zombie_t;
-	zombie_t *zombie;
-
-	zombie = new Zombie(name);	
+	Zombie *zombie = new Zombie(name);
+	
 	return (zombie);
 }

@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 12:54:06 by analba-s          #+#    #+#             */
-/*   Updated: 2025/07/28 15:29:29 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/09/22 19:42:09 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ Account::~Account()
 
 int	Account::getNbAccounts()
 {
-	return (_nbAccounts); // Probar si es necesario y por que-> Account::_nbAccounts
+	return (_nbAccounts);
 }
 
 int	Account::getTotalAmount()
@@ -69,7 +69,7 @@ int	Account::getNbWithdrawals()
 void	Account::displayAccountsInfos()
 {
 	Account::_displayTimestamp();
-	std::cout << "accounts:" << _nbAccounts << ";" // Probar si es necesario y por que-> Account::_nbAccounts
+	std::cout << "accounts:" << _nbAccounts << ";"
 			<< "total:" << _totalAmount << ";"
 			<< "deposits:" << _totalNbDeposits << ";"
 			<< "withdrawals:" << _totalNbWithdrawals << std::endl;
@@ -78,19 +78,20 @@ void	Account::displayAccountsInfos()
 void	Account::makeDeposit( int deposit )
 {
 	Account::_displayTimestamp();
-	std::cout << "index" << this->_accountIndex << ";"
+	std::cout << "index:" << this->_accountIndex << ";"
 			<< "p_amount:" << this->_amount << ";"
 			<< "deposit:" << deposit << ";"
-			<< "amount" << this->_amount + deposit << ";"
+			<< "amount:" << this->_amount + deposit << ";"
 			<< "nb_deposits:" << ++this->_nbDeposits << std::endl;
 	this->_amount += deposit;
+	_totalAmount += deposit;
 	_totalNbDeposits++;
 }
 
 bool	Account::makeWithdrawal( int withdrawal )
 {
 	Account::_displayTimestamp();
-	std::cout << "index" << this->_accountIndex << ";"
+	std::cout << "index:" << this->_accountIndex << ";"
 			<< "p_amount:" << this->_amount << ";";
 	if (withdrawal > this->_amount)
 	{
@@ -100,9 +101,10 @@ bool	Account::makeWithdrawal( int withdrawal )
 	else
 	{
 		std::cout << "withdrawal:" << withdrawal << ";"
-		<< "amount" << this->_amount - withdrawal << ";"
+		<< "amount:" << this->_amount - withdrawal << ";"
 		<< "nb_withdrawals:" << ++this->_nbWithdrawals << std::endl;
 		this->_amount -= withdrawal;
+		_totalAmount -= withdrawal;
 		_totalNbWithdrawals++;
 		return (true);
 	}
