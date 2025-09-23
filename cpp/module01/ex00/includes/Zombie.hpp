@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 13:01:25 by analba-s          #+#    #+#             */
-/*   Updated: 2025/09/22 17:41:27 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/09/23 17:43:47 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ private:
 
 	public:
 	
-	static Zombie*	newZombie( std::string name );
-	static void		randomChump( std::string name );
 	
 	Zombie( void );
 	Zombie( std::string name );
@@ -38,5 +36,8 @@ private:
 	void	Announce( void );
 	
 };
+
+	Zombie*	newZombie( std::string name );
+	void	randomChump( std::string name );
 
 #endif

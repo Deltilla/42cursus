@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 13:01:25 by analba-s          #+#    #+#             */
-/*   Updated: 2025/09/22 17:46:11 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/09/23 17:47:20 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,12 @@
 
 class Zombie {
 	
-private:
-
-	std::string	_name;
+	private:
 	
-public:
-	
-	static Zombie*	newZombie( std::string name );
-	static void		randomChump( std::string name );
-	static Zombie*	zombieHorde( int N, std::string name );
+		std::string	_name;
+		
+	public:
+		
 	
 	Zombie( void );
 	Zombie( std::string name );
@@ -39,5 +36,8 @@ public:
 	void	Announce( void );
 	
 };
+
+	Zombie*	zombieHorde( int N, std::string name ); // Declaras la funcion como libre para evitar necesitar un objeto Zombie para llamarla ya que carece de sentido 
+													// dada su funcionalidad.
 
 #endif

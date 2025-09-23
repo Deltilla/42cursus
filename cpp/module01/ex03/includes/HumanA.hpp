@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 18:42:33 by analba-s          #+#    #+#             */
-/*   Updated: 2025/08/11 21:10:01 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/09/23 17:52:21 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ private:
 
 public:
 	
+	HumanA( Weapon &type );
 	HumanA( std::string name, Weapon &type );
 	~HumanA( void );
 

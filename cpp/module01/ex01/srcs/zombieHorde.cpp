@@ -6,13 +6,13 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 12:51:15 by analba-s          #+#    #+#             */
-/*   Updated: 2025/08/07 17:50:02 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/09/23 17:39:10 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Zombie.hpp>
 
-Zombie* Zombie::zombieHorde( int N, std::string name )
+Zombie* zombieHorde( int N, std::string name )
 {
 	Zombie* horde;
 
