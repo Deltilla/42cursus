@@ -1,30 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/01 13:37:47 by analba-s          #+#    #+#             */
-/*   Updated: 2025/09/24 12:37:50 by analba-s         ###   ########.fr       */
+/*   Created: 2025/09/24 16:52:27 by analba-s          #+#    #+#             */
+/*   Updated: 2025/09/24 17:09:57 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <Fixed.hpp>
+#ifndef BRAIN_H
+# define	BRAIN_H
 
-int main( void ) 
+# include <iostream>
+# include <string>
+
+class Brain
 {
+	public:
 
-	Fixed a;
-	Fixed b( a );
-	Fixed c;
-	
-	c = b;
-	
-	std::cout << a.getRawBits() << std::endl;
-	std::cout << b.getRawBits() << std::endl;
-	std::cout << c.getRawBits() << std::endl;
-	
-	return (0);
+    	Brain();
+		Brain( std::string type );
+    	Brain(const Brain& other);
+		Brain& operator=(const Brain& other);
+    	~Brain();
 
-}
+		// Getters:
+		
+		std::string*	getIdeas( void ) const;
+
+		//Setters:
+		
+		void	setIdeas( std::string type );
+		
+		//Member Functions:
+	
+	private:
+	
+		std::string _ideas[100];
+
+};
+
+#endif

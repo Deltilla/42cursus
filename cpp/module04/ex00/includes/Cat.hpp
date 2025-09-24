@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/01 13:37:47 by analba-s          #+#    #+#             */
-/*   Updated: 2025/09/24 12:37:50 by analba-s         ###   ########.fr       */
+/*   Created: 2025/09/24 15:53:27 by analba-s          #+#    #+#             */
+/*   Updated: 2025/09/24 15:57:43 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <Fixed.hpp>
+#ifndef CAT_H
+# define CAT_H
 
-int main( void ) 
+# include <Animal.hpp>
+
+class Cat : public Animal
 {
+	public:
 
-	Fixed a;
-	Fixed b( a );
-	Fixed c;
-	
-	c = b;
-	
-	std::cout << a.getRawBits() << std::endl;
-	std::cout << b.getRawBits() << std::endl;
-	std::cout << c.getRawBits() << std::endl;
-	
-	return (0);
+    	Cat();
+		Cat( std::string type );
+    	Cat(const Cat& other);
+		Cat& operator=(const Cat& other);
+    	~Cat();
 
-}
+};
+
+#endif

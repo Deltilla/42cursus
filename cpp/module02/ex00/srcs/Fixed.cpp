@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Harl.cpp                                           :+:      :+:    :+:   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 13:38:55 by analba-s          #+#    #+#             */
-/*   Updated: 2025/09/10 19:02:39 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/09/24 12:39:17 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 const int	Fixed::_fractionalBits;
 
-Fixed::Fixed( void ) : _value(0)
+Fixed::Fixed( void ) // : _value(0) otra forma de inicializar _value
 {
 	std::cout << "Default constructor called" << std::endl;
+	_value = 0;
 }
 
 Fixed::Fixed( const Fixed& copy)

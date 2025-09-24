@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/01 13:37:47 by analba-s          #+#    #+#             */
-/*   Updated: 2025/09/24 12:37:50 by analba-s         ###   ########.fr       */
+/*   Created: 2025/09/24 15:59:30 by analba-s          #+#    #+#             */
+/*   Updated: 2025/09/24 16:00:18 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <Fixed.hpp>
+#ifndef DOG_H
+# define DOG_H
 
-int main( void ) 
+# include <Animal.hpp>
+
+class Dog : public Animal
 {
+	public:
 
-	Fixed a;
-	Fixed b( a );
-	Fixed c;
-	
-	c = b;
-	
-	std::cout << a.getRawBits() << std::endl;
-	std::cout << b.getRawBits() << std::endl;
-	std::cout << c.getRawBits() << std::endl;
-	
-	return (0);
+    	Dog();
+		Dog( std::string type );
+    	Dog(const Dog& other);
+		Dog& operator=(const Dog& other);
+    	~Dog();
 
-}
+};
+
+#endif

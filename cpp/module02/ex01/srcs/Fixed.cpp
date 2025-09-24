@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Harl.cpp                                           :+:      :+:    :+:   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 13:38:55 by analba-s          #+#    #+#             */
-/*   Updated: 2025/09/10 19:02:39 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/09/24 14:23:56 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,12 @@ Fixed::Fixed( const int intValue )
 Fixed::Fixed(const float floatValue)
 {
     std::cout << "Float constructor called" << std::endl;
-    this->_value = roundf(floatValue * (1 << _fractionalBits));
+	if (floatValue >= 0)
+		this->_value = floatValue * (1 << _fractionalBits) + 0.5f; 	// la expresion 1 << _fractionalBits es equivalente a
+	else															// pow(2, _fractionalBits) osea 2 elevado a _fractionalBits
+		this->_value = floatValue * (1 << _fractionalBits) - 0.5f;	// ya que 1<<8 desplaza 1 8 bits a la izquierda, es decir,
+																	// 10000000 en binario = 256 en decimal, usamos 1<<8 porque es mas
+																	// eficiente al ser una operacion de bits.
 }
 
 Fixed& Fixed::operator=( const Fixed& copy )

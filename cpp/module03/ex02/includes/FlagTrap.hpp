@@ -6,20 +6,16 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 19:08:08 by analba-s          #+#    #+#             */
-/*   Updated: 2025/09/17 20:07:14 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/09/24 16:00:22 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FLAGTRAP_H
-#define	FLAGTRAP_H
+# define FLAGTRAP_H
 
 # include <iostream>
 # include <string>
 # include <ClapTrap.hpp>
-
-// ************************************************************************** //
-//                               Zombie Class                                 //
-// ************************************************************************** //
 
 class FlagTrap : public ClapTrap
 {

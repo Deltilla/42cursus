@@ -1,48 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 13:01:25 by analba-s          #+#    #+#             */
-/*   Updated: 2025/09/24 13:10:52 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/09/24 16:25:58 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIXED_H
-#define	FIXED_H
+#ifndef ANIMAL_H
+#define	ANIMAL_H
 
 # include <iostream>
 # include <string>
-# include <cmath>
 
 // ************************************************************************** //
 //                               Zombie Class                                 //
 // ************************************************************************** //
 
-class Fixed 
+class Animal
 {
 	public:
 
-    	Fixed();
-    	Fixed(const Fixed& copy);
-    	Fixed(const int intValue);
-    	Fixed(const float floatValue);
-    	Fixed& operator=(const Fixed& copy);
-    	~Fixed();
+    	Animal();
+		Animal( std::string type );
+    	Animal(const Animal& other);
+		Animal& operator=(const Animal& other);
+    	~Animal();
 
-    	int		getRawBits(void) const;
-    	void	setRawBits(int const raw);
-    	float	toFloat(void) const;
-    	int		toInt(void) const;
+		// Getters:
+		
+		std::string	getType( void ) const;
 
-	private:
-		int					_value;
-		static const int	_fractionalBits = 8;
+		//Setters:
+		
+		void	setType( std::string type );
+		
+		//Member Functions:
+		
+		void	makeSound( void ) const;
+	
+	protected:
+	
+		std::string _type;
 
 };
-
-std::ostream& operator<<(std::ostream& os, const Fixed& fp);
 
 #endif

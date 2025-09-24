@@ -6,11 +6,11 @@
 #    By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 21:19:06 by analba-sa         #+#    #+#              #
-#    Updated: 2025/09/10 16:37:37 by analba-s         ###   ########.fr        #
+#    Updated: 2025/09/24 15:26:59 by analba-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ex01
+NAME = ex02
 SRCS_PATH = srcs
 CC = c++
 CFLAGS = -g -Wall -Werror -Wextra -std=c++98

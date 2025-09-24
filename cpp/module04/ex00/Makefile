@@ -6,21 +6,22 @@
 #    By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 21:19:06 by analba-sa         #+#    #+#              #
-#    Updated: 2025/09/24 12:23:36 by analba-s         ###   ########.fr        #
+#    Updated: 2025/09/24 15:47:39 by analba-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = unnecesaryViolence
+NAME = animal
 SRCS_PATH = srcs
 CC = c++
 CFLAGS = -g -Wall -Werror -Wextra -std=c++98
 OBJ_DIR = obj
 DEPS = -I includes
 
-SOURCES = srcs/Weapon.cpp \
-		srcs/HumanA.cpp \
-		srcs/HumanB.cpp \
-		srcs/main.cpp
+SOURCES = srcs/main.cpp \
+		srcs/Animal.cpp \
+		srcs/Cat.cpp \
+		srcs/Dog.cpp
+		
 
 OBJ = $(SOURCES:$(SRCS_PATH)/%.cpp=$(OBJ_DIR)/%.o)
 

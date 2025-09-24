@@ -1,45 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 13:01:25 by analba-s          #+#    #+#             */
-/*   Updated: 2025/09/24 12:34:29 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/09/24 16:55:33 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIXED_H
-#define	FIXED_H
+#ifndef ANIMAL_H
+#define	ANIMAL_H
 
 # include <iostream>
 # include <string>
-# include <map>
 
-// ************************************************************************** //
-//                               Zombie Class                                 //
-// ************************************************************************** //
-
-class Fixed
+class Animal
 {
+	public:
+
+    	Animal();
+		Animal( std::string type );
+    	Animal(const Animal& other);
+		Animal& operator=(const Animal& other);
+    	~Animal();
+
+		// Getters:
+		
+		std::string	getType( void ) const;
+
+		//Setters:
+		
+		void	setType( std::string type );
+		
+		//Member Functions:
+		
+		void	makeSound( void ) const;
 	
-public:
-
-	Fixed( void );
-	Fixed( const Fixed& copy );
-	Fixed& operator=( const Fixed& copy );
-	~Fixed( void );
+	protected:
 	
+		std::string _type;
 
-	int		getRawBits( void ) const;
-	void	setRawBits( int const raw );
-
-private:
-
-	int					_value;
-	static const int	_fractionalBits = 8;
-	
 };
 
 #endif

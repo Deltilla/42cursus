@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Harl.cpp                                           :+:      :+:    :+:   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 13:38:55 by analba-s          #+#    #+#             */
-/*   Updated: 2025/09/10 19:02:39 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/09/24 15:25:50 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ Fixed::Fixed( const int intValue )
 Fixed::Fixed(const float floatValue)
 {
     std::cout << "Float constructor called" << std::endl;
-    this->_value = roundf(floatValue * (1 << _fractionalBits));
+	if (_value >= 0)
+		this->_value = floatValue * (1 << _fractionalBits) + 0.5f;
+	else
+		this->_value = floatValue * (1 << _fractionalBits) - 0.5f;
 }
 
 Fixed& Fixed::operator=( const Fixed& copy )
