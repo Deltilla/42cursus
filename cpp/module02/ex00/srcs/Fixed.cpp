@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 13:38:55 by analba-s          #+#    #+#             */
-/*   Updated: 2025/09/29 18:23:03 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/09/29 19:44:36 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 const int	Fixed::_fractionalBits;
 
-Fixed::Fixed( void ) // : _value(0) otra forma de inicializar _value
+Fixed::Fixed( void ) // : _value(0) other way to initialize _value
 {
 	std::cout << "Default constructor called" << std::endl;
 	_value = 0;
