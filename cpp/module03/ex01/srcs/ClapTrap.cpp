@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 13:38:55 by analba-s          #+#    #+#             */
-/*   Updated: 2025/09/17 19:33:06 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/09/30 11:28:05 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ ClapTrap& ClapTrap::operator=( const ClapTrap& copy )
 		this->_energyPoints = copy.getEnergyPoints();
 		this->_atackDamage = copy.getAtackDamage();
 	}
-    return (*this);
+    return ( *this );
 }
 
 ClapTrap::ClapTrap( std::string name )

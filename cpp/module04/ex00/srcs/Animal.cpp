@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 13:38:55 by analba-s          #+#    #+#             */
-/*   Updated: 2025/09/24 16:26:04 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/09/30 11:37:45 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 Animal::Animal( void )
 {
 	std::cout << "Animal's default constructor called" << std::endl;
+}
+
+Animal::Animal( std::string type )
+{
+	std::cout << "Animal's Type assigment constructor called" << std::endl;
+	this->_type = type;
 }
 
 Animal::Animal( const Animal& copy)
@@ -29,12 +35,6 @@ Animal& Animal::operator=( const Animal& copy )
     if (this != &copy)
 		this->_type = copy.getType();
     return (*this);
-}
-
-Animal::Animal( std::string type )
-{
-    std::cout << "Animal's Name assigment constructor called" << std::endl;
-    this->_type = type;
 }
 
 std::string	Animal::getType( void ) const

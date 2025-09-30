@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 19:07:21 by analba-s          #+#    #+#             */
-/*   Updated: 2025/09/17 20:01:22 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/09/30 11:29:17 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ ScavTrap& ScavTrap::operator=( const ScavTrap& copy )
 		this->setEnergyPoints(copy.getEnergyPoints());
 		this->setAtackDamage(copy.getAtackDamage());
 	}
-	return (*this);
+	return ( *this );
 }
 
 void ScavTrap::guardGate( void )

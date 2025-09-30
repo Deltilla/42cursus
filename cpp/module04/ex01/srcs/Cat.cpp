@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 16:06:10 by analba-s          #+#    #+#             */
-/*   Updated: 2025/09/24 17:11:38 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/09/30 12:26:05 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,37 @@
 
 Cat::Cat( void )
 {
-	std::cout << "Cat's default constructor called" << std::endl;
+	//std::cout << "Cat's default constructor called" << std::endl;
 	this->_type = "Cat";
 	this->_brain = new Brain();
 }
 
-Cat::Cat( const Cat& copy)
+Cat::Cat( std::string type )
 {
-	std::cout << "Cat's copy constructor called" << std::endl;
-	*this = copy;
+	//std::cout << "Cat's Type assigment constructor called" << std::endl;
+	this->_type = type;
+}
+
+Cat::Cat( const Cat& copy )
+{
+	//std::cout << "Cat's copy constructor called" << std::endl;
+	this->_type = copy.getType();
+	this->_brain = new Brain(*copy._brain);
 }
 
 Cat& Cat::operator=( const Cat& copy )
 {
-    std::cout << "Cat's copy assigment opperator called" << std::endl;
+    //std::cout << "Cat's copy assigment opperator called" << std::endl;
     if (this != &copy)
 		this->_type = copy.getType();
+	if (this->_brain)
+		delete this->_brain;
+	this->_brain = new Brain(*copy._brain);
     return (*this);
-}
-
-Cat::Cat( std::string type )
-{
-    std::cout << "Cat's Name assigment constructor called" << std::endl;
-    this->_type = type;
 }
 
 Cat::~Cat()
 {
-	std::cout << "Cat's destructor called" << std::endl;
+	//std::cout << "Cat's destructor called" << std::endl;
 	delete this->_brain;
 }

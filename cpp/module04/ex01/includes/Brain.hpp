@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 16:52:27 by analba-s          #+#    #+#             */
-/*   Updated: 2025/09/24 17:09:57 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/09/30 12:16:00 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class Brain
 	public:
 
     	Brain();
-		Brain( std::string type );
+		Brain( std::string* ideas );
     	Brain(const Brain& other);
 		Brain& operator=(const Brain& other);
     	~Brain();
@@ -32,13 +32,13 @@ class Brain
 
 		//Setters:
 		
-		void	setIdeas( std::string type );
+		void	setIdeas( std::string* ideas );
 		
 		//Member Functions:
 	
 	private:
 	
-		std::string _ideas[100];
+		std::string* _ideas;
 
 };
 
