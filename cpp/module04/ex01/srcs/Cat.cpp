@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 16:06:10 by analba-s          #+#    #+#             */
-/*   Updated: 2025/09/30 12:26:05 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/01 11:59:41 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@ Cat& Cat::operator=( const Cat& copy )
 		delete this->_brain;
 	this->_brain = new Brain(*copy._brain);
     return (*this);
+}
+
+void	setBrain( Brain brain )
+{
+	//std::cout << "Cat's setBrain member function called" << std::endl;
+	this->_brain = &brain;
 }
 
 Cat::~Cat()

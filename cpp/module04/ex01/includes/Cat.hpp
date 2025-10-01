@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 15:53:27 by analba-s          #+#    #+#             */
-/*   Updated: 2025/09/24 16:58:36 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/01 11:56:57 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ class Cat : public Animal
     	Cat(const Cat& other);
 		Cat& operator=(const Cat& other);
     	~Cat();
+
+		void	setBrain( Brain brain );
 	
 	private:
 

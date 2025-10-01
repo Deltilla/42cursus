@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 16:52:30 by analba-s          #+#    #+#             */
-/*   Updated: 2025/09/30 12:22:27 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/01 11:53:28 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ std::string*	Brain::getIdeas( void ) const
 void	Brain::setIdeas( std::string* ideas )
 {
 	std::cout << "Brain's setIdeas member function called" << std::endl;
-	this->_ideas = ideas;
+	for (int i = 0; i < 100; i++) {
+		if (ideas[i].empty())	
+			this->_ideas[i] = ideas[i];
+	}
 }
 
 Brain::~Brain()

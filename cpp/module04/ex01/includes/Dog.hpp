@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 15:59:30 by analba-s          #+#    #+#             */
-/*   Updated: 2025/09/24 16:57:15 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/01 11:57:27 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ class Dog : public Animal
 		Dog& operator=(const Dog& other);
     	~Dog();
 
+		void	setBrain( Brain brain );
+		
 	private:
 
 		Brain* _brain;
