@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 13:38:55 by analba-s          #+#    #+#             */
-/*   Updated: 2025/09/30 12:25:55 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/02 12:07:37 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ Animal::Animal( const Animal& copy)
 
 Animal& Animal::operator=( const Animal& copy )
 {
-    //std::cout << "Animal's copy assigment opperator called" << std::endl;
     if (this != &copy)
 		this->_type = copy.getType();
     return (*this);
@@ -39,13 +38,11 @@ Animal& Animal::operator=( const Animal& copy )
 
 std::string	Animal::getType( void ) const
 {
-	//std::cout << "Animal's getType member function called" << std::endl;
 	return( this->_type );
 }
 
 void	Animal::makeSound( void ) const
 {
-	//std::cout << "Animal's makeSound member function called" << std::endl;
 	switch (this->_type[0]) {
 		case 'D':
 			std::cout << "Guau" << std::endl;

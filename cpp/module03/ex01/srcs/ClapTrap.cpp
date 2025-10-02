@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 13:38:55 by analba-s          #+#    #+#             */
-/*   Updated: 2025/09/30 11:28:05 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/01 18:22:07 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,49 +51,41 @@ ClapTrap::ClapTrap( std::string name )
 
 std::string	ClapTrap::getName( void ) const
 {
-	std::cout << "ClapTrap getName member function called" << std::endl;
 	return( this->_name );
 }
 
 void ClapTrap::setName( std::string name )
 {
-	std::cout << "ClapTrap setName member function called" << std::endl;
 	this->_name = name;
 }
 
 unsigned int	ClapTrap::getHitPoints( void ) const
 {
-	std::cout << "ClapTrap getHitPoints member function called" << std::endl;
 	return( this->_hitPoints );
 }
 
 void ClapTrap::setHitPoints( unsigned int amount )
 {
-	std::cout << "ClapTrap setHitPoints member function called" << std::endl;
 	this->_hitPoints = amount;
 }
 
 unsigned int	ClapTrap::getEnergyPoints( void ) const
 {
-	std::cout << "ClapTrap getEnergyPoints member function called" << std::endl;
 	return( this->_energyPoints );
 }
 
 void ClapTrap::setEnergyPoints( unsigned int amount )
 {
-	std::cout << "ClapTrap setEnergyPoints member function called" << std::endl;
 	this->_energyPoints = amount;
 }
 
 unsigned int	ClapTrap::getAtackDamage( void ) const
 {
-	std::cout << "ClapTrap getAtackDamage member function called" << std::endl;
 	return( this->_atackDamage );
 }
 
 void ClapTrap::setAtackDamage( unsigned int amount )
 {
-	std::cout << "ClapTrap setAtackDamage member function called" << std::endl;
 	this->_atackDamage = amount;
 }
 

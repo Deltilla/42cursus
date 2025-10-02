@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 19:08:08 by analba-s          #+#    #+#             */
-/*   Updated: 2025/09/30 11:26:00 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/01 18:24:35 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ class ScavTrap : public ClapTrap
     	~ScavTrap();
 		
     	void	guardGate( void );
+		void	attack( const std::string& target );
 
 };
 

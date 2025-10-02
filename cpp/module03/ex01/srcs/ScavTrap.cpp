@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 19:07:21 by analba-s          #+#    #+#             */
-/*   Updated: 2025/09/30 11:26:59 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/01 18:28:52 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,20 @@ ScavTrap& ScavTrap::operator=( const ScavTrap& copy )
 	}
 	return ( *this );
 }
+
+void	ScavTrap::attack( const std::string& target )
+{
+	if (this->getEnergyPoints() == 0)
+		std::cout << "ScavTrap has not energy enough to attack" << std::endl;
+	else
+	{
+		std::cout << "ScavTrap " << this->getName() << " attacks "  << target 
+				<< " causing " << this-> getAtackDamage() << " points of damage!" 
+				<< std::endl;
+		this->setEnergyPoints(this->getEnergyPoints() - 1);
+	}
+}
+
 
 void ScavTrap::guardGate( void )
 {

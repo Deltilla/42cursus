@@ -6,11 +6,11 @@
 #    By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 21:19:06 by analba-sa         #+#    #+#              #
-#    Updated: 2025/09/17 20:12:29 by analba-s         ###   ########.fr        #
+#    Updated: 2025/10/01 18:56:21 by analba-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = flagtrap
+NAME = fragtrap
 SRCS_PATH = srcs
 CC = c++
 CFLAGS = -g -Wall -Werror -Wextra -std=c++98
@@ -20,7 +20,7 @@ DEPS = -I includes
 SOURCES = srcs/main.cpp \
 		srcs/ClapTrap.cpp \
 		srcs/ScavTrap.cpp \
-		srcs/FlagTrap.cpp
+		srcs/FragTrap.cpp
 		
 
 OBJ = $(SOURCES:$(SRCS_PATH)/%.cpp=$(OBJ_DIR)/%.o)

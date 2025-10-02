@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 13:38:55 by analba-s          #+#    #+#             */
-/*   Updated: 2025/09/17 19:33:06 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/01 18:22:40 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,16 @@ ClapTrap::ClapTrap( std::string name )
 
 std::string	ClapTrap::getName( void ) const
 {
-	std::cout << "ClapTrap getName member function called" << std::endl;
 	return( this->_name );
 }
 
 void ClapTrap::setName( std::string name )
 {
-	std::cout << "ClapTrap setName member function called" << std::endl;
 	this->_name = name;
 }
 
 unsigned int	ClapTrap::getHitPoints( void ) const
 {
-	std::cout << "ClapTrap getHitPoints member function called" << std::endl;
 	return( this->_hitPoints );
 }
 
