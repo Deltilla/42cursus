@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 16:06:57 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/02 13:03:06 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/04 19:51:57 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,11 @@ Dog& Dog::operator=( const Dog& copy )
 	this->_brain = new Brain(*copy._brain);
 	this->_ownsbrain = copy._ownsbrain;
     return ( *this );
+}
+
+void	Dog::makeSound( void ) const
+{
+	std::cout << "Guau" << std::endl;
 }
 
 void	Dog::setBrain( Brain* brain )

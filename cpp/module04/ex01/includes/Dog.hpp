@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 15:59:30 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/02 12:58:41 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/04 19:27:27 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ class Dog : public Animal
 
 		Brain*	getBrain( void );
 		void	setBrain( Brain *brain );
+		void	makeSound( void );
 		
 	private:
 

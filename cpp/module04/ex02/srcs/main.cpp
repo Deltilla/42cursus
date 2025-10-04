@@ -6,49 +6,41 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 13:37:47 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/04 19:49:55 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/04 19:25:36 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <Animal.hpp>
+#include <AAnimal.hpp>
 #include <Cat.hpp>
 #include <Dog.hpp>
-#include <WrongAnimal.hpp>
-#include <WrongCat.hpp>
+#include <Brain.hpp>
 
 int main()
 {
-	// Various animal test
-
-	const Animal* meta = new Animal();
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
+	// Test with various way to create an animal
+	Cat		cat;
+	Dog		dog;
+	Brain	brain;
+	std::string ideas[100];
 	
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound();
-	j->makeSound();
-	meta->makeSound();
-
-	delete meta;
-	delete j;
-	delete i;
-
-	// WrongAnimal test
+	for (int i = 0; i < 100; i++)
+		ideas[i] = "i got an idea";
 	
-	const WrongAnimal* wmeta = new WrongAnimal();
-	const WrongAnimal* wcat = new WrongCat();
-
-	std::cout << wcat->getType() << " " << std::endl;
-	wcat->makeSound();
-	wmeta->makeSound();
-
-	delete wmeta;
-	delete wcat;
+	brain.setIdeas(ideas);
+	cat.getBrain()->setIdeas(ideas);
+	dog.setBrain(&brain);
+	
+	std::cout << cat.getType() << ": ";
+	cat.makeSound();
+	
+	for (int i = 0; i < 100; i++)
+		std::cout << cat.getBrain()->getIdeas()[i] << std::endl;
+	for (int i = 0; i < 100; i++)
+		std::cout << dog.getBrain()->getIdeas()[i] << std::endl;
 
 	// Test with 100 animals;
 	int		N = 100;
-	Animal*	animals[N];
+	AAnimal*	animals[N];
 
 	for (int i = 0; i < N / 2; ++i)
         animals[i] = new Dog();
@@ -61,6 +53,5 @@ int main()
 
 	for (int i = 0; i < N; i++)
 		delete animals[i];
-
 	return 0;
 }

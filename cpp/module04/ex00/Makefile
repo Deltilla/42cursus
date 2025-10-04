@@ -6,7 +6,7 @@
 #    By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 21:19:06 by analba-sa         #+#    #+#              #
-#    Updated: 2025/09/24 15:47:39 by analba-s         ###   ########.fr        #
+#    Updated: 2025/10/04 19:47:33 by analba-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,9 @@ DEPS = -I includes
 
 SOURCES = srcs/main.cpp \
 		srcs/Animal.cpp \
+		srcs/WrongAnimal.cpp \
 		srcs/Cat.cpp \
+		srcs/WrongCat.cpp \
 		srcs/Dog.cpp
 		
 

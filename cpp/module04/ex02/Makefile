@@ -6,11 +6,11 @@
 #    By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 21:19:06 by analba-sa         #+#    #+#              #
-#    Updated: 2025/10/02 13:28:25 by analba-s         ###   ########.fr        #
+#    Updated: 2025/10/04 19:05:32 by analba-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = animals
+NAME = animal
 SRCS_PATH = srcs
 CC = c++
 CFLAGS = -g -Wall -Werror -Wextra -std=c++98
@@ -18,7 +18,7 @@ OBJ_DIR = obj
 DEPS = -I includes
 
 SOURCES = srcs/main.cpp \
-		srcs/Animal.cpp \
+		srcs/AAnimal.cpp \
 		srcs/Cat.cpp \
 		srcs/Dog.cpp \
 		srcs/Brain.cpp

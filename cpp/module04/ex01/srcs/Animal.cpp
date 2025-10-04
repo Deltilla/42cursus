@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 13:38:55 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/02 12:07:37 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/04 19:51:41 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,7 @@ std::string	Animal::getType( void ) const
 
 void	Animal::makeSound( void ) const
 {
-	switch (this->_type[0]) {
-		case 'D':
-			std::cout << "Guau" << std::endl;
-			break ;
-		case 'C':
-			std::cout << "Miau" << std::endl;
-			break ;
-		default:
-			std::cout << "Im not an animal bit**!!" << std::endl;
-	}
+	std::cout << "Im not an animal bit**!!" << std::endl;
 }
 
 Animal::~Animal()

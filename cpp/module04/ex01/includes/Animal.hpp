@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 13:01:25 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/02 13:22:34 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/04 19:51:37 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ class Animal
 		
 		//Member Functions:
 		
-		void	makeSound( void ) const;
+		virtual void	makeSound( void ) const;
 	
 	protected:
 	

@@ -1,39 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/24 15:53:27 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/04 19:27:15 by analba-s         ###   ########.fr       */
+/*   Created: 2025/09/24 16:52:27 by analba-s          #+#    #+#             */
+/*   Updated: 2025/10/02 12:19:50 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_H
-# define CAT_H
+#ifndef BRAIN_H
+# define	BRAIN_H
 
-# include <Animal.hpp>
-# include <Brain.hpp>
+# include <iostream>
+# include <string>
 
-class Cat : public Animal
+class Brain
 {
 	public:
 
-    	Cat();
-		Cat( std::string type );
-    	Cat(const Cat& other);
-		Cat& operator=(const Cat& other);
-    	~Cat();
+    	Brain();
+		Brain( std::string* ideas );
+    	Brain(const Brain& other);
+		Brain& operator=(const Brain& other);
+    	~Brain();
 
-		Brain*	getBrain( void );
-		void	setBrain( Brain *brain );
-		void	makeSound( void );
+		// Getters:
+		
+		const std::string*	getIdeas( void );
+
+		//Setters:
+		
+		void	setIdeas( std::string* ideas );
+		
+		//Member Functions:
 	
 	private:
+	
+		std::string _ideas[100];
 
-		Brain*	_brain;
-		bool	_ownsbrain;
 };
 
 #endif

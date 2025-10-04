@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 16:06:57 by analba-s          #+#    #+#             */
-/*   Updated: 2025/09/24 16:28:55 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/04 19:32:51 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@ Dog::Dog( std::string type )
 {
     std::cout << "Dog's Name assigment constructor called" << std::endl;
     this->_type = type;
+}
+
+void	Dog::makeSound( void ) const
+{
+	std::cout << "Guau" << std::endl;
 }
 
 Dog::~Dog()

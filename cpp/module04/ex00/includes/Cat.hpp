@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 15:53:27 by analba-s          #+#    #+#             */
-/*   Updated: 2025/09/24 15:57:43 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/04 19:36:01 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ class Cat : public Animal
     	Cat(const Cat& other);
 		Cat& operator=(const Cat& other);
     	~Cat();
+
+		void makeSound( void ) const;
 
 };
 

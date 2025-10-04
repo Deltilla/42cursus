@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 16:06:10 by analba-s          #+#    #+#             */
-/*   Updated: 2025/09/24 16:28:41 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/04 19:32:47 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@ Cat::Cat( std::string type )
 {
     std::cout << "Cat's Name assigment constructor called" << std::endl;
     this->_type = type;
+}
+
+void	Cat::makeSound( void ) const
+{
+	std::cout << "Miau" << std::endl;
 }
 
 Cat::~Cat()

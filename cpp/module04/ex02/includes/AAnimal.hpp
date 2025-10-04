@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   AAnimal.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 13:01:25 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/04 19:39:55 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/04 19:53:07 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,27 @@
 # include <iostream>
 # include <string>
 
-// ************************************************************************** //
-//                               Zombie Class                                 //
-// ************************************************************************** //
-
-class Animal
+class AAnimal
 {
 	public:
-
-    	Animal();
-		Animal( std::string type );
-    	Animal(const Animal& other);
-		Animal& operator=(const Animal& other);
-		virtual ~Animal();
-
+	
+		AAnimal();
+		AAnimal( std::string type );
+		AAnimal(const AAnimal& other);
+		AAnimal& operator=(const AAnimal& other);
+		virtual ~AAnimal();
+	
 		// Getters:
-		
+	
 		std::string	getType( void ) const;
-
+	
 		//Setters:
-		
+	
 		void	setType( std::string type );
-		
+	
 		//Member Functions:
-		
-		virtual void	makeSound( void ) const;
+	
+		virtual void	makeSound( void ) const  = 0 ; // pure virtual function to make the class abstract.
 	
 	protected:
 	
