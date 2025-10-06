@@ -6,20 +6,15 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 16:06:57 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/04 19:54:34 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/05 15:16:18 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Dog.hpp>
 
-void Dog::abstract( void )
-{
-	//Redefinition of abstract
-}
-
 Dog::Dog( void )
 {
-	//std::cout << "Dog's default constructor called" << std::endl;
+	std::cout << "Dog's default constructor called" << std::endl;
 	this->_type = "Dog";
 	this->_brain = new Brain();
 	this->_ownsbrain = true;
@@ -27,7 +22,7 @@ Dog::Dog( void )
 
 Dog::Dog( std::string type )
 {
-	//std::cout << "Dog's Type assigment constructor called" << std::endl;
+	std::cout << "Dog's Type assigment constructor called" << std::endl;
 	this->_type = type;
 	if (!this->_brain) {
 		this->_brain = new Brain();
@@ -37,7 +32,7 @@ Dog::Dog( std::string type )
 
 Dog::Dog( const Dog& copy)
 {
-	//std::cout << "Cat's copy constructor called" << std::endl;
+	std::cout << "Cat's copy constructor called" << std::endl;
 	this->_type = copy.getType();
 	if (!this->_brain)
 		delete this->_brain;
@@ -76,7 +71,7 @@ Brain* Dog::getBrain( void )
 
 Dog::~Dog()
 {
-	//std::cout << "Dog's destructor called" << std::endl;
+	std::cout << "Dog's destructor called" << std::endl;
 	if (this->_ownsbrain)
 		delete this->_brain;
 }

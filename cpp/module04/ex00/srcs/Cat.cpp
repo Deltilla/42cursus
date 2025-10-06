@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 16:06:10 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/04 19:32:47 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/05 15:02:06 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ Cat::Cat( void )
 Cat::Cat( const Cat& copy)
 {
 	std::cout << "Cat's copy constructor called" << std::endl;
-	*this = copy;
+	this->_type = copy.getType();
 }
 
 Cat& Cat::operator=( const Cat& copy )
 {
-    std::cout << "Cat's copy assigment opperator called" << std::endl;
+		std::cout << "Cat's copy assignment operator called" << std::endl;
     if (this != &copy)
 		this->_type = copy.getType();
     return (*this);
@@ -34,7 +34,7 @@ Cat& Cat::operator=( const Cat& copy )
 
 Cat::Cat( std::string type )
 {
-    std::cout << "Cat's Name assigment constructor called" << std::endl;
+	std::cout << "Cat's Name assignment constructor called" << std::endl;
     this->_type = type;
 }
 

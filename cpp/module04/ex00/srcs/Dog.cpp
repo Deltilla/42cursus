@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 16:06:57 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/04 19:32:51 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/05 15:05:23 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ Dog::Dog( void )
 Dog::Dog( const Dog& copy)
 {
 	std::cout << "Dog's copy constructor called" << std::endl;
-	*this = copy;
+	this->_type = copy.getType();
 }
 
 Dog& Dog::operator=( const Dog& copy )
 {
-    std::cout << "Dog's copy assigment opperator called" << std::endl;
+		std::cout << "Dog's copy assignment operator called" << std::endl;
     if (this != &copy)
 		this->_type = copy.getType();
     return (*this);
@@ -34,7 +34,7 @@ Dog& Dog::operator=( const Dog& copy )
 
 Dog::Dog( std::string type )
 {
-    std::cout << "Dog's Name assigment constructor called" << std::endl;
+	std::cout << "Dog's Name assignment constructor called" << std::endl;
     this->_type = type;
 }
 

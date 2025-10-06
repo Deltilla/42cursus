@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 13:01:25 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/06 19:35:56 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/06 20:36:10 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <iostream>
 # include <string>
 # include <exception>
+
+class Form;
 
 class Bureaucrat
 {
@@ -34,13 +36,14 @@ class Bureaucrat
 
 		void	improveGrade( void );
 		void	worsenGrade( void );
+		void	signForm( Form& form );
 
 	class GradeTooLowException : public std::exception
 	{
 		public:
 			const char* what() const throw()
 			{
-				return ( "Bureucrat's grade is too low" );
+				return ( "Bureaucrat's grade is too low" );
 			}
 	};
 	

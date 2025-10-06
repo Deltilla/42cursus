@@ -6,11 +6,11 @@
 #    By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 21:19:06 by analba-sa         #+#    #+#              #
-#    Updated: 2025/10/05 15:32:10 by analba-s         ###   ########.fr        #
+#    Updated: 2025/10/06 20:05:16 by analba-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = animal
+NAME = bureaucrat
 SRCS_PATH = srcs
 CC = c++
 CFLAGS = -g -Wall -Werror -Wextra -std=c++98
@@ -18,10 +18,8 @@ OBJ_DIR = obj
 DEPS = -I includes
 
 SOURCES = srcs/main.cpp \
-		srcs/AAnimal.cpp \
-		srcs/Cat.cpp \
-		srcs/Dog.cpp \
-		srcs/Brain.cpp
+		srcs/Bureaucrat.cpp \
+		srcs/Form.cpp
 		
 
 OBJ = $(SOURCES:$(SRCS_PATH)/%.cpp=$(OBJ_DIR)/%.o)
@@ -44,25 +42,27 @@ TURQUOISE=\033[36m
 ##                                    RULES                                   ##
 ################################################################################
 
-all : $(NAME)
+all : head $(NAME)
 
-
-$(NAME) : $(OBJ)
+head :
 	@echo "$(BLUE)"
 	@echo "\t                                           "
-	@echo "\t            \t\t                        "
-	@echo "\t▛▘▛▌▛▌\t\t\t"
-	@echo "\t▙▖▙▌▙▌\t\t\t"
-	@echo "\t  ▌ ▌ \t\t\t" 
+	@echo "\t            								"
+	@echo "\t						▛▘▛▌▛▌				"
+	@echo "\t						▙▖▙▌▙▌				"
+	@echo "\t						  ▌ ▌ 				" 
 	@echo "\t        By analba-s"
 	@echo "\tProyect: \033[36m cpp_ex00 $(BLUE)"
 	@echo "\tCommands:\033[36m all clean fclean re $(WHITE)\n"
+
+
+$(NAME) : $(OBJ)
 	@$(CC) -o $(NAME) $(OBJ)
 
 $(OBJ_DIR)/%.o : $(SRCS_PATH)/%.cpp
 	@mkdir -p $(@D)
 	@$(CC) $(CFLAGS) -c $< -o $@ $(DEPS)
-	@echo "$(notdir $<): $(GREEN)✓ Compiled$(WHITE)"
+	@echo "  ✓ Compiled: $(notdir $<)"
 
 clean :
 	@rm -rf $(OBJ_DIR)
@@ -71,7 +71,7 @@ clean :
 fclean :
 	@rm -rf $(OBJ_DIR)
 	@rm -f $(NAME)
-	@echo "$(GREEN)Fclean done  ✓ $(WHITE)"
+	@echo "$(GREEN)Hardly clean  ✓ $(WHITE)"
 
 re : fclean all
 

@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 15:53:27 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/04 19:27:15 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/05 15:06:33 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class Cat : public Animal
 
 		Brain*	getBrain( void );
 		void	setBrain( Brain *brain );
-		void	makeSound( void );
+		void	makeSound( void ) const;
 	
 	private:
 

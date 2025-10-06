@@ -6,7 +6,7 @@
 #    By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 21:19:06 by analba-sa         #+#    #+#              #
-#    Updated: 2025/10/04 19:47:33 by analba-s         ###   ########.fr        #
+#    Updated: 2025/10/05 15:31:49 by analba-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,31 +41,24 @@ YELLOW=\033[33m
 MAGENTA=\033[35m
 TURQUOISE=\033[36m
 
-################################################################################
-##                                    RULES                                   ##
-################################################################################
+all : $(NAME)
 
-all : head $(NAME)
-
-head :
+$(NAME) : $(OBJ)
 	@echo "$(BLUE)"
 	@echo "\t                                           "
-	@echo "\t            								"
-	@echo "\t						▛▘▛▌▛▌				"
-	@echo "\t						▙▖▙▌▙▌				"
-	@echo "\t						  ▌ ▌ 				" 
+	@echo "\t            \t\t                        "
+	@echo "\t▛▘▛▌▛▌\t\t\t"
+	@echo "\t▙▖▙▌▙▌\t\t\t"
+	@echo "\t  ▌ ▌ \t\t\t" 
 	@echo "\t        By analba-s"
 	@echo "\tProyect: \033[36m cpp_ex00 $(BLUE)"
 	@echo "\tCommands:\033[36m all clean fclean re $(WHITE)\n"
-
-
-$(NAME) : $(OBJ)
 	@$(CC) -o $(NAME) $(OBJ)
 
 $(OBJ_DIR)/%.o : $(SRCS_PATH)/%.cpp
 	@mkdir -p $(@D)
 	@$(CC) $(CFLAGS) -c $< -o $@ $(DEPS)
-	@echo "  ✓ Compiled: $(notdir $<)"
+	@echo "$(notdir $<): $(GREEN)✓ Compiled$(WHITE)"
 
 clean :
 	@rm -rf $(OBJ_DIR)
@@ -74,7 +67,7 @@ clean :
 fclean :
 	@rm -rf $(OBJ_DIR)
 	@rm -f $(NAME)
-	@echo "$(GREEN)Hardly clean  ✓ $(WHITE)"
+	@echo "$(GREEN)Fclean done  ✓ $(WHITE)"
 
 re : fclean all
 

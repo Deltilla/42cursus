@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 13:38:55 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/04 19:52:23 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/05 15:15:49 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 AAnimal::AAnimal( void )
 {
-	//std::cout << "AAnimal's default constructor called" << std::endl;
+	std::cout << "AAnimal's default constructor called" << std::endl;
 }
 
 AAnimal::AAnimal( std::string type )
 {
-	//std::cout << "AAnimal's Name assigment constructor called" << std::endl;
+	std::cout << "AAnimal's Name assigment constructor called" << std::endl;
 	this->_type = type;
 }
 
 AAnimal::AAnimal( const AAnimal& copy)
 {
-	//std::cout << "AAnimal's copy constructor called" << std::endl;
+	std::cout << "AAnimal's copy constructor called" << std::endl;
 	*this = copy;
 }
 
@@ -43,10 +43,10 @@ std::string	AAnimal::getType( void ) const
 
 void	AAnimal::makeSound( void ) const
 {
-	std::cout << "Im not an Aanimal bit**!!" << std::endl;
+	std::cout << "AAnimal makes no specific sound." << std::endl;
 }
 
 AAnimal::~AAnimal()
 {
-	//std::cout << "Animal's destructor called" << std::endl;
+	std::cout << "Animal's destructor called" << std::endl;
 }

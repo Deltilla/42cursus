@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 13:37:47 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/02 13:21:44 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/05 15:30:14 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,11 @@ int main()
 
 	for (int i = 0; i < N; i++)
 		delete animals[i];
+
+	Dog basic;
+	{
+		Dog tmp = basic;
+	}
+	
 	return 0;
 }

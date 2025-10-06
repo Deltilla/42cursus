@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 16:52:30 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/02 12:19:42 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/05 14:59:51 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ Brain::Brain( void )
 
 Brain::Brain( std::string* ideas )
 {
-	std::cout << "Brain's Name assigment constructor called" << std::endl;
+	std::cout << "Brain's name assignment constructor called" << std::endl;
 	for (int i = 0; i < 100 && ideas[i].size() != 0; i++)
 		this->_ideas[i] = ideas[i];
 }
