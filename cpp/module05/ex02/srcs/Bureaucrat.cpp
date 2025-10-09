@@ -6,12 +6,12 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 13:38:55 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/09 16:43:50 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/09 18:37:16 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Bureaucrat.hpp>
-#include <Form.hpp>
+#include <AForm.hpp>
 
 Bureaucrat::Bureaucrat( void ) : _name("Default"), _grade(150)
 {
@@ -82,14 +82,25 @@ void Bureaucrat::worsenGrade( void )
 	this->_grade++;
 }
 
-void Bureaucrat::signForm( Form& form )
+void Bureaucrat::signForm( AForm& form )
 {
 	try {
 		form.beSigned(*this);
 		std::cout << this->getName() << " signed " <<  form.getName() << std::endl;
 	}
-	catch ( const Form::GradeTooLowException &e ) {
+	catch ( const AForm::GradeTooLowException &e ) {
 		std::cerr << this->getName() << " couldn't sign " << form.getName() << " because: " << e.what() << std::endl;
+	}
+}
+
+void Bureaucrat::executeForm( AForm const & form ) const
+{
+	try {
+		form.execute(*this);
+		std::cout << this->getName() << " executed " <<  form.getName() << std::endl;
+	}
+	catch ( const AForm::GradeTooLowException &e ) {
+		std::cerr << this->getName() << " couldn't execute " << form.getName() << " because: " << e.what() << std::endl;
 	}
 }
 

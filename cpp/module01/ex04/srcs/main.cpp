@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 18:13:14 by analba-s          #+#    #+#             */
-/*   Updated: 2025/09/23 19:21:58 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/09 18:43:13 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int main(int arc, char **arv)
             std::cout << "error: Could not open the file" << std::endl;
 		std::ofstream of(ofname.c_str(), std::ios_base::out);
 		if (!of.is_open())
-        std::cout << "error: Could not create the replace file" << std::endl;
+        	std::cout << "error: Could not create the replace file" << std::endl;
 		while (getline(in, line))
 		{
 			if (i == 1)

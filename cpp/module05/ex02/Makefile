@@ -6,7 +6,7 @@
 #    By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 21:19:06 by analba-sa         #+#    #+#              #
-#    Updated: 2025/10/09 16:42:13 by analba-s         ###   ########.fr        #
+#    Updated: 2025/10/09 20:15:09 by analba-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,10 @@ DEPS = -I includes
 
 SOURCES = srcs/main.cpp \
 		srcs/Bureaucrat.cpp \
-		srcs/Form.cpp
+		srcs/AForm.cpp \
+		srcs/ShrubberyCreationForm.cpp \
+		srcs/RobotomyRequestForm.cpp \
+		srcs/PresidentialPardonForm.cpp
 		
 
 OBJ = $(SOURCES:$(SRCS_PATH)/%.cpp=$(OBJ_DIR)/%.o)
