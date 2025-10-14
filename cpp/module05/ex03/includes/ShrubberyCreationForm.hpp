@@ -1,48 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
+/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/09 16:49:29 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/09 20:19:57 by analba-s         ###   ########.fr       */
+/*   Created: 2025/10/09 16:49:32 by analba-s          #+#    #+#             */
+/*   Updated: 2025/10/09 19:56:29 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROBOTOMYREQUESTFORM_H
-#define	ROBOTOMYREQUESTFORM_H
+#ifndef SHRUBBERYCREATIONFORM_H
+#define	SHRUBBERYCREATIONFORM_H
 
 # include <iostream>
 # include <string>
 # include <exception>
 # include <Bureaucrat.hpp>
 # include <AForm.hpp>
-# include <cstdlib>
-# include <ctime>
+# include <fstream>
 
-class RobotomyRequestForm : public AForm
+class ShrubberyCreationForm : public AForm
 {
 	public:
 
-    	RobotomyRequestForm();
-		RobotomyRequestForm( std::string target );
-    	RobotomyRequestForm(const RobotomyRequestForm& other);
-		RobotomyRequestForm& operator=(const RobotomyRequestForm& other);
-    	~RobotomyRequestForm();
+    	ShrubberyCreationForm();
+		ShrubberyCreationForm( std::string target );
+    	ShrubberyCreationForm(const ShrubberyCreationForm& other);
+		ShrubberyCreationForm& operator=(const ShrubberyCreationForm& other);
+    	~ShrubberyCreationForm();
 
 		std::string	getTarget( void ) const;
 		void		setTarget( std::string target );
 
 		void execute( Bureaucrat const & executor ) const;
-
-	private :
-
-		std::string _target;
 		
+	private:
+		
+		std::string _target;
 
 };
 
-void	robotomyRequest( std::string target );
+void	shrubberyCreation( std::string target );
 
 #endif

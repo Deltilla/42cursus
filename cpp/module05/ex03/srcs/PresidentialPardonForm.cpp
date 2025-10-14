@@ -1,37 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
+/*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/09 17:19:40 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/09 20:17:11 by analba-s         ###   ########.fr       */
+/*   Created: 2025/10/09 20:06:09 by analba-s          #+#    #+#             */
+/*   Updated: 2025/10/09 20:08:09 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <RobotomyRequestForm.hpp>
+#include <PresidentialPardonForm.hpp>
 
-RobotomyRequestForm::RobotomyRequestForm( void )
+PresidentialPardonForm::PresidentialPardonForm( void )
 {
 	std::cout << "Default constructor called" << std::endl;
-	srand(time(NULL));
 }
 
-RobotomyRequestForm::RobotomyRequestForm( std::string target ) : AForm( "RobotomyRequestForm", 72, 45 )
+PresidentialPardonForm::PresidentialPardonForm( std::string target ) : AForm( "PresidentialPardonForm", 25, 5 )
 {
 	std::cout << "Name assigment constructor called" << std::endl;
-	srand(time(NULL));
 	this->_target = target;
 }
 
-RobotomyRequestForm::RobotomyRequestForm( const RobotomyRequestForm& copy ) : AForm( copy.getName(), copy.getSignGrade(), copy.getExecuteGrade() )
+PresidentialPardonForm::PresidentialPardonForm( const PresidentialPardonForm& copy ) : AForm( copy.getName(), copy.getSignGrade(), copy.getExecuteGrade() )
 {
 	std::cout << "Copy constructor called" << std::endl;
 	this->_target = copy.getTarget();
 }
 
-RobotomyRequestForm& RobotomyRequestForm::operator=( const RobotomyRequestForm& copy )
+PresidentialPardonForm& PresidentialPardonForm::operator=( const PresidentialPardonForm& copy )
 {
     std::cout << "Copy assigment opperator called" << std::endl;
 	if (this != &copy) {
@@ -40,17 +38,17 @@ RobotomyRequestForm& RobotomyRequestForm::operator=( const RobotomyRequestForm& 
     return ( *this );
 }
 
-std::string RobotomyRequestForm::getTarget( void ) const
+std::string PresidentialPardonForm::getTarget( void ) const
 {
 	return ( this->_target );
 }
 
-void	RobotomyRequestForm::execute( Bureaucrat const & executor ) const
+void	PresidentialPardonForm::execute( Bureaucrat const & executor ) const
 {
 	if (this->getSigned())
 	{
 		if (executor.getGrade() <= this->getExecuteGrade())
-			robotomyRequest( this->_target );
+			presidentialPardon( this->_target );
 		else
 			throw AForm::GradeTooLowException();
 	}
@@ -58,18 +56,12 @@ void	RobotomyRequestForm::execute( Bureaucrat const & executor ) const
 		throw AForm::FormNotSignedException();
 }
 
-RobotomyRequestForm::~RobotomyRequestForm()
+PresidentialPardonForm::~PresidentialPardonForm()
 {
 	std::cout << "Destructor called" << std::endl;
 }
 
-void	robotomyRequest( std::string target )
+void	presidentialPardon( std::string target )
 {
-	int n = rand();
-	std::cout << n << std::endl;
-	std::cout << "Drilling noises..." << std::endl;
-	if (n < RAND_MAX/2)
-		std::cout << target << " has been robotomized succesfully (ㆆ _ ㆆ)" << std::endl;
-	else
-		std::cout << "robotomy failed succesfully (｡◕‿‿◕｡)" << std::endl;
+	std::cout << target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
 }

@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = forms
+NAME = form
 SRCS_PATH = srcs
 CC = c++
 CFLAGS = -g -Wall -Werror -Wextra -std=c++98
@@ -19,6 +19,7 @@ DEPS = -I includes
 
 SOURCES = srcs/main.cpp \
 		srcs/Bureaucrat.cpp \
+		srcs/Intern.cpp \
 		srcs/AForm.cpp \
 		srcs/ShrubberyCreationForm.cpp \
 		srcs/RobotomyRequestForm.cpp \

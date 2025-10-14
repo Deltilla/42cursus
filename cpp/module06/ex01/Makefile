@@ -6,11 +6,11 @@
 #    By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 21:19:06 by analba-sa         #+#    #+#              #
-#    Updated: 2025/10/09 20:15:09 by analba-s         ###   ########.fr        #
+#    Updated: 2025/10/09 16:42:13 by analba-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = forms
+NAME = scalarconverter
 SRCS_PATH = srcs
 CC = c++
 CFLAGS = -g -Wall -Werror -Wextra -std=c++98
@@ -18,11 +18,7 @@ OBJ_DIR = obj
 DEPS = -I includes
 
 SOURCES = srcs/main.cpp \
-		srcs/Bureaucrat.cpp \
-		srcs/AForm.cpp \
-		srcs/ShrubberyCreationForm.cpp \
-		srcs/RobotomyRequestForm.cpp \
-		srcs/PresidentialPardonForm.cpp
+		srcs/ScalarConverter.cpp
 		
 
 OBJ = $(SOURCES:$(SRCS_PATH)/%.cpp=$(OBJ_DIR)/%.o)
