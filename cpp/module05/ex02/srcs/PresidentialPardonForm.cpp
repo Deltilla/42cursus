@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 20:06:09 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/09 20:08:09 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/15 18:52:43 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	PresidentialPardonForm::execute( Bureaucrat const & executor ) const
 			throw AForm::GradeTooLowException();
 	}
 	else
-		throw AForm::FormNotSignedException();
+		throw AForm::FormNotSignedException(this->getName());
 }
 
 PresidentialPardonForm::~PresidentialPardonForm()

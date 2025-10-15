@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 17:04:25 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/09 19:56:48 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/15 18:53:19 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ShrubberyCreationForm::execute( Bureaucrat const & executor ) const
 			throw AForm::GradeTooLowException();
 	}
 	else
-		throw AForm::FormNotSignedException();
+		throw AForm::FormNotSignedException(this->getName());
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm()

@@ -18,25 +18,42 @@
 
 class Intern
 {
-public:
+	public:
 
-    typedef AForm* (Intern::*formCreator)( const std::string& target );
+	    typedef AForm* (Intern::*formCreator)( const std::string& target );
 
-    Intern();
-    Intern( const Intern& other );
-    Intern& operator=( const Intern& other );
-    ~Intern();
+	    Intern();
+	    Intern( const Intern& other );
+	    Intern& operator=( const Intern& other );
+	    ~Intern();
 
-    AForm* makeForm( const std::string& formName, const std::string& target );
+	    AForm* makeForm( const std::string& formName, const std::string& target );
 
-private:
+	private:
 
-    formCreator     forms[3];
+	    formCreator     forms[3];
 
-    AForm* _createRobotomyRequest( const std::string& target );
-    AForm* _createPresidentialPardon( const std::string& target );
-    AForm* _createShrubberyCreation( const std::string& target );
+	    AForm* _createRobotomyRequest( const std::string& target );
+	    AForm* _createPresidentialPardon( const std::string& target );
+	    AForm* _createShrubberyCreation( const std::string& target );
 
+
+	class FormIsUnknownException : public std::exception
+	{
+	    private:
+	        std::string _message;
+	
+	    public:
+	        FormIsUnknownException(const std::string& forName)
+	            : _message("Intern: Error: " + forName + " form is unknown") {}
+	
+	        virtual ~FormIsUnknownException() throw() {}
+	
+	        virtual const char* what() const throw()
+	        {
+	            return _message.c_str();
+	        }
+	};
 };
 
 

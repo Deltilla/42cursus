@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 13:38:55 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/06 19:36:46 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/15 17:46:29 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,10 @@ void Bureaucrat::worsenGrade( void )
 Bureaucrat::~Bureaucrat()
 {
 	std::cout << "Destructor called" << std::endl;
+}
+
+std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat)
+{
+    os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
+    return os;
 }

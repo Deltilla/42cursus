@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 17:19:40 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/09 20:17:11 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/15 18:53:10 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	RobotomyRequestForm::execute( Bureaucrat const & executor ) const
 			throw AForm::GradeTooLowException();
 	}
 	else
-		throw AForm::FormNotSignedException();
+		throw AForm::FormNotSignedException(this->getName());
 }
 
 RobotomyRequestForm::~RobotomyRequestForm()
@@ -66,7 +66,6 @@ RobotomyRequestForm::~RobotomyRequestForm()
 void	robotomyRequest( std::string target )
 {
 	int n = rand();
-	std::cout << n << std::endl;
 	std::cout << "Drilling noises..." << std::endl;
 	if (n < RAND_MAX/2)
 		std::cout << target << " has been robotomized succesfully (ㆆ _ ㆆ)" << std::endl;

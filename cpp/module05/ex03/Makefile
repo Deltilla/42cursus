@@ -6,11 +6,11 @@
 #    By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 21:19:06 by analba-sa         #+#    #+#              #
-#    Updated: 2025/10/09 20:15:09 by analba-s         ###   ########.fr        #
+#    Updated: 2025/10/15 19:12:31 by analba-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = form
+NAME = intern
 SRCS_PATH = srcs
 CC = c++
 CFLAGS = -g -Wall -Werror -Wextra -std=c++98
@@ -27,6 +27,7 @@ SOURCES = srcs/main.cpp \
 		
 
 OBJ = $(SOURCES:$(SRCS_PATH)/%.cpp=$(OBJ_DIR)/%.o)
+OBJ_TEST = $(SOURCES_TEST:$(SRCS_PATH)/%.cpp=$(OBJ_DIR)/%.o)
 
 
 ################################################################################
@@ -56,12 +57,17 @@ head :
 	@echo "\t						▙▖▙▌▙▌				"
 	@echo "\t						  ▌ ▌ 				" 
 	@echo "\t        By analba-s"
-	@echo "\tProyect: \033[36m cpp_ex00 $(BLUE)"
-	@echo "\tCommands:\033[36m all clean fclean re $(WHITE)\n"
+	@echo "\tProyect: \033[36m cpp_ex03 $(BLUE)"
+	@echo "\tCommands:\033[36m all test clean fclean re $(WHITE)\n"
 
 
 $(NAME) : $(OBJ)
 	@$(CC) -o $(NAME) $(OBJ)
+	@echo "$(GREEN)$(NAME) compiled successfully! ✓ $(WHITE)"
+
+$(NAME_TEST) : $(OBJ_TEST)
+	@$(CC) -o $(NAME_TEST) $(OBJ_TEST)
+	@echo "$(GREEN)$(NAME_TEST) compiled successfully! ✓ $(WHITE)"
 
 $(OBJ_DIR)/%.o : $(SRCS_PATH)/%.cpp
 	@mkdir -p $(@D)
@@ -74,9 +80,10 @@ clean :
 
 fclean :
 	@rm -rf $(OBJ_DIR)
-	@rm -f $(NAME)
+	@rm -f $(NAME) $(NAME_TEST)
+	@rm -f *_shrubbery
 	@echo "$(GREEN)Hardly clean  ✓ $(WHITE)"
 
 re : fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all test clean fclean re

@@ -58,11 +58,19 @@ class AForm
 
 	class FormNotSignedException : public std::exception
 	{
-		public:
-			const char* what() const throw()
-			{
-				return ( "Form is not signed" );
-			}
+	    private:
+	        std::string _message;
+	
+	    public:
+	        FormNotSignedException(const std::string& forName)
+	            : _message("Form: Error: " + forName + "form not signed") {}
+	
+	        virtual ~FormNotSignedException() throw() {}
+	
+	        virtual const char* what() const throw()
+	        {
+	            return _message.c_str();
+	        }
 	};
 
 	private:
