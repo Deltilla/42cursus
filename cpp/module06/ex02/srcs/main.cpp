@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   A.hpp                                              :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/01 13:01:25 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/16 20:06:31 by analba-s         ###   ########.fr       */
+/*   Created: 2025/08/01 13:37:47 by analba-s          #+#    #+#             */
+/*   Updated: 2025/10/16 20:45:30 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DATA_HPP
-#define DATA_HPP
+#include <Base.hpp>
+#include <A.hpp>
+#include <B.hpp>
+#include <C.hpp>
 
-#include <string>
-#include <iostream>
+int main( void )
+{
+	Base *object = generate();
+	Base *objectA = new A;
+	Base *bad_object = NULL;
+	
+	identify(object);
+	identify(*object);
+	
+	identify(objectA);
+	identify(*objectA);
 
-struct Data {
+	identify(bad_object);
+	identify(*bad_object);
 
-    std::string	name;
-    int			grade;
-    bool		isActive;
-
-};
-
-#endif
+	delete object;
+	delete objectA;
+}

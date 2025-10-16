@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   A.hpp                                              :+:      :+:    :+:   */
+/*   Serialzer.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/01 13:01:25 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/16 20:06:31 by analba-s         ###   ########.fr       */
+/*   Created: 2025/08/01 13:38:55 by analba-s          #+#    #+#             */
+/*   Updated: 2025/10/16 19:40:57 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DATA_HPP
-#define DATA_HPP
+#include <Serializer.hpp>
 
-#include <string>
-#include <iostream>
+uintptr_t Serializer::serialize( Data* ptr ) 
+{
+    return reinterpret_cast<uintptr_t>(ptr);
+}
 
-struct Data {
-
-    std::string	name;
-    int			grade;
-    bool		isActive;
-
-};
-
-#endif
+Data* Serializer::deserialize( uintptr_t raw )
+{
+    return reinterpret_cast<Data*>(raw);
+}

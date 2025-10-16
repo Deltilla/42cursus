@@ -6,27 +6,28 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 13:37:47 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/06 20:46:03 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/16 19:56:41 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ScalarConverter.hpp>
+#include <Serializer.hpp>
+#include <Data.hpp>
 #include <iostream>
 
-int main(int argc, char **argv) {
-    if (argc != 2) {
-        std::cerr << "Usage: " << argv[0] << " <literal>" << std::endl;
-        return 1;
-    }
+int main( void )
+{
+	Data Peter;
 
-    std::string literal = argv[1];
-    std::cout << "Input literal: " << literal << std::endl;
-    std::cout << "----------------------" << std::endl;
+	Peter.name = "Pedro";
+	Peter.grade = 42;
+	Peter.isActive = true;
 
-    // Llamada al único método estático de la clase
-    ScalarConverter::convert(literal);
-
-    std::cout << "----------------------" << std::endl;
-
-    return 0;
+    std::cout << "--- Data Content ---" << std::endl;
+    std::cout << "Name:     " << Peter.name << std::endl;
+    std::cout << "Value:    " << Peter.grade << std::endl;
+    std::cout << "Active:   " << (Peter.isActive ? "Yes" : "No") << std::endl;
+    std::cout << "--------------------" << std::endl;
+	
+	std::cout << "Address before: " << &Peter << std::endl;
+	std::cout << "Address after deserialize: " << Serializer::deserialize(Serializer::serialize(&Peter)) << std::endl;
 }

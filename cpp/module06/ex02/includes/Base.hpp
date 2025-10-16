@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   A.hpp                                              :+:      :+:    :+:   */
+/*   Base.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/01 13:01:25 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/16 20:06:31 by analba-s         ###   ########.fr       */
+/*   Created: 2025/10/16 19:36:31 by analba-s          #+#    #+#             */
+/*   Updated: 2025/10/16 20:45:25 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DATA_HPP
-#define DATA_HPP
+#ifndef BASE_HPP
+# define BASE_HPP
 
-#include <string>
-#include <iostream>
+# include <cstdlib>
+# include <iostream>
 
-struct Data {
-
-    std::string	name;
-    int			grade;
-    bool		isActive;
+class Base {
+	
+    public:
+	
+        virtual ~Base();
 
 };
+
+Base*	generate( void );
+void	identify( Base* p );
+void	identify( Base& p );
 
 #endif

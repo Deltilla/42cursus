@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   A.hpp                                              :+:      :+:    :+:   */
+/*   B.hpp                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/01 13:01:25 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/16 20:06:31 by analba-s         ###   ########.fr       */
+/*   Created: 2025/10/16 20:09:16 by analba-s          #+#    #+#             */
+/*   Updated: 2025/10/16 20:09:44 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DATA_HPP
-#define DATA_HPP
+#ifndef B_HPP
+# define B_HPP
 
-#include <string>
-#include <iostream>
+# include <Base.hpp>
 
-struct Data {
-
-    std::string	name;
-    int			grade;
-    bool		isActive;
-
+class B : public Base {
+	
 };
 
 #endif

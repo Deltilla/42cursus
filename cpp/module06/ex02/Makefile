@@ -6,11 +6,11 @@
 #    By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 21:19:06 by analba-sa         #+#    #+#              #
-#    Updated: 2025/10/16 19:54:16 by analba-s         ###   ########.fr        #
+#    Updated: 2025/10/16 20:44:24 by analba-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = serializer
+NAME = identify
 SRCS_PATH = srcs
 CC = c++
 CFLAGS = -g -Wall -Werror -Wextra -std=c++98
@@ -18,8 +18,7 @@ OBJ_DIR = obj
 DEPS = -I includes
 
 SOURCES = srcs/main.cpp \
-		srcs/Serializer.cpp
-		
+		srcs/Base.cpp \
 
 OBJ = $(SOURCES:$(SRCS_PATH)/%.cpp=$(OBJ_DIR)/%.o)
 
