@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 13:37:47 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/06 20:46:03 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/20 10:21:38 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int main( void )
 		
 		Bureaucrat rodolfo("Rodolfo", 150);
 		Form		formulario("pito", 149, 149);
-		std::cout << rodolfo.getName() << ", bureaucrat grade "  << rodolfo.getGrade() << std::endl;
+		std::cout << rodolfo << std::endl;
 		rodolfo.improveGrade();
-		std::cout << rodolfo.getName() << ", bureaucrat grade "  << rodolfo.getGrade() << std::endl;
+		std::cout << rodolfo << std::endl;
 		rodolfo.signForm(formulario);
 	}
 	catch ( const std::exception &e ) {
@@ -30,9 +30,9 @@ int main( void )
 	try {
 		Bureaucrat carlos("Carlos", 1);
 		Form		formulario("pito", 1, 1);
-		std::cout << carlos.getName() << ", bureaucrat grade "  << carlos.getGrade() << std::endl;
+		std::cout << carlos << std::endl;
 		carlos.worsenGrade();
-		std::cout << carlos.getName() << ", bureaucrat grade "  << carlos.getGrade() << std::endl;
+		std::cout << carlos << std::endl;
 		carlos.signForm(formulario);
 	}
 	catch ( const Bureaucrat::GradeTooLowException &e ) {
@@ -40,9 +40,9 @@ int main( void )
 	}
 	try {
 		Bureaucrat ana("Ana", 1);
-		std::cout << ana.getName() << ", bureaucrat grade "  << ana.getGrade() << std::endl;
+		std::cout << ana << std::endl;
 		ana.improveGrade();
-		std::cout << ana.getName() << ", bureaucrat grade "  << ana.getGrade() << std::endl;
+		std::cout << ana << std::endl;
 	}
 	catch ( const std::exception &e ) {
 		std::cerr << "Error: " << e.what() << std::endl;

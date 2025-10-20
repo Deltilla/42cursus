@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 19:43:35 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/09 16:42:46 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/20 10:15:30 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,7 @@ class Form
 		
 
 };
+
+std::ostream& operator<<(std::ostream& os, const Form& form);
 
 #endif

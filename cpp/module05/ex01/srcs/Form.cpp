@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 19:51:49 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/06 20:41:01 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/20 10:20:25 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,15 @@ void Form::beSigned( Bureaucrat& bureaucrat )
 		this->_signed = true;
 	else if (bureaucrat.getGrade() > this->getSignGrade())
 		throw Form::GradeTooLowException();
+}
+
+std::ostream& operator<<(std::ostream& os, const Form& form)
+{
+    os << "Form: " << std::endl 
+		<< "Name: " << form.getName() << std::endl
+		<< "Sign Grade: " << form.getSignGrade() << std::endl
+		<< "Signed: " << form.getSigned() << std::endl;
+    return os;
 }
 
 Form::~Form()

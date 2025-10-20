@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 13:37:47 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/09 20:13:20 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/20 10:25:41 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int main( void )
 		
 		Bureaucrat rodolfo("Rodolfo", 2);
 		ShrubberyCreationForm		formulario("hola");
-		std::cout << rodolfo.getName() << ", bureaucrat grade "  << rodolfo.getGrade() << std::endl;
+		std::cout << rodolfo << std::endl;
 		rodolfo.improveGrade();
-		std::cout << rodolfo.getName() << ", bureaucrat grade "  << rodolfo.getGrade() << std::endl;
+		std::cout << rodolfo << std::endl;
 		rodolfo.signForm(formulario);
 		rodolfo.executeForm(formulario);
 	}
@@ -34,9 +34,9 @@ int main( void )
 		
 		Bureaucrat carlos("carlos", 2);
 		RobotomyRequestForm		formulario("Peter");
-		std::cout << carlos.getName() << ", bureaucrat grade "  << carlos.getGrade() << std::endl;
+		std::cout << carlos << std::endl;
 		carlos.improveGrade();
-		std::cout << carlos.getName() << ", bureaucrat grade "  << carlos.getGrade() << std::endl;
+		std::cout << carlos << std::endl;
 		carlos.signForm(formulario);
 		carlos.executeForm(formulario);
 	}
@@ -47,9 +47,9 @@ int main( void )
 		
 		Bureaucrat Ana("Ana", 2);
 		PresidentialPardonForm		formulario("Peter");
-		std::cout << Ana.getName() << ", bureaucrat grade "  << Ana.getGrade() << std::endl;
+		std::cout << Ana << std::endl;
 		Ana.improveGrade();
-		std::cout << Ana.getName() << ", bureaucrat grade "  << Ana.getGrade() << std::endl;
+		std::cout << Ana << std::endl;
 		Ana.signForm(formulario);
 		Ana.executeForm(formulario);
 	}

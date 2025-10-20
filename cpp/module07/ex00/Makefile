@@ -6,23 +6,18 @@
 #    By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 21:19:06 by analba-sa         #+#    #+#              #
-#    Updated: 2025/10/17 20:27:33 by analba-s         ###   ########.fr        #
+#    Updated: 2025/10/20 12:08:03 by analba-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = forms
+NAME = template
 SRCS_PATH = srcs
 CC = c++
 CFLAGS = -g -Wall -Werror -Wextra -std=c++98
 OBJ_DIR = obj
 DEPS = -I includes
 
-SOURCES = srcs/main.cpp \
-		srcs/Bureaucrat.cpp \
-		srcs/AForm.cpp \
-		srcs/ShrubberyCreationForm.cpp \
-		srcs/RobotomyRequestForm.cpp \
-		srcs/PresidentialPardonForm.cpp
+SOURCES = srcs/main.cpp
 		
 
 OBJ = $(SOURCES:$(SRCS_PATH)/%.cpp=$(OBJ_DIR)/%.o)
@@ -74,7 +69,6 @@ clean :
 fclean :
 	@rm -rf $(OBJ_DIR)
 	@rm -f $(NAME)
-	@rm *_shrubbery
 	@echo "$(GREEN)Hardly clean  ✓ $(WHITE)"
 
 re : fclean all
