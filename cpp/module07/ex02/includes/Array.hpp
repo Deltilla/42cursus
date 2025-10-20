@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 10:39:44 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/20 12:37:17 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/20 18:33:11 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 # include <cstddef>
 # include <iostream>
+# include <stdexcept>
 
 template <typename T>
 class Array
@@ -24,15 +25,20 @@ class Array
 	
 		Array();
 		Array( unsigned int n );
+	    Array( const Array& copy );
+	    Array& operator=( const Array& copy );
 	    ~Array();
-	    Array( const Array& other );
-	    Array& operator=( const Array& other );
-		Array& operator[]( const Array& array);
+
+		T& operator[]( size_t i );
+
+		size_t size( void );
 	
 	private:
 		
-		T *_array;
+		T*		_array;
+		size_t	_size;
 };
-	
+
+# include "../srcs/Array.tpp"
 
 #endif

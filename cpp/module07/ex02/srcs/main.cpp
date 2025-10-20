@@ -6,26 +6,40 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 10:39:48 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/20 12:21:41 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/20 18:45:29 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <iter.hpp>
+#include <Array.hpp>
 
-template<typename T>
-void print_const_ref(const T &x) { std::cout << x << '\n'; }
-template<typename T>
-void increment(T &x) { x += 1; }
-
-int main() {
-    int nums[] = {1, 2, 3, 4};
-	::iter(nums, 4u, print_const_ref<int>);
-	::iter(nums, 4u, increment<int>);
-	::iter(nums, 4u, print_const_ref<int>);
+int main()
+{
 	
-    std::string strs[] = {"one", "two", "three"};
-    ::iter(strs, 3u, print_const_ref<std::string>);
-
+	
+	try {
+		Array<int> nums(4u);
+		for (size_t i = 0; i < 4u; i++) {
+			std::cout << i << std::endl;
+			nums[i] = i;
+			std::cout << nums[i] << std::endl;
+		}
+	}
+	catch (const std::exception &e) {
+		std::cerr << e.what() << std::endl;
+	}
+	
+	try {
+		Array<std::string> str(3);
+		
+		str[0] = "Holi";
+		str[1] = "wenas";
+		str[2] = "tardes";
+		for (int i = 0; i < 3; i++)
+		std::cout << str[i] << std::endl;
+	}
+	catch (const std::exception &e) {
+		std::cerr << e.what() << std::endl;
+	}
     return 0;
 }

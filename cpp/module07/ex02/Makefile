@@ -6,7 +6,7 @@
 #    By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 21:19:06 by analba-sa         #+#    #+#              #
-#    Updated: 2025/10/20 12:22:39 by analba-s         ###   ########.fr        #
+#    Updated: 2025/10/20 18:40:24 by analba-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CFLAGS = -g -Wall -Werror -Wextra -std=c++98
 OBJ_DIR = obj
 DEPS = -I includes
 
-SOURCES = srcs/main.cpp
+SOURCES = srcs/main.cpp \
 		
 
 OBJ = $(SOURCES:$(SRCS_PATH)/%.cpp=$(OBJ_DIR)/%.o)
