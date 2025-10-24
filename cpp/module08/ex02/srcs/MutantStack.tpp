@@ -6,37 +6,45 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:41:16 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/24 12:35:24 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/24 19:22:24 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <MutantStack.hpp>
 
-MutantStack::MutantStack( void )
+template<typename T, class Container>
+MutantStack<T, Container>::MutantStack( void )  : std::stack<T, Container>()
 {
 	std::cout << "MutantStack default constructor called" << std::endl;
 }
 
-MutantStack::MutantStack( unsigned int N )
-{
-	std::cout << "MutantStack assigment constructor called" << std::endl;
-}
-
-MutantStack::MutantStack( const MutantStack& copy )
+template<typename T, class Container>
+MutantStack<T, Container>::MutantStack( const MutantStack& copy ) : std::stack<T, Container>(copy)
 {
 	std::cout << "MutantStack copy constructor called" << std::endl;
 }
 
-MutantStack& MutantStack::operator=( const MutantStack& copy )
+template<typename T, class Container>
+MutantStack<T, Container>& MutantStack<T, Container>::operator=( const MutantStack& copy )
 {
-    std::cout << "MutantStack copy assigment opperator called" << std::endl;
-	if (this != &copy) {
-		
-	}
-    return ( *this );
+    std::stack<T, Container>::operator=(copy);
+    return *this;
 }
 
-MutantStack::~MutantStack( void )
+template<typename T, class Container>
+typename MutantStack<T, Container>::iterator MutantStack<T, Container>::begin( void )
+{
+	return ( this->c.begin() );
+}
+
+template<typename T, class Container>
+typename MutantStack<T, Container>::iterator MutantStack<T, Container>::end( void )
+{
+	return ( this->c.end() );
+}
+
+template<typename T, class Container>
+MutantStack<T, Container>::~MutantStack( void )
 {
 	std::cout << "MutantStack Destructor called" << std::endl;
 }

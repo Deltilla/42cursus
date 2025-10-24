@@ -6,11 +6,11 @@
 #    By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 21:19:06 by analba-sa         #+#    #+#              #
-#    Updated: 2025/10/24 19:23:26 by analba-s         ###   ########.fr        #
+#    Updated: 2025/10/24 19:37:44 by analba-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = mutantstack
+NAME = btc
 SRCS_PATH = srcs
 CC = c++
 CFLAGS = -g -Wall -Werror -Wextra -std=c++98
@@ -18,6 +18,7 @@ OBJ_DIR = obj
 DEPS = -I includes
 
 SOURCES = srcs/main.cpp \
+		srcs/Span.cpp
 		
 
 OBJ = $(SOURCES:$(SRCS_PATH)/%.cpp=$(OBJ_DIR)/%.o)

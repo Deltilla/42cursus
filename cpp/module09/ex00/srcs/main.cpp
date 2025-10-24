@@ -6,36 +6,22 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 10:39:48 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/24 19:21:13 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/24 19:50:34 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <MutantStack.hpp>
+#include <Span.hpp>
+#include <fstream>
 
-int main()
+int main( int arc, char** arv )
 {
-	MutantStack<int> mstack;
-	mstack.push(5);
-	mstack.push(17);
-
-	std::cout << mstack.top() << std::endl;
-	mstack.pop();
-	std::cout << mstack.size() << std::endl;
-	
-	mstack.push(3);
-	mstack.push(5);
-	mstack.push(737);
-	mstack.push(0);
-	
-	MutantStack<int>::iterator it = mstack.begin();
-	MutantStack<int>::iterator ite = mstack.end();
-	++it;
-	--it;
-	
-	while (it != ite) {
-		std::cout << *it << std::endl;
-		++it;
+	if (arc == 2)
+	{
+		std::ifstream database("../data.csv", std::ios_base::in);
+		if (!database.is_open())
+            std::cerr << "error: Could not open the database" << std::endl;
+		std::ifstream imput(arv[1], std::ios_base::in);
+		if (!imput.is_open())
+            std::cerr << "error: Could not open the file" << std::endl;
 	}
-	std::stack<int> s(mstack);
-	return 0;
 }
