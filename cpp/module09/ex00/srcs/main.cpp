@@ -6,11 +6,11 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 10:39:48 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/24 19:50:34 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/25 19:39:35 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <Span.hpp>
+#include <BitcoinExchange.hpp>
 #include <fstream>
 
 int main( int arc, char** arv )
@@ -23,5 +23,16 @@ int main( int arc, char** arv )
 		std::ifstream imput(arv[1], std::ios_base::in);
 		if (!imput.is_open())
             std::cerr << "error: Could not open the file" << std::endl;
+
+		std::string line;
+		while (getline(imput, line))
+		{
+			QuantityDataStore::loadFromFile
+		}
+		database.close();
+		imput.close();
 	}
+	else
+        std::cerr << "error: wrong paramaters" << std::endl
+                << "./btc imput.txt" << std::endl;
 }

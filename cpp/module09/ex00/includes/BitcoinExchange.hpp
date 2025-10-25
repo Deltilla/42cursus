@@ -1,69 +1,92 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Span.hpp                                           :+:      :+:    :+:   */
+/*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 10:39:44 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/24 12:26:33 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/25 19:38:13 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPAN_HPP
-# define SPAN_HPP
+#ifndef BITCOIN_EXCHANGE_HPP
+# define BITCOIN_EXCHANGE_HPP
 
 # include <algorithm>
-# include <vector>
-# include <stdexcept>
+# include <map>
 # include <iostream>
-# include <limits>
+# include <stdexcept>
 
-class Span
+struct PriceDataStore
 {
 	public:
+	
+		typedef std::map<std::string, double> PriceMap;
 
-    	Span();
-		Span( unsigned int N );
-    	Span(const Span& other);
-		Span& operator=(const Span& other);
-    	~Span();
+		bool loadFromFile(const std::string &filepath);
 
-		std::vector<int>	getNums( void ) const;
-		bool				getFull( void ) const;
+		const PriceMap&	getData() const;
+    	bool			hasMap(const std::string &date) const;
 
-		
-		void		addNumber( int n );
-		int			shortestSpan( void );
-		int			longestSpan( void );
-		
-		template <typename It>
-		void		addNumber(It first, It last) {
-			if (this->_full)
-				throw Span::MaxStoredException();
-			for (; this->_nums.size() != this->_max && first != last; first++)
-				this->_nums.push_back(first);
-			if (this->_nums.size() == this->_max)
-				this->_full = true;
-		}
-
-		class MaxStoredException : public std::exception
-		{
-			public:
-				const char* what() const throw()
-				{
-					return ( "Span is already full" );
-				}
-		};
+		double priceForDate(const std::string &date, bool &found) const;
 
 	private:
+		
+		PriceMap map;
 
-		std::vector<int>	_nums;
-		unsigned int		_max;
-		bool				_full;
+		static bool isValidPriceToken(const std::string &token);
+    	static bool isValidPriceValue(double value);
+};
+
+struct QuantityDataStore
+{
+	public:
+		
+		typedef std::map<std::string, double> QuantityMap;
+
+		bool loadFromFile(const std::string &filepath);
+
+		const QuantityMap&	getData() const;
+    	bool				hasMap(const std::string &date) const;
+
+		double priceForDate(const std::string &date, bool &found) const;
+
+	private:
+		
+		QuantityMap map;
+
+		static bool isValidPriceToken(const std::string &token);
+    	static bool isValidPriceValue(double value);
+};
+
+class BitcoinExchange
+{
+
+	typedef std::map<std::string, double> ExchangeMap;
+	
+	public:
+
+    	BitcoinExchange();
+		BitcoinExchange( const PriceDataStore &prices, const QuantityDataStore &quantities );
+    	BitcoinExchange( const BitcoinExchange& copy );
+		BitcoinExchange& operator=( const BitcoinExchange& copy );
+    	~BitcoinExchange();
+
+		void setPriceStore( const PriceDataStore &prices );
+    	void setQuantityStore( const QuantityDataStore &quantities );
+
+		double computeExchange( bool &ok ) const;
+
+		ExchangeMap computeUSDPerDate( bool &ok ) const;
+
+	private:
+	
+		const PriceDataStore *_priceStore;
+    	const QuantityDataStore *_quantityStore;
 
 };
 
-std::ostream& operator<<(std::ostream& os, const Span& span);
+std::ostream& operator<<(std::ostream& os, const BitcoinExchange& bitcoinexchange);
 
 #endif
