@@ -6,7 +6,7 @@
 #    By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 21:19:06 by analba-sa         #+#    #+#              #
-#    Updated: 2025/10/24 19:37:44 by analba-s         ###   ########.fr        #
+#    Updated: 2025/10/27 19:11:06 by analba-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ OBJ_DIR = obj
 DEPS = -I includes
 
 SOURCES = srcs/main.cpp \
-		srcs/Span.cpp
+		srcs/BitcoinExchange.cpp
 		
 
 OBJ = $(SOURCES:$(SRCS_PATH)/%.cpp=$(OBJ_DIR)/%.o)

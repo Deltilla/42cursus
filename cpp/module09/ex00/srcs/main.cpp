@@ -6,31 +6,29 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 10:39:48 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/25 19:39:35 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/27 19:19:42 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <BitcoinExchange.hpp>
-#include <fstream>
 
 int main( int arc, char** arv )
 {
 	if (arc == 2)
 	{
-		std::ifstream database("../data.csv", std::ios_base::in);
-		if (!database.is_open())
-            std::cerr << "error: Could not open the database" << std::endl;
-		std::ifstream imput(arv[1], std::ios_base::in);
-		if (!imput.is_open())
-            std::cerr << "error: Could not open the file" << std::endl;
-
-		std::string line;
-		while (getline(imput, line))
-		{
-			QuantityDataStore::loadFromFile
+		try {
+			PriceDataStore		prices;
+			QuantityDataStore	quantities;
+			if (prices.loadFromFile("data.csv") && quantities.loadFromFile(arv[1])) {
+				BitcoinExchange exchange(prices, quantities);
+				exchange.storeValuePerDate();
+				exchange.displayValuesByDate();
+			}
 		}
-		database.close();
-		imput.close();
+		catch(std::exception &e) {
+			std::cerr << e.what() << std::endl;
+		}
+			
 	}
 	else
         std::cerr << "error: wrong paramaters" << std::endl

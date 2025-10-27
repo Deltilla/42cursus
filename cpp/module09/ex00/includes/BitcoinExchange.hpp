@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 10:39:44 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/25 19:38:13 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/27 19:40:32 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <map>
 # include <iostream>
 # include <stdexcept>
+# include <fstream>
+# include <sstream>
 
 struct PriceDataStore
 {
@@ -24,19 +26,20 @@ struct PriceDataStore
 	
 		typedef std::map<std::string, double> PriceMap;
 
-		bool loadFromFile(const std::string &filepath);
+		bool loadFromFile( const std::string &filepath );
 
-		const PriceMap&	getData() const;
-    	bool			hasMap(const std::string &date) const;
+		const PriceMap&	getMap() const;
+    	bool			hasMap( const std::string &date ) const;
 
-		double priceForDate(const std::string &date, bool &found) const;
+		double priceForDate( const std::string &date, bool &found ) const;
 
 	private:
 		
 		PriceMap map;
 
-		static bool isValidPriceToken(const std::string &token);
-    	static bool isValidPriceValue(double value);
+		bool badImput = false;
+    	bool negativeNumber = false;
+		bool tooLargeNumber = false;
 };
 
 struct QuantityDataStore
@@ -47,7 +50,7 @@ struct QuantityDataStore
 
 		bool loadFromFile(const std::string &filepath);
 
-		const QuantityMap&	getData() const;
+		const QuantityMap&	getMap() const;
     	bool				hasMap(const std::string &date) const;
 
 		double priceForDate(const std::string &date, bool &found) const;
@@ -56,8 +59,9 @@ struct QuantityDataStore
 		
 		QuantityMap map;
 
-		static bool isValidPriceToken(const std::string &token);
-    	static bool isValidPriceValue(double value);
+		bool badImput = false;
+    	bool negativeNumber = false;
+		bool tooLargeNumber = false;
 };
 
 class BitcoinExchange
@@ -76,17 +80,16 @@ class BitcoinExchange
 		void setPriceStore( const PriceDataStore &prices );
     	void setQuantityStore( const QuantityDataStore &quantities );
 
-		double computeExchange( bool &ok ) const;
-
-		ExchangeMap computeUSDPerDate( bool &ok ) const;
+		void	storeValuePerDate( void );
+		
+		void	displayValuesByDate() const;
 
 	private:
 	
+		ExchangeMap _map;
 		const PriceDataStore *_priceStore;
     	const QuantityDataStore *_quantityStore;
 
 };
-
-std::ostream& operator<<(std::ostream& os, const BitcoinExchange& bitcoinexchange);
 
 #endif
