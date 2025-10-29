@@ -6,211 +6,339 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:41:16 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/27 19:45:45 by analba-s         ###   ########.fr       */
+/*   Updated: 2025/10/29 19:18:44 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <BitcoinExchange.hpp>
 
-bool PriceDataStore::loadFromFile( const std::string &filepath )
-{
-	std::ifstream in(filepath.c_str(), std::ios_base::in);
-	if (!in.is_open()) {
-        std::cerr << "Price: error: Could not open the file" << std::endl;
-		return ( false );
-	}
-	this->map.clear();
-	std::string line;
-	for ( ; getline(in, line); ) {
-		if (line.find("date") != std::string::npos || line.find("value") != std::string::npos)
-            continue;
-		std::size_t comma = line.find(',');
-        if (comma == std::string::npos) {
-            this->badImput = true;
-            continue;
-        }
-		std::string key = line.substr(0, comma);
-		std::stringstream ssVal(line.substr(comma + 1));
-        double value;
-        if (!(ssVal >> value))
-            this->badImput = true;
-		if (value < 0)
-			this->negativeNumber = true;
-		if (value > __INT_MAX__)
-			this->tooLargeNumber = true;
-		this->map[key] = value;
-	}
-	return ( true );
+// ============================================================================
+// ORTHODOX CANONICAL FORM IMPLEMENTATION (Constructor/Destructor Section)
+// ============================================================================
+
+/// Constructor: Initializes all member variables.
+BitcoinExchange::BitcoinExchange() {
+  // Empty STL containers are automatically initialized via default constructors.
 }
 
-typedef std::map<std::string, double> PriceMap;
-const PriceMap& PriceDataStore::getMap( void ) const
-{
-	return ( this->map );
+/// Copy Constructor: Uses member initializer list for deep container copy.
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& other)
+    : price_data_(other.price_data_), input_data_(other.input_data_) {
+  // STL multimap containers provide automatic deep copying.
 }
 
-bool QuantityDataStore::loadFromFile( const std::string &filepath )
-{
-	std::ifstream in(filepath.c_str(), std::ios_base::in);
-	if (!in.is_open()) {
-        std::cerr << "Quantity: error: Could not open the file" << std::endl;
-		return ( false );
-	}
-	this->map.clear();
-	std::string line;
-	for ( ; getline(in, line); ) {
-		if (line.find("date") != std::string::npos || line.find("value") != std::string::npos)
-            continue;
-		std::size_t comma = line.find('|');
-        if (comma == std::string::npos) {
-            this->badImput = true;
-            continue;
-        }
-		std::string key = line.substr(0, comma);
-        std::string valStr = line.substr(comma + 1);
-
-        std::size_t a = key.find_first_not_of(" \t\r\n");
-        std::size_t b = key.find_last_not_of(" \t\r\n");
-        if (a == std::string::npos) key.clear();
-        else key = key.substr(a, b - a + 1);
-
-        a = valStr.find_first_not_of(" \t\r\n");
-        b = valStr.find_last_not_of(" \t\r\n");
-        if (a == std::string::npos) valStr.clear();
-        else valStr = valStr.substr(a, b - a + 1);
-		
-		std::stringstream ssVal(valStr);
-        double value;
-        if (!(ssVal >> value))
-            this->badImput = true;
-		if (value < 0)
-			this->negativeNumber = true;
-		if (value > __INT_MAX__)
-			this->tooLargeNumber = true;
-		this->map[key] = value;
-	}
-	return ( true );
+/// Assignment Operator: Implements self-check and container assignment.
+BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& other) {
+  if (this != &other) {
+    price_data_ = other.price_data_;
+    input_data_ = other.input_data_;
+  }
+  return *this;
 }
 
-typedef std::map<std::string, double> QuantityMap;
-const QuantityMap& QuantityDataStore::getMap( void ) const
-{
-	return ( this->map );
+/// Destructor: STL containers handle automatic resource deallocation.
+BitcoinExchange::~BitcoinExchange() {
+  // No manual cleanup needed; STL containers auto-destruct.
 }
 
-BitcoinExchange::BitcoinExchange( void ) : _priceStore(NULL), _quantityStore(NULL)
-{
-	std::cout << "BitcoinExchange default constructor called" << std::endl;
+// ============================================================================
+// PRIVATE HELPER METHODS (Validation Section)
+// ============================================================================
+
+/// Trims leading and trailing whitespace from input string.
+std::string BitcoinExchange::TrimWhitespace(const std::string& str) const {
+  size_t start = str.find_first_not_of(" \t\r\n");
+  if (start == std::string::npos)
+    return "";
+
+  size_t end = str.find_last_not_of(" \t\r\n");
+  return str.substr(start, end - start + 1);
 }
 
-BitcoinExchange::BitcoinExchange( const PriceDataStore &prices, const QuantityDataStore &quantities ) : _priceStore(NULL), _quantityStore(NULL)
-{
-	std::cout << "BitcoinExchange assigment constructor called" << std::endl;
-	this->_priceStore = new PriceDataStore(prices);
-	this->_quantityStore = new QuantityDataStore(quantities);
+/// Validates that date string matches YYYY-MM-DD format.
+bool BitcoinExchange::IsValidDate(const std::string& date) const {
+  if (date.length() != 10)
+    return false;
+  if (date[4] != '-' || date[7] != '-')
+    return false;
+
+  for (size_t i = 0; i < date.length(); ++i) {
+    if (i == 4 || i == 7)
+      continue;
+    if (date[i] < '0' || date[i] > '9')
+      return false;
+  }
+  return true;
 }
 
+/// Validates and converts string to double value.
+/// Returns false if string is empty, contains non-numeric data, or has garbage.
+bool BitcoinExchange::IsValidNumber(const std::string& str,
+                                    double& value) const {
+  if (str.empty())
+    return false;
 
-BitcoinExchange::BitcoinExchange( const BitcoinExchange& copy ) : _priceStore(NULL), _quantityStore(NULL)
-{
-    std::cout << "BitcoinExchange copy constructor called" << std::endl;
-    if (copy._priceStore)
-        this->_priceStore = new PriceDataStore(*copy._priceStore);
-    else
-        this->_priceStore = NULL;
+  std::istringstream iss(str);
+  if (!(iss >> value))
+    return false;
 
-    if (copy._quantityStore)
-        this->_quantityStore = new QuantityDataStore(*copy._quantityStore);
-    else
-        this->_quantityStore = NULL;
+  // Verify entire string was consumed (reject extra characters).
+  std::string remainder;
+  if (iss >> remainder)
+    return false;
+
+  return true;
 }
 
-BitcoinExchange& BitcoinExchange::operator=( const BitcoinExchange& copy )
-{
-    std::cout << "BitcoinExchange copy assigment opperator called" << std::endl;
-    if (this != &copy) {
-        PriceDataStore *newPriceStore = NULL;
-        QuantityDataStore *newQuantityStore = NULL;
+// ============================================================================
+// PRIVATE HELPER METHODS (Parsing Section)
+// ============================================================================
 
-        if (copy._priceStore)
-            newPriceStore = new PriceDataStore(*copy._priceStore);
-        if (copy._quantityStore)
-            newQuantityStore = new QuantityDataStore(*copy._quantityStore);
+/// Parses price CSV line format: "YYYY-MM-DD,value"
+/// Returns false for header lines or malformed entries.
+bool BitcoinExchange::ParsePriceLine(const std::string& line,
+                                     std::string& date, double& price) {
+  // Skip header row detection.
+  if (line.find("date") != std::string::npos ||
+      line.find("value") != std::string::npos) {
+    return false;
+  }
 
-        if (this->_priceStore) {
-            delete this->_priceStore;
-            this->_priceStore = NULL;
-        }
-        if (this->_quantityStore) {
-            delete this->_quantityStore;
-            this->_quantityStore = NULL;
-        }
+  size_t delim_pos = line.find(',');
+  if (delim_pos == std::string::npos)
+    return false;
 
-        this->_priceStore = newPriceStore;
-        this->_quantityStore = newQuantityStore;
+  date = line.substr(0, delim_pos);
+  std::string price_str = line.substr(delim_pos + 1);
+
+  if (!IsValidDate(date))
+    return false;
+
+  if (!IsValidNumber(price_str, price))
+    return false;
+
+  if (price < 0.0)
+    return false;
+
+  return true;
+}
+
+/// Parses input transaction line format: "YYYY-MM-DD | quantity"
+/// Populates entry struct with validation results or error messages.
+void BitcoinExchange::ParseInputLine(const std::string& line,
+                                     InputEntry& entry) {
+  entry.is_valid = false;
+  entry.date = "";
+  entry.quantity = 0.0;
+  entry.error_message = "";
+
+  // Skip header row detection.
+  if (line.find("date") != std::string::npos ||
+      line.find("value") != std::string::npos) {
+    return;
+  }
+
+  // Locate pipe delimiter (mandatory field separator).
+  size_t delim_pos = line.find('|');
+  if (delim_pos == std::string::npos) {
+    entry.error_message = "Error: bad input => " + line;
+    return;
+  }
+
+  // Extract and trim date and quantity fields.
+  std::string date_str = TrimWhitespace(line.substr(0, delim_pos));
+  std::string quantity_str =
+      TrimWhitespace(line.substr(delim_pos + 1));
+
+  if (date_str.empty()) {
+    entry.error_message = "Error: bad input => " + line;
+    return;
+  }
+
+  if (quantity_str.empty()) {
+    entry.error_message = "Error: bad input => " + line;
+    return;
+  }
+
+  // Validate date format.
+  if (!IsValidDate(date_str)) {
+    entry.error_message = "Error: bad input => " + line;
+    return;
+  }
+
+  // Parse and validate quantity numeric value.
+  double quantity;
+  if (!IsValidNumber(quantity_str, quantity)) {
+    entry.error_message = "Error: bad input => " + line;
+    return;
+  }
+
+  // Validate quantity is non-negative.
+  if (quantity < 0.0) {
+    entry.date = date_str;
+    entry.quantity = quantity;
+    entry.error_message = "Error: not a positive number.";
+    return;
+  }
+
+  // Validate quantity does not exceed INT_MAX.
+  if (quantity > 2147483647.0) {
+    entry.date = date_str;
+    entry.quantity = quantity;
+    entry.error_message = "Error: too large a number.";
+    return;
+  }
+
+  // Entry passed all validations.
+  entry.date = date_str;
+  entry.quantity = quantity;
+  entry.is_valid = true;
+}
+
+// ============================================================================
+// PRIVATE HELPER METHODS (Search/Format Section)
+// ============================================================================
+
+/// Finds price for date using lower_bound interpolation.
+/// If exact date exists, returns that price.
+/// Otherwise returns price of closest earlier date.
+double BitcoinExchange::FindPriceForDate(const std::string& date,
+                                         bool& found) const {
+  found = false;
+
+  PriceDataMap::const_iterator it = price_data_.lower_bound(date);
+
+  // Exact match case.
+  if (it != price_data_.end() && it->first == date) {
+    found = true;
+    return it->second;
+  }
+
+  // Cannot interpolate (no earlier date available).
+  if (it == price_data_.begin())
+    return 0.0;
+
+  // Use closest earlier date.
+  --it;
+  found = true;
+  return it->second;
+}
+
+/// Formats transaction output line: "YYYY-MM-DD => quantity = result"
+std::string BitcoinExchange::FormatOutput(const std::string& date,
+                                          double quantity,
+                                          double price) const {
+  std::ostringstream oss;
+  oss << date << " => " << quantity << " = " << (quantity * price);
+  return oss.str();
+}
+
+// ============================================================================
+// PUBLIC INTERFACE METHODS
+// ============================================================================
+
+/// Loads price data from CSV file; skips malformed lines.
+bool BitcoinExchange::LoadPriceData(const std::string& file_path) {
+  std::ifstream file(file_path.c_str());
+
+  if (!file.is_open()) {
+    std::cerr << "Error: could not open file " << file_path << std::endl;
+    return false;
+  }
+
+  price_data_.clear();
+
+  std::string line;
+  while (std::getline(file, line)) {
+    std::string date;
+    double price;
+
+    // Skip header and malformed lines.
+    if (!ParsePriceLine(line, date, price))
+      continue;
+
+    price_data_.insert(std::make_pair(date, price));
+  }
+
+  file.close();
+  return true;
+}
+
+/// Loads input transactions from file; processes all entries (valid/error).
+bool BitcoinExchange::LoadInputData(const std::string& file_path) {
+  std::ifstream file(file_path.c_str());
+
+  if (!file.is_open()) {
+    std::cerr << "Error: could not open file " << file_path << std::endl;
+    return false;
+  }
+
+  input_data_.clear();
+
+  std::string line;
+  int line_index = 0;
+  while (std::getline(file, line)) {
+    InputEntry entry;
+
+    ParseInputLine(line, entry);
+    entry.line_index = line_index;
+
+    // Skip header lines only (entries with no error message and not valid).
+    if (entry.error_message.empty() && !entry.is_valid) {
+      line_index++;
+      continue;
     }
-    return ( *this );
+
+    input_data_.insert(std::make_pair(entry.date, entry));
+    line_index++;
+  }
+
+  file.close();
+  return true;
 }
 
-void BitcoinExchange::setPriceStore( const PriceDataStore &prices )
-{
-	if (this->_priceStore) {
-        delete this->_priceStore;
-        this->_priceStore = NULL;
-    }
-    this->_priceStore = new PriceDataStore(prices);
-}
+// ============================================================================
+// MAIN PROCESSING METHOD
+// ============================================================================
 
-void BitcoinExchange::setQuantityStore( const QuantityDataStore &quantities )
-{
-	if (this->_quantityStore) {
-        delete this->_quantityStore;
-        this->_quantityStore = NULL;
-    }
-    this->_quantityStore = new QuantityDataStore(quantities);
-}
+/// Processes all transactions; outputs in original input file order.
+/// Displays exchange results for valid entries; error messages for invalid.
+void BitcoinExchange::ProcessExchange() {
+  // Create temporary multimap to reorder entries by original file line index.
+  // This ensures output respects input file sequence, not sorted container order.
+  std::multimap<int, InputDataMap::iterator> ordered_entries;
 
-void BitcoinExchange::storeValuePerDate( void )
-{
-	if (!this->_quantityStore) {
-        std::cerr << "error: no quantity store available" << std::endl;
-        return;
+  for (InputDataMap::iterator it = input_data_.begin();
+       it != input_data_.end(); ++it) {
+    ordered_entries.insert(
+        std::make_pair(it->second.line_index, it));
+  }
+
+  // Process and output entries in their original file order.
+  for (std::multimap<int, InputDataMap::iterator>::iterator
+           ord_it = ordered_entries.begin();
+       ord_it != ordered_entries.end(); ++ord_it) {
+    InputDataMap::iterator it = ord_it->second;
+    const InputEntry& entry = it->second;
+
+    // Output error message for invalid entries.
+    if (!entry.is_valid) {
+      std::cout << entry.error_message << std::endl;
+      continue;
     }
 
-    const std::map<std::string, double> &qmap = this->_quantityStore->getMap();
-	const std::map<std::string, double> &pmap = this->_priceStore->getMap();
+    // Look up historical price for transaction date.
+    bool found = false;
+    double price = FindPriceForDate(entry.date, found);
 
-    for (std::map<std::string, double>::const_iterator it = qmap.begin(); it != qmap.end(); ++it) {
-		std::map<std::string, double>::const_iterator pit = pmap.find(it->first);
-		if (pit == pmap.end()) {
-            std::cerr << "warning: no price for date: " << it->first << std::endl;
-            continue;
-        }
-		double value = pit->second * it->second;
-        std::ostringstream ss;
-        ss << it->first << " => " << it->second << " = " << value;
-        std::string date = ss.str();
-		
-		this->_map[date] = value;
+    if (!found) {
+      std::cout << "Error: no price for date => " << entry.date
+                << std::endl;
+      continue;
     }
-}
 
-void BitcoinExchange::displayValuesByDate( void ) const
-{
-	for (std::map<std::string, double>::const_iterator it = this->_map.begin(); it != this->_map.end(); ++it) {
-		std::cout << it->first << it->second << std::endl;
-	}
-}
-
-BitcoinExchange::~BitcoinExchange( void )
-{
-	std::cout << "BitcoinExchange Destructor called" << std::endl;
-	if (this->_priceStore) {
-        delete this->_priceStore;
-        this->_priceStore = NULL;
-    }
-    if (this->_quantityStore) {
-        delete this->_quantityStore;
-        this->_quantityStore = NULL;
-    }
+    // Output successful exchange calculation.
+    std::cout << FormatOutput(entry.date, entry.quantity, price)
+              << std::endl;
+  }
 }

@@ -6,7 +6,7 @@
 #    By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 21:19:06 by analba-sa         #+#    #+#              #
-#    Updated: 2025/10/27 19:11:06 by analba-s         ###   ########.fr        #
+#    Updated: 2025/10/29 18:04:34 by analba-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,9 +47,9 @@ head :
 	@echo "$(BLUE)"
 	@echo "\t                                           "
 	@echo "\t            								"
-	@echo "\t						▛▘▛▌▛▌				"
-	@echo "\t						▙▖▙▌▙▌				"
-	@echo "\t						  ▌ ▌ 				" 
+	@echo "\t\t  ▛▘▛▌▛▌				"
+	@echo "\t\t  ▙▖▙▌▙▌				"
+	@echo "\t\t    ▌ ▌ 				" 
 	@echo "\t        By analba-s"
 	@echo "\tProyect: \033[36m cpp_ex00 $(BLUE)"
 	@echo "\tCommands:\033[36m all clean fclean re $(WHITE)\n"
