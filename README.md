@@ -1,6 +1,6 @@
 # 42cursus
 
-## 🇬🇧 English Version | [Leer en español 🇪🇸↓](#¡hola-👋-soy-deltilla)
+## 🇬🇧 English Version | [Leer en español 🇪🇸↓](#acerca-de-42cursus)
 
 ### About 42cursus
 
@@ -36,7 +36,7 @@ Below is a list of all the projects in this curriculum, with links to the detail
 
 ***
 
-## 🇪🇸 Versión en Español
+## 🇪🇸 Versión en Español | [Read in English 🇬🇧↑](#about-42cursus)
 
 ### Acerca de 42cursus
 
