@@ -1,0 +1,75 @@
+📋 Fase 1: Preparación del Host (Tu VM Debian)
+Antes de tocar Docker, el entorno debe estar listo.
+
+Instalación de Docker: Instalar el motor de Docker y Docker Compose en tu Debian.
+
+Configuración de Red Local: Editar el archivo /etc/hosts de tu VM para que tu_login.42.fr apunte a 127.0.0.1.
+
+Estructura de Carpetas: Crear la jerarquía que pide el sujeto (la carpeta srcs, requirements, etc.).
+
+Creación de Directorios de Datos: Crear /home/login/data/mariadb y /home/login/data/wordpress con los permisos correctos.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+🛡️ Fase 2: El "Portero" (NGINX + TLS)
+Es el mejor punto de partida porque es el único que da la cara al exterior.
+
+Dockerfile de Nginx: Crear una imagen basada en Debian.
+
+Certificado SSL: Aprender el comando openssl para generar tu certificado y tu llave privada.
+
+Configuración de Nginx: Escribir el archivo nginx.conf para que escuche solo por el puerto 443 y use los protocolos TLS 1.2/1.3.
+
+Prueba de concepto: Lanzar el contenedor y ver si el navegador muestra "Welcome to Nginx" bajo HTTPS.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+🗄️ Fase 3: El "Archivador" (MariaDB)
+Sin datos no hay WordPress. Es el siguiente paso lógico.
+
+Dockerfile de MariaDB: Basado en Debian.
+
+Script de Inicialización: Crear un pequeño script (.sh) que se ejecute al arrancar para crear la base de datos y los dos usuarios (el admin y el usuario normal) que pide el sujeto.
+
+Persistencia: Configurar el volumen para que los datos no se borren.
+
+Variables de Entorno: Empezar a usar el archivo .env para que el script de inicialización no tenga las contraseñas escritas a mano.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+📝 Fase 4: El "Cerebro" (WordPress + PHP-FPM)
+Aquí es donde todo se conecta.
+
+Dockerfile de WordPress: Instalar PHP-FPM y las herramientas necesarias (curl, wp-cli).
+
+Configuración de PHP-FPM: Modificar el archivo www.conf para que escuche en el puerto 9000 (para hablar con Nginx) en lugar de un socket local.
+
+Instalación Automática: Usar wp-cli (la interfaz de comandos de WordPress) para descargar e instalar WordPress automáticamente sin usar la interfaz web.
+
+Conexión con MariaDB: Configurar el wp-config.php para que apunte al servicio de MariaDB.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+🕸️ Fase 5: La Orquestación (Docker Compose)
+Unir las piezas.
+
+El archivo docker-compose.yml:
+
+Definir los 3 servicios.
+
+Crear la Network privada.
+
+Definir los Named Volumes.
+
+Configurar las reglas de restart: always por si algo falla.
+
+El Makefile: Crear las reglas all, up, down, re, clean y fclean para manejar todo el proyecto con un solo comando.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+📜 Fase 6: Documentación y Pulido Final
+Docker Secrets: Migrar las contraseñas de las variables de entorno simples a secretos de Docker (si decides ir por el camino de máxima seguridad).
+
+README.md: Redactar la comparación técnica que pide el sujeto (VM vs Docker, etc.).
+
+USER_DOC y DEV_DOC: Escribir las guías de usuario y desarrollador.

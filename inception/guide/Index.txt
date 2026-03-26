@@ -1,0 +1,64 @@
+🏗️ Bloque 1: Los Cimientos (Virtualización y Linux)
+Antes de tocar Docker, hay que entender dónde vive.
+
+¿Qué es una Máquina Virtual (VM)?: Por qué la usamos y en qué se diferencia de nuestro sistema operativo real.
+
+Arquitectura de Linux (Debian/Alpine):
+
+Gestión de paquetes (apt vs apk).
+
+El sistema de archivos de Linux (¿Dónde se guardan las configuraciones?).
+
+Procesos y Daemons: Qué es un servicio que corre de fondo y por qué no queremos "bucles infinitos" artificiales.
+
+---------------------------------------------------------------------------------------------------------------------
+
+🐋 Bloque 2: El Universo Docker (Contenedores)
+Aquí es donde ocurre la magia.
+
+Contenedor vs. Imagen: La diferencia entre el "molde" y el "producto".
+
+El Dockerfile: Anatomía de la receta.
+
+Instrucciones básicas: FROM, RUN, COPY, EXPOSE.
+
+El punto de entrada: ENTRYPOINT vs CMD (crucial para que el contenedor no se apague).
+
+Docker Compose: Cómo escribir el "guion" para que varios contenedores actúen como una sola aplicación.
+
+---------------------------------------------------------------------------------------------------------------------
+
+🔌 Bloque 3: Redes y Almacenamiento (Comunicación y Memoria)
+Un contenedor por sí solo es autista y amnésico. Hay que darle voz y memoria.
+
+Docker Networks: Cómo hacer que Nginx hable con WordPress sin que nadie de fuera pueda cotillear.
+
+Volúmenes (Volumes):
+
+Por qué los contenedores "olvidan" todo al morir.
+
+Named Volumes vs. Bind Mounts: Por qué el sujeto te prohíbe los segundos.
+
+DNS Local: Cómo engañar a tu ordenador para que al escribir tu-login.42.fr sepa que tiene que ir a tu contenedor.
+
+---------------------------------------------------------------------------------------------------------------------
+
+🔐 Bloque 4: Seguridad y Entorno (El "Hardening")
+No podemos dejar las llaves de casa puestas.
+
+Protocolo TLS/SSL: Qué es HTTPS, por qué necesitamos un certificado y cómo se genera uno "casero" (Self-signed).
+
+Variables de Entorno y el archivo .env: Cómo pasar contraseñas a los contenedores sin escribirlas en el código.
+
+Docker Secrets: La forma ultra-segura de manejar datos sensibles.
+
+---------------------------------------------------------------------------------------------------------------------
+
+🛠️ Bloque 5: El Stack LEMP (Los Protagonistas)
+Entender qué hace cada programa que vas a instalar.
+
+NGINX: El portero de discoteca. Solo deja pasar a quien debe y reparte el tráfico.
+
+MariaDB: El archivador. Dónde se guardan los posts y usuarios de WordPress.
+
+PHP-FPM: El traductor. WordPress está escrito en PHP, pero el servidor web no entiende PHP, así que necesita a este intermediario.
