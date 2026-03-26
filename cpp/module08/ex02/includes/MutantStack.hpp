@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 10:39:44 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/24 19:22:08 by analba-s         ###   ########.fr       */
+/*   Updated: 2026/01/21 10:56:39 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,29 @@
 template<typename T, class Container = std::deque<T> >
 class MutantStack : public std::stack<T, Container>
 {
-public:
-    typedef typename std::stack<T, Container>::container_type container_type;
-    typedef typename container_type::iterator iterator;
-    typedef typename container_type::const_iterator const_iterator;
-    typedef typename container_type::reverse_iterator reverse_iterator;
-    typedef typename container_type::const_reverse_iterator const_reverse_iterator;
+	
+	public:
 
-    MutantStack();
-    MutantStack(const MutantStack& copy);
-    MutantStack& operator=(const MutantStack& copy);
-    ~MutantStack();
+    	typedef typename std::stack<T, Container>::container_type container_type;
+    	typedef typename container_type::iterator iterator;
+    	typedef typename container_type::const_iterator const_iterator;
+    	typedef typename container_type::reverse_iterator reverse_iterator;
+    	typedef typename container_type::const_reverse_iterator const_reverse_iterator;
 
-    iterator begin();
-    iterator end();
+    	MutantStack();
+    	MutantStack(const MutantStack& copy);
+    	MutantStack& operator=(const MutantStack& copy);
+    	~MutantStack();
+
+    	iterator begin();
+    	iterator end();
+    	const_iterator begin() const;
+    	const_iterator end() const;
+    	reverse_iterator rbegin();
+    	reverse_iterator rend();
+    	const_reverse_iterator rbegin() const;
+    	const_reverse_iterator rend() const;
+
 };
 
 # include "../srcs/MutantStack.tpp"

@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:41:16 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/24 19:22:24 by analba-s         ###   ########.fr       */
+/*   Updated: 2026/01/21 10:56:12 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,42 @@ template<typename T, class Container>
 typename MutantStack<T, Container>::iterator MutantStack<T, Container>::end( void )
 {
 	return ( this->c.end() );
+}
+
+template<typename T, class Container>
+typename MutantStack<T, Container>::const_iterator MutantStack<T, Container>::begin( void ) const
+{
+	return ( this->c.begin() );
+}
+
+template<typename T, class Container>
+typename MutantStack<T, Container>::const_iterator MutantStack<T, Container>::end( void ) const
+{
+	return ( this->c.end() );
+}
+
+template<typename T, class Container>
+typename MutantStack<T, Container>::reverse_iterator MutantStack<T, Container>::rbegin( void )
+{
+	return ( this->c.rbegin() );
+}
+
+template<typename T, class Container>
+typename MutantStack<T, Container>::reverse_iterator MutantStack<T, Container>::rend( void )
+{
+	return ( this->c.rend() );
+}
+
+template<typename T, class Container>
+typename MutantStack<T, Container>::const_reverse_iterator MutantStack<T, Container>::rbegin( void ) const
+{
+	return ( this->c.rbegin() );
+}
+
+template<typename T, class Container>
+typename MutantStack<T, Container>::const_reverse_iterator MutantStack<T, Container>::rend( void ) const
+{
+	return ( this->c.rend() );
 }
 
 template<typename T, class Container>

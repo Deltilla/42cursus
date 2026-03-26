@@ -6,20 +6,31 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 10:39:48 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/30 18:38:38 by analba-s         ###   ########.fr       */
+/*   Updated: 2026/01/21 11:57:10 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <RPN.hpp>
 
-int main(int arc, char** arv)
+int main(int argc, char** argv)
 {
-	if (arc == 2)
+	if (argc != 2)
+	{
+		std::cerr << "Error" << std::endl;
+		return 1;
+	}
+
+	try
 	{
 		RPN rpn;
-		rpn.evaluateExpression(arv[1]);
+		rpn.evaluateExpression(argv[1]);
 		rpn.printStack();
 	}
-	else
-		std::cerr << "Usage --> ./RPN 'n n +' ";
+	catch (const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+		return 1;
+	}
+
+	return 0;
 }

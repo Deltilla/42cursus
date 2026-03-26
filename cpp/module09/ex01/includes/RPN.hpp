@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:41:37 by analba-s          #+#    #+#             */
-/*   Updated: 2025/10/30 18:36:31 by analba-s         ###   ########.fr       */
+/*   Updated: 2026/01/21 11:57:10 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ class RPN
 		bool	isOperator( const std::string &token ) const;
 		bool	isOperand( const std::string &token ) const;
 		int		performOperation( int a, int b, char op ) const;
+		std::string	trimWhitespace( const std::string &str ) const;
 
 };
 
