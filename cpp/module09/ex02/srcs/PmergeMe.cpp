@@ -6,7 +6,7 @@
 /*   By: analba-s <analba-s@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:41:40 by analba-s          #+#    #+#             */
-/*   Updated: 2026/04/10 16:39:22 by analba-s         ###   ########.fr       */
+/*   Updated: 2026/04/15 13:36:58 by analba-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,10 +154,9 @@ void PmergeMe::fordJohnsonSortVector(std::vector<int> &vec, int left, int right)
 		fordJohnsonSortVector(winners, 0, winners.size() - 1);
 
 	std::vector<int> result = winners;
-	for (std::vector<int>::iterator it = unpaired.begin(); it != unpaired.end(); ++it) {
-		int u = *it;
-		size_t pos = binarySearchVector(result, u, result.size());
-		result.insert(result.begin() + pos, u);
+	if (!unpaired.empty()) {
+		size_t pos = binarySearchVector(result, *unpaired.begin(), result.size());
+		result.insert(result.begin() + pos, *unpaired.begin());
 	}
 
 	std::vector<size_t> insertion_order = generateInsertionOrder(losers_with_bounds.size());
